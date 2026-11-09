@@ -1,0 +1,74 @@
+@layer components {
+  .character-roll {
+    --roll-duration: 220ms;
+    --roll-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --roll-clearance: 0.15em;
+    --roll-travel: calc(100% + 2 * var(--roll-clearance));
+
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .character-roll__visual {
+    display: inline-flex;
+    vertical-align: top;
+    /* Stable character wrappers in both resting and animated states. */
+    font-kerning: none;
+    font-variant-ligatures: none;
+  }
+
+  .character-roll__character {
+    display: inline-grid;
+    overflow: hidden;
+    /* Give glyph overhang room without changing the label's layout box. */
+    padding: var(--roll-clearance) 0.05em;
+    margin: calc(-1 * var(--roll-clearance)) -0.05em;
+  }
+
+  .character-roll__original,
+  .character-roll__copy {
+    grid-area: 1 / 1;
+  }
+
+  .character-roll__copy {
+    transform: translateY(var(--roll-travel));
+    user-select: none;
+  }
+
+  /* CSS reverses from the current position on rapid entry/exit. Exit has no delay.
+     Keeping all motion in this query also settles instantly on preference changes. */
+  @media (prefers-reduced-motion: no-preference) {
+    .character-roll__original,
+    .character-roll__copy {
+      transition: transform var(--roll-duration) var(--roll-ease);
+    }
+
+    .character-roll-trigger:focus-visible .character-roll__original {
+      transform: translateY(calc(-1 * var(--roll-travel)));
+      transition-delay: var(--roll-delay);
+    }
+
+    .character-roll-trigger:focus-visible .character-roll__copy {
+      transform: translateY(0);
+      transition-delay: var(--roll-delay);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .character-roll-trigger:hover .character-roll__original {
+        transform: translateY(calc(-1 * var(--roll-travel)));
+        transition-delay: var(--roll-delay);
+      }
+
+      .character-roll-trigger:hover .character-roll__copy {
+        transform: translateY(0);
+        transition-delay: var(--roll-delay);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .character-roll__copy {
+      visibility: hidden;
+    }
+  }
+}

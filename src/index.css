@@ -19,6 +19,9 @@
   --text-label: 0.75rem;
   --text-label--line-height: 1.5;
   --text-label--letter-spacing: 0.08em;
+  --text-nav: 0.875rem;
+  --text-nav--line-height: 1.5;
+  --text-nav--letter-spacing: 0.05em;
 }
 
 /* Semantic roles can later be overridden on individual section wrappers. */
@@ -33,6 +36,7 @@
   --section-space: clamp(4rem, 10vw, 9rem);
   --content-width: 80rem;
   --border-width-thin: 1px;
+  --navbar-height: 5.25rem;
 }
 
 /* Inline aliases keep utilities responsive to local semantic overrides. */
