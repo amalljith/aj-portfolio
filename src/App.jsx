@@ -1,4 +1,5 @@
 import Navbar from "./components/layout/Navbar.jsx";
+import Hero from "./components/sections/Hero.jsx";
 
 export default function App() {
   return (
@@ -13,15 +14,9 @@ export default function App() {
       <main
         id="main-content"
         tabIndex={-1}
-        className="flex flex-1 items-center justify-center px-gutter py-12"
+        className="flex-1"
       >
-        <div className="w-full max-w-content text-center">
-          <p className="font-mono text-label uppercase">Python Developer</p>
-          <h1 className="my-4 font-display text-display font-normal text-balance text-accent uppercase">
-            Amal Jith
-          </h1>
-          <p className="font-body">Portfolio in preparation.</p>
-        </div>
+        <Hero />
       </main>
     </div>
   );
