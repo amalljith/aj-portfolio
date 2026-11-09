@@ -2,14 +2,20 @@
 
 A minimal editorial developer portfolio for Amal Jith, Python Developer.
 
-The current milestone provides the project foundation and a static placeholder.
-Navbar, Hero, other website sections, and animation features are awaiting explicit
-implementation instructions. The approved AJ monogram SVG is also pending.
+The current milestone includes the foundation, desktop Navbar, approved AJ
+monogram, and fullscreen mobile navigation. The rest of the page is a static
+placeholder; Hero and content sections are awaiting explicit implementation
+instructions. Favicon integration is pending.
 
 ## Development
 
 The existing stack is React, JavaScript/JSX, Vite, Tailwind CSS v4 through its
-Vite plugin, and Oxlint. No additional dependencies are needed for the foundation.
+Vite plugin, and Oxlint. GSAP owns the mobile menu's reversible curtain timeline;
+the character roll and geometric toggle remain CSS animations.
+
+The five section anchors are reserved for future sections. The mobile menu closes
+without changing the hash or scrolling when a target is absent. GitHub and
+LinkedIn are hidden until real profile URLs are supplied in `src/data/navigation.js`.
 
 ```sh
 npm install

@@ -1,0 +1,90 @@
+@layer components {
+  .mobile-menu-toggle {
+    --menu-toggle-duration: 400ms;
+    --menu-toggle-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .mobile-menu-toggle__symbol {
+    display: block;
+    flex-shrink: 0;
+    inline-size: 2rem;
+    block-size: 2rem;
+  }
+
+  .mobile-menu-toggle__pixel {
+    transform-box: view-box;
+    transform-origin: 0 0;
+    /* `none` also cancels an active transition when reduced motion is enabled. */
+    transition: none;
+  }
+
+  /* Five separated pixels form a stepped, angular silhouette. */
+  .mobile-menu-toggle__pixel--1 {
+    transform: translate(24px, 8px) rotate(0deg) scale(1, 1);
+  }
+
+  .mobile-menu-toggle__pixel--2 {
+    transform: translate(16px, 16px) rotate(0deg) scale(1, 1);
+  }
+
+  .mobile-menu-toggle__pixel--3 {
+    transform: translate(24px, 16px) rotate(0deg) scale(1, 1);
+  }
+
+  .mobile-menu-toggle__pixel--4 {
+    transform: translate(8px, 24px) rotate(0deg) scale(1, 1);
+  }
+
+  .mobile-menu-toggle__pixel--5 {
+    transform: translate(16px, 24px) rotate(0deg) scale(1, 1);
+  }
+
+  /* Two pixels become the arms of the X; the others recede into its center. */
+  .mobile-menu-toggle[data-open="true"] .mobile-menu-toggle__pixel--1 {
+    transform: translate(16px, 16px) rotate(45deg) scale(3.5, 0.55);
+  }
+
+  .mobile-menu-toggle[data-open="true"] .mobile-menu-toggle__pixel--2 {
+    transform: translate(16px, 16px) rotate(-45deg) scale(3.5, 0.55);
+  }
+
+  .mobile-menu-toggle[data-open="true"] :is(
+    .mobile-menu-toggle__pixel--3,
+    .mobile-menu-toggle__pixel--4,
+    .mobile-menu-toggle__pixel--5
+  ) {
+    transform: translate(16px, 16px) rotate(0deg) scale(0, 0);
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle__labels {
+    display: inline-grid;
+  }
+
+  .mobile-menu-toggle__labels > span {
+    grid-area: 1 / 1;
+    text-align: start;
+  }
+
+  .mobile-menu-toggle__label--close,
+  .mobile-menu-toggle[data-open="true"] .mobile-menu-toggle__label--menu {
+    visibility: hidden;
+  }
+
+  .mobile-menu-toggle[data-open="true"] .mobile-menu-toggle__label--close {
+    visibility: visible;
+  }
+
+  /* Reverses naturally on repeated clicks. A live preference change removes
+     transitions immediately, while the visual and accessible states stay in sync. */
+  @media (prefers-reduced-motion: no-preference) {
+    .mobile-menu-toggle__pixel {
+      transition:
+        transform var(--menu-toggle-duration) var(--menu-toggle-ease),
+        opacity var(--menu-toggle-duration) var(--menu-toggle-ease);
+    }
+  }
+}

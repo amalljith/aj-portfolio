@@ -5,10 +5,14 @@
 This is Amal Jith's developer portfolio. Amal is a Python Developer. Use React
 functional components, JavaScript/JSX, Vite, and Tailwind CSS v4.
 
-The current milestone is the project foundation only. Keep the app as a minimal
-placeholder. Do not implement the Navbar, Hero, or any other website sections
-until explicitly instructed. Do not install animation libraries or implement
-motion features yet. `MOTION.md` records future plans, not current deliverables.
+The foundation and desktop Navbar are implemented. The Navbar uses a CSS character
+roll and an outlined CONTACT link; the rest of the app remains a minimal
+placeholder. The approved geometric mobile toggle controls a fullscreen mobile
+navigation overlay with GSAP timelines, focus containment, and scroll locking.
+Do not build the Hero, other sections, or additional motion features until
+explicitly instructed. GSAP is installed for the mobile navigation only;
+ScrollTrigger and Lenis are not installed. `MOTION.md` records motion principles
+and the broader future motion plan.
 
 ## Visual identity
 
@@ -18,15 +22,22 @@ motion features yet. `MOTION.md` records future plans, not current deliverables.
   their layouts, branding, or assets.
 - Use pixel-inspired details sparingly and only with a purpose.
 - Do not add box shadows, glow effects, or unnecessary gradients.
-- The selected logo is a futuristic geometric AJ monogram. Its final production
-  SVG has not been supplied. Use ordinary text until it arrives; do not invent
-  an alternate symbol, monogram, or branded favicon.
+- The approved Concept 01 geometric AJ monogram is implemented in
+  `src/components/branding/AJLogo.jsx` and `public/branding/aj-monogram.svg`.
+  Preserve their matching geometry. Do not replace the branding or alter its
+  paths without explicit instructions. Favicon integration remains pending.
 - Do not invent personal claims, projects, clients, or achievements.
 
 ## Source map
 
 - `src/main.jsx`: React entry point; retain StrictMode.
-- `src/App.jsx`: application composition; currently a text placeholder.
+- `src/App.jsx`: desktop Navbar, skip link, and text placeholder.
+- `src/components/layout/Navbar.jsx`: desktop navigation and mobile integration.
+- `src/components/layout/MobileNavigation.jsx` and its CSS: fullscreen panel.
+- `src/hooks/useMobileNavigation.js`: timeline, modal behavior, and cleanup.
+- `src/data/navigation.js`: shared section destinations.
+- `src/components/ui/MobileMenuToggle.jsx` and its CSS: controlled geometric toggle.
+- `src/components/ui/CharacterRoll.jsx` and its CSS: accessible label roll.
 - `src/index.css`: Tailwind import, shared tokens, and base styles.
 - `index.html`: document metadata and font loading.
 - `vite.config.js`: existing React and Tailwind Vite integrations.

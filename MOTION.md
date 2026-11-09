@@ -1,8 +1,14 @@
-# Motion direction — planned, not implemented
+# Motion direction
 
-This document guides a later milestone. No animation libraries, motion runtime,
-cursor replacement, preloader, or animated sections are part of the foundation.
-Implementation requires an explicit request.
+The desktop character roll and geometric mobile toggle use CSS. Fullscreen mobile
+navigation uses one reversible GSAP timeline: curtain, staggered links, then footer.
+Closing reverses it at a modestly faster rate. The timeline, listeners, inert
+states, scroll lock, and inline styles are cleaned up by the owning React hook.
+Reduced motion settles immediately, including live preference changes.
+
+The remaining motion features below are future plans, requiring explicit requests.
+ScrollTrigger, Lenis, custom cursors, preloaders, and animated content sections
+are not implemented.
 
 ## Intent
 
