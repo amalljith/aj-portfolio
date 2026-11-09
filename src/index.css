@@ -1,1 +1,80 @@
 @import "tailwindcss";
+
+/* Keep all foundation tokens available, including colors not used yet. */
+@theme static {
+  --color-cream: #fff1d6;
+  --color-cobalt: #0047ab;
+  --color-off-white: #f5f4ee;
+  --color-near-black: #171916;
+  --color-lime: #dceb80;
+
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --font-mono: "Kode Mono", ui-monospace, monospace;
+  --font-editorial: "Instrument Serif", Georgia, serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+
+  --text-display: clamp(3rem, 9vw, 6rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.025em;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.5;
+  --text-label--letter-spacing: 0.08em;
+}
+
+/* Semantic roles can later be overridden on individual section wrappers. */
+:root {
+  --surface: var(--color-cream);
+  --ink: var(--color-near-black);
+  --accent: var(--color-cobalt);
+  --rule: var(--color-near-black);
+  --focus: var(--color-cobalt);
+
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --section-space: clamp(4rem, 10vw, 9rem);
+  --content-width: 80rem;
+  --border-width-thin: 1px;
+}
+
+/* Inline aliases keep utilities responsive to local semantic overrides. */
+@theme inline {
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-rule: var(--rule);
+  --color-focus: var(--focus);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-editorial);
+  --spacing-gutter: var(--gutter);
+  --spacing-section: var(--section-space);
+  --container-content: var(--content-width);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    background-color: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-inline-size: 0;
+  }
+
+  #root {
+    min-block-size: 100svh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-cobalt);
+    color: var(--color-cream);
+  }
+}
