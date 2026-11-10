@@ -3,24 +3,26 @@
 A minimal editorial developer portfolio for Amal Jith, Python Developer.
 
 The current milestone includes the foundation, desktop Navbar, approved AJ
-monogram, fullscreen mobile navigation, and responsive Hero V4. The Hero has one
+monogram, fullscreen mobile navigation, and responsive Hero V5. The Hero has one
 coordinated entrance for its typography, geometric SVG, CTA, and editorial footer.
 After the entrance settles, a quiet SVG signal loops through the available Hero
 whitespace: a wide horizontal network on desktop and a separate, taller vertical
 path on mobile. There are no visible ambient controls. Reduced motion hides the
 decoration, and work pauses offscreen or in hidden tabs. The loop uses CSS
 independently of the existing entrance timeline.
-After the entrance settles, the oversized name uses the approved local Archivo
+After the entrance settles, the oversized name uses the approved local Anybody
 variable font: mouse proximity or touch/pen press-and-glide makes nearby letters
-thin, with intermediate neighboring weights and a smooth return. Fixed character
+moderately thinner and smaller, with graded neighbors and a smooth return.
+The approved range is 900/55/1 to 300/68/0.95 (weight/width/scale), with about
+255ms response and 450ms return to 95%, followed by a settling tail. Fixed character
 cells keep the layout stable. Reduced motion leaves the name static.
 Other content sections and additional motion await explicit implementation
 instructions and visual approval. Favicon integration is pending.
 
-The approved typography comparison is integrated into production. Its temporary
-route, comparison components, and duplicate Anton subset are removed. Archivo
-font provenance, actual axis ranges, and licensing are documented in
-[font documentation](src/assets/fonts/README.md).
+The approved Anybody comparison is integrated into production. The temporary
+comparison route, components, hooks, Roboto Flex assets, and obsolete Archivo
+assets have been removed. Font provenance, actual axis ranges, and licensing
+are documented in [font documentation](src/assets/fonts/README.md).
 
 ## Development
 
@@ -61,7 +63,7 @@ Examples: `bg-surface`, `text-ink`, `text-accent`, `border-rule`, `px-gutter`,
 `py-section`, `max-w-content`, `font-display`, `font-mono`, `font-editorial`, and
 `font-body`.
 
-Anton remains the general display face; the Hero name alone uses local Archivo.
+Anton remains the general display face; the Hero name alone uses local Anybody.
 Kode Mono is for navigation and technical labels;
 Instrument Serif is for selective accents; Space Grotesk is for body copy.
 `index.html` declares all four through a single Google Fonts CSS request with
@@ -72,9 +74,10 @@ Serif Italic 400 for `developer.` in the Hero. Extend the request only when anot
 style is used. Browsers fetch font files as needed for rendered text, without
 preloading unused binaries.
 
-The four shared fonts require Google's font service. The 3.9KB Archivo name-only
+The four shared fonts require Google's font service. The 2.9KB Anybody name-only
 WOFF2 is bundled locally with its OFL license and uses one CSS face with
-`font-display: swap`; its fixed cells reserve space before loading. No font
+`font-display: swap`; its fixed cells reserve space before loading. A smaller
+Hero-local fallback fits the condensed cells if the face fails or times out. No font
 package was added. Fallback stacks keep the page usable offline.
 Hero font preparation waits at most 800ms, then freezes any unavailable
 face to its existing fallback for that mount, preventing a late font swap during

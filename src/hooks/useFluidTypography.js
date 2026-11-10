@@ -2,8 +2,8 @@ import { useCallback, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 export const fluidTypeRange = {
-  resting: { weight: 900, width: 62 },
-  active: { weight: 100, width: 76 },
+  resting: { weight: 900, width: 55, scale: 1 },
+  active: { weight: 300, width: 68, scale: 0.95 },
 };
 const { resting, active } = fluidTypeRange;
 
@@ -21,62 +21,58 @@ export default function useFluidTypography(rootRef) {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let disposed = false;
     let fontReady = false;
+    let fontFailed = false;
+    const previousFont = hero.getAttribute("data-hero-font");
+    hero.dataset.heroFont = "loading";
 
     const attach = () => {
       const characters = [...root.querySelectorAll(".hero__glyph")].map((node) => ({
-        node, ...resting, target: { ...resting },
-        original: node.style.getPropertyValue("font-variation-settings"),
-        priority: node.style.getPropertyPriority("font-variation-settings"),
+        node, ...resting, target: { ...resting }, original: node.getAttribute("style"),
       }));
       let point;
       let dirty = false;
       let ticking = false;
       let returning = false;
       let activeTouch = null;
-      let horizontalReach;
+      let reach;
 
-      const write = (character) => {
-        character.node.style.fontVariationSettings = `"wght" ${character.weight.toFixed(2)}, "wdth" ${character.width.toFixed(3)}`;
-      };
-      const restore = () => characters.forEach((character) => {
-        if (character.original) character.node.style.setProperty("font-variation-settings", character.original, character.priority);
-        else character.node.style.removeProperty("font-variation-settings");
-        if (!character.node.getAttribute("style")) character.node.removeAttribute("style");
+      const restore = () => characters.forEach(({ node, original }) => {
+        if (!original) node.removeAttribute("style");
+        else node.setAttribute("style", original);
       });
       const stop = () => { gsap.ticker.remove(tick); ticking = false; };
       function tick(_time, deltaMs) {
         if (dirty && point) {
           const bounds = root.getBoundingClientRect();
           characters.forEach((character) => {
-            // A thin core covers the glyph, with a shorter falloff across neighbors.
-            // The shallow vertical band keeps the other word at its resting weight.
             const dx = Math.max(0, Math.abs(point.x - bounds.left - character.x) - character.cellWidth * 0.3);
             const dy = Math.max(0, Math.abs(point.y - bounds.top - character.y) - character.cellHeight * 0.42);
-            const distance = Math.hypot(dx / horizontalReach, dy / (character.cellHeight * 0.18));
-            const proximity = Math.max(0, 1 - distance);
+            const proximity = Math.max(0, 1 - Math.hypot(dx / reach, dy / (character.cellHeight * 0.18)));
             const influence = proximity * proximity * (3 - 2 * proximity);
-            character.target = {
-              weight: resting.weight + (active.weight - resting.weight) * influence,
-              width: resting.width + (active.width - resting.width) * influence,
-            };
+            for (const axis of ["weight", "width", "scale"]) {
+              character.target[axis] = resting[axis] + (active[axis] - resting[axis]) * influence;
+            }
           });
           dirty = false;
         }
-        // About 195ms response / 360ms return to 95%, without overshooting the axes.
-        const blend = 1 - Math.exp(-Math.min(deltaMs, 64) / (returning ? 120 : 65));
+        // Frame-rate independent damping: ~255ms approach / ~450ms return to 95%.
+        const blend = 1 - Math.exp(-Math.min(deltaMs, 64) / (returning ? 150 : 85));
         let settled = true;
         characters.forEach((character) => {
-          character.weight += (character.target.weight - character.weight) * blend;
-          character.width += (character.target.width - character.width) * blend;
-          if (Math.abs(character.target.weight - character.weight) > 0.08
-            || Math.abs(character.target.width - character.width) > 0.004) settled = false;
-          else { character.weight = character.target.weight; character.width = character.target.width; }
-          write(character);
+          for (const axis of ["weight", "width", "scale"]) {
+            character[axis] += (character.target[axis] - character[axis]) * blend;
+            const tolerance = axis === "weight" ? 0.08 : axis === "width" ? 0.004 : 0.00002;
+            if (Math.abs(character.target[axis] - character[axis]) > tolerance) settled = false;
+            else character[axis] = character.target[axis];
+          }
+          character.node.style.fontVariationSettings = `"wght" ${character.weight.toFixed(2)}, "wdth" ${character.width.toFixed(3)}`;
+          // Only this inner glyph owns scale; the reveal transforms its parent.
+          character.node.style.transform = `scale(${character.scale.toFixed(5)})`;
         });
         if (settled) { stop(); if (returning) restore(); }
       }
       const start = () => { if (!ticking) { ticking = true; gsap.ticker.add(tick); } };
-      const reset = (immediate = false) => {
+      const resetCharacters = (immediate = false) => {
         point = null;
         dirty = false;
         activeTouch = null;
@@ -85,15 +81,14 @@ export default function useFluidTypography(rootRef) {
           character.target = { ...resting };
           if (immediate) Object.assign(character, resting);
         });
-        if (immediate) { stop(); restore(); }
-        else start();
+        if (immediate) { stop(); restore(); } else start();
       };
       const measure = () => {
-        reset(true);
+        resetCharacters(true);
         const bounds = root.getBoundingClientRect();
-        horizontalReach = Math.max(90, Math.min(280, parseFloat(getComputedStyle(root).fontSize) * 1.05));
+        reach = Math.max(85, Math.min(280, parseFloat(getComputedStyle(root).fontSize) * 0.9));
         characters.forEach((character) => {
-          const box = character.node.parentElement.getBoundingClientRect();
+          const box = character.node.closest(".hero__char-mask").getBoundingClientRect();
           character.x = box.left - bounds.left + box.width / 2;
           character.y = box.top - bounds.top + box.height / 2;
           character.cellWidth = box.width;
@@ -107,28 +102,27 @@ export default function useFluidTypography(rootRef) {
         start();
       };
       const onDown = (event) => {
-        if (event.pointerType === "mouse") { reset(true); return; }
+        if (event.pointerType === "mouse") { resetCharacters(true); return; }
         if (activeTouch !== null) return;
         activeTouch = event.pointerId;
         track(event);
       };
       const onMove = (event) => {
         if (event.pointerType !== "mouse") {
-          if (event.pointerId === activeTouch) track(event);
+          if (activeTouch === event.pointerId) track(event);
           return;
         }
-        const selection = window.getSelection();
-        // An actual mouse can hover even when a hybrid/emulated primary input is coarse.
+        const selection = getSelection();
         if (event.buttons || (!selection?.isCollapsed && selection?.containsNode(root, true))) {
-          reset(true);
+          resetCharacters(true);
           return;
         }
         track(event);
       };
-      const onEnd = (event) => { if (event.pointerId === activeTouch) reset(); };
-      const onLeave = (event) => { if (event.pointerType === "mouse") reset(); };
-      const onBlur = () => reset(true);
-      const onVisibility = () => { if (document.hidden) reset(true); };
+      const onLeave = (event) => { if (event.pointerType === "mouse") resetCharacters(); };
+      const onEnd = (event) => { if (event.pointerId === activeTouch) resetCharacters(); };
+      const onBlur = () => resetCharacters(true);
+      const onVisibility = () => { if (document.hidden) resetCharacters(true); };
       measure();
       const resize = new ResizeObserver(measure);
       resize.observe(root);
@@ -139,9 +133,8 @@ export default function useFluidTypography(rootRef) {
       window.addEventListener("pointercancel", onEnd, { passive: true });
       window.addEventListener("blur", onBlur);
       document.addEventListener("visibilitychange", onVisibility);
-
       return () => {
-        reset(true);
+        resetCharacters(true);
         resize.disconnect();
         root.removeEventListener("pointerdown", onDown);
         root.removeEventListener("pointermove", onMove);
@@ -155,8 +148,10 @@ export default function useFluidTypography(rootRef) {
     const reconcile = () => {
       reset();
       const settled = ["settled", "reduced"].includes(hero.dataset.heroMotion);
-      const usingArchivo = getComputedStyle(root).fontFamily.includes("AJ Archivo");
-      if (!disposed && fontReady && usingArchivo && settled && !reduced.matches) {
+      const usingAnybody = getComputedStyle(root).fontFamily.includes("AJ Anybody");
+      hero.dataset.heroFont = fontReady && usingAnybody ? "ready"
+        : fontFailed || !usingAnybody ? "fallback" : "loading";
+      if (!disposed && fontReady && usingAnybody && settled && !reduced.matches) {
         detachRef.current = attach();
       }
     };
@@ -164,16 +159,22 @@ export default function useFluidTypography(rootRef) {
     observer.observe(hero, { attributes: true, attributeFilter: ["data-hero-motion"] });
     reduced.addEventListener("change", reconcile);
     // Reuse the CSS face and browser request cache; never register duplicate faces.
-    document.fonts?.load('900 16px "AJ Archivo"', "AMAL JITH.").then((faces) => {
+    document.fonts?.load('900 16px "AJ Anybody"', "AMAL JITH.").then((faces) => {
       if (disposed) return;
       fontReady = faces.some((face) => face.status === "loaded");
       reconcile();
-    }).catch(() => { /* A failed local font leaves static, readable fallback type. */ });
+    }).catch(() => {
+      if (disposed) return;
+      fontFailed = true;
+      reconcile();
+    });
     return () => {
       disposed = true;
       observer.disconnect();
       reduced.removeEventListener("change", reconcile);
       reset();
+      if (previousFont === null) hero.removeAttribute("data-hero-font");
+      else hero.setAttribute("data-hero-font", previousFont);
     };
   }, [rootRef, reset]);
   return reset;

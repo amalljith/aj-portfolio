@@ -2,11 +2,11 @@
 
 /* Name-only subset; keep Anton as the site's general display face. */
 @font-face {
-  font-family: "AJ Archivo";
-  src: url("./assets/fonts/archivo-name-variable.woff2?no-inline") format("woff2");
+  font-family: "AJ Anybody";
+  src: url("./assets/fonts/anybody-name-variable.woff2?no-inline") format("woff2");
   font-style: normal;
   font-weight: 100 900;
-  font-stretch: 62% 125%;
+  font-stretch: 50% 150%;
   font-display: swap;
 }
 
@@ -19,7 +19,7 @@
   --color-lime: #dceb80;
 
   --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
-  --font-hero-name: "AJ Archivo", Impact, "Arial Narrow", sans-serif;
+  --font-hero-name: "AJ Anybody", Impact, "Arial Narrow", sans-serif;
   --font-mono: "Kode Mono", ui-monospace, monospace;
   --font-editorial: "Instrument Serif", Georgia, serif;
   --font-body: "Space Grotesk", system-ui, sans-serif;

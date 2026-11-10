@@ -6,7 +6,7 @@ import "./Hero.css";
 
 // Fixed advances cover the approved coupled axis path, keeping each glyph clear
 // of its neighbors. Entrance transforms and variable-font styles have separate owners.
-const advances = { A: 0.603, M: 0.782, L: 0.502, J: 0.519, I: 0.306, T: 0.548, H: 0.657, ".": 0.266 };
+const advances = { A: 0.446, M: 0.67, L: 0.31, J: 0.43, I: 0.229, T: 0.374, H: 0.435, ".": 0.225 };
 
 function NameWord({ children }) {
   return (

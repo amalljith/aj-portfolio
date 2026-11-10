@@ -1,11 +1,12 @@
 @layer components {
   .hero__inner {
-    --hero-name-size: clamp(5rem, 30vw, 14rem);
-    --hero-name-leading: 1.08;
+    --hero-name-size: clamp(4rem, 40vw, 18rem);
+    --hero-name-leading: 1.12;
     --hero-title-gap: clamp(1.25rem, 3svh, 2rem);
 
     display: flex;
     flex-direction: column;
+    min-block-size: calc(100vh - var(--navbar-height));
     min-block-size: calc(100svh - var(--navbar-height));
     padding-block-start: clamp(1.5rem, 4svh, 3rem);
     padding-block-end: 1.5rem;
@@ -20,8 +21,8 @@
     font-size: var(--hero-name-size);
     font-family: var(--font-hero-name);
     font-weight: 900;
-    font-stretch: 62%;
-    font-variation-settings: "wght" 900, "wdth" 62;
+    font-stretch: 55%;
+    font-variation-settings: "wght" 900, "wdth" 55;
     font-synthesis: none;
     line-height: var(--hero-name-leading);
     letter-spacing: 0;
@@ -59,6 +60,13 @@
     inset-block-start: 0;
     inset-inline-start: 0;
     inline-size: 100%;
+    /* Generic fallback faces must also fit Anybody's condensed character cells. */
+    font-size: 0.55em;
+    transform-origin: 50% 78%;
+  }
+
+  .hero[data-hero-font="ready"] .hero__glyph {
+    font-size: 1em;
   }
 
   .hero__line,
@@ -208,13 +216,41 @@
 
   @media (width >= 48rem) {
     .hero__details {
+      --hero-details-padding: clamp(2rem, 6svh, 4rem);
+
+      /* Use the existing space above the footer without moving its divider. */
+      flex-grow: 1;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 2rem;
-      padding-block-end: clamp(2rem, 6svh, 4rem);
+      padding-block-end: var(--hero-details-padding);
+    }
+
+    .hero__identity {
+      align-self: stretch;
+      min-block-size: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      row-gap: 1.25rem;
     }
   }
 
   @media (width >= 64rem) {
+    .hero__inner {
+      /* The Navbar is 84px via the shared token; content can still grow past it.
+         Recover spacing on shorter desktops before reducing any display type. */
+      --hero-desktop-space: clamp(0.5rem, calc(12.5vh - 6rem), 2rem);
+      --hero-title-gap: var(--hero-desktop-space);
+
+      padding-block-start: clamp(0.75rem, calc(var(--hero-desktop-space) * 1.5), 3rem);
+      padding-block-end: clamp(0.75rem, calc(var(--hero-desktop-space) * 1.5), 1.5rem);
+    }
+
+    @supports (height: 100svh) {
+      .hero__inner {
+        --hero-desktop-space: clamp(0.5rem, calc(12.5svh - 6rem), 2rem);
+      }
+    }
+
     .hero__title {
       display: flex;
       align-items: center;
@@ -222,8 +258,9 @@
       flex-wrap: wrap;
       justify-content: space-between;
       column-gap: 0.05em;
-      /* Archivo's safe axis slots are wider than Anton's natural advances. */
-      font-size: clamp(5rem, 17vw, 15rem);
+      /* Preserve the approved Anybody proportions with room for the central SVG. */
+      font-size: clamp(5rem, 22vw, 20rem);
+      margin-block-start: var(--hero-desktop-space);
     }
 
     .hero__geometry {
@@ -235,7 +272,17 @@
     }
 
     .hero__details {
+      --hero-details-padding: clamp(1.5rem, calc(var(--hero-desktop-space) * 3), 4rem);
+
       grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+    }
+
+    .hero__identity {
+      row-gap: clamp(0.75rem, var(--hero-desktop-space), 1.25rem);
+    }
+
+    .hero__footer {
+      padding-block-start: clamp(0.75rem, var(--hero-desktop-space), 1rem);
     }
   }
 

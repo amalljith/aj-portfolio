@@ -5,7 +5,7 @@
 This is Amal Jith's developer portfolio. Amal is a Python Developer. Use React
 functional components, JavaScript/JSX, Vite, and Tailwind CSS v4.
 
-The foundation, Navbar, and Hero V4 are implemented. The Navbar uses a CSS character
+The foundation, Navbar, and Hero V5 are implemented. The Navbar uses a CSS character
 roll and an outlined CONTACT link. The approved geometric mobile toggle controls a
 fullscreen mobile navigation overlay with GSAP timelines, focus containment, and
 scroll locking. The Hero uses a scoped GSAP entrance with masked typography,
@@ -14,21 +14,23 @@ Work button announces that selected work is coming soon.
 An independent CSS ambient signal starts after the entrance settles, with distinct
 horizontal desktop and vertical mobile artwork. It has no visible controls;
 reduced motion hides it, and offscreen/background-tab visibility suspends it.
-After the entrance settles, the name uses the approved Archivo variable-font
+After the entrance settles, the name uses the approved Anybody variable-font
 interaction: mouse proximity and touch/pen press-and-glide thin nearby characters
-from weight 900 to 100 and width 62 to 76. Passive input preserves native scrolling.
+from weight 900 to 300, width 55 to 68, and scale 1 to 0.95. Passive input preserves
+native scrolling.
 Reduced motion disables interaction, including live preference changes.
 Replace the Explore Work button with a #work anchor when the real Work section exists.
 Do not build other sections or additional motion features until explicitly
-instructed. Hero V4 awaits visual approval before additional motion development.
+instructed. Hero V5 awaits visual approval before additional motion development.
 GSAP is shared by the mobile navigation and Hero; SplitText ships with that
 existing dependency. ScrollTrigger and Lenis are not installed. `MOTION.md`
 records the implemented entrances and the broader future motion plan.
 
-The approved typography comparison has been integrated and removed. Archivo's
-local name-only subset lives in `src/assets/fonts/`; its OFL ships from
-`public/licenses/Archivo-OFL.txt`. Anton remains the general display font.
-See the font directory's README for provenance and axes.
+The approved Anybody comparison has been promoted to production. Its temporary
+route, components, hooks, optional Roboto Flex assets, and obsolete Archivo assets
+are removed. Anybody's local name-only subset lives in `src/assets/fonts/`; its
+OFL ships from `public/licenses/Anybody-OFL.txt`. Anton remains the general display
+font. See the font directory's README for provenance and axes.
 
 ## Visual identity
 
@@ -48,14 +50,14 @@ See the font directory's README for provenance and axes.
 
 - `src/main.jsx`: React entry point; retain StrictMode.
 - `src/App.jsx`: Navbar, skip link, and Hero composition.
-- `src/components/sections/Hero.jsx` and its CSS: responsive editorial Hero V4,
+- `src/components/sections/Hero.jsx` and its CSS: responsive editorial Hero V5,
   fixed character cells, entrance layers, and inner variable-font glyphs.
 - `src/components/sections/HeroAmbient.jsx` and its CSS: distinct responsive
   decorative signal paths and visibility lifecycle; keep separate from the entrance.
 - `src/hooks/useHeroEntrance.js`: entrance timing, bounded font preparation,
   reduced motion, external controls, and cleanup. Keep motion scoped to the Hero.
 - `src/hooks/useFluidTypography.js`: approved pointer/touch axis interpolation,
-  font/entrance gating, and idle ticker cleanup. Owns glyph font axes only.
+  font/entrance gating, and idle ticker cleanup. Owns inner glyph axes and scale only.
 - `src/components/layout/Navbar.jsx`: desktop navigation and mobile integration.
 - `src/components/layout/MobileNavigation.jsx` and its CSS: fullscreen panel.
 - `src/hooks/useMobileNavigation.js`: timeline, modal behavior, and cleanup.
@@ -87,14 +89,14 @@ repeated presentation logic as the site grows.
   accents, and `font-body`/`font-sans` (Space Grotesk) for readable copy.
 - Anton is visually bold at its real weight of 400; use `font-normal`. Instrument
   Serif is also loaded at 400. Avoid synthesizing heavy or italic variants.
-- The Hero name alone uses `--font-hero-name` (local AJ Archivo), resting at
-  `wght=900, wdth=62`. Its fixed cells cover the approved coupled axis path.
-  Entrance transforms belong to `.hero__char`; axes belong to `.hero__glyph`.
+- The Hero name alone uses `--font-hero-name` (local AJ Anybody), resting at
+  `wght=900, wdth=55, scale=1`. Its fixed cells cover the approved coupled axis path.
+  Entrance transforms belong to `.hero__char`; axes and scale belong to `.hero__glyph`.
 - Shared fonts are declared in one Google Fonts stylesheet in `index.html`, with
   preconnects, `display=swap`, and fallback stacks. Regular 400 styles are
   requested, plus Space Grotesk 600 and Instrument Serif Italic 400
   for the Hero role. Request additional weights/styles only when used.
-- Archivo uses one CSS `@font-face`, `font-display: swap`, and a bundled WOFF2
+- Anybody uses one CSS `@font-face`, `font-display: swap`, and a bundled WOFF2
   subset. Font readiness reuses the browser cache. A missing/late face stays on
   the Hero-local fallback after the entrance's bounded preparation deadline;
   never enable variable interaction on fallback text.

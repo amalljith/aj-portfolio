@@ -44,11 +44,17 @@
 
   @media (width >= 48rem) {
     .hero-ambient {
-      inset-block-start: calc(100% + 1.25rem);
-      inset-inline-start: 0;
-      inset-inline-end: auto;
+      --ambient-height: clamp(4.5rem, 10svh, 7rem);
+      --ambient-divider-clearance: 2rem;
+
+      /* Fit the complete path above the divider without enlarging the grid row. */
+      position: static;
+      align-self: start;
+      contain: size;
+      min-block-size: 0;
       inline-size: 82%;
-      block-size: clamp(4.5rem, 10svh, 7rem);
+      block-size: calc(100% + var(--hero-details-padding) - var(--ambient-divider-clearance));
+      max-block-size: var(--ambient-height);
     }
 
     .hero-ambient__art--desktop {
@@ -62,13 +68,13 @@
 
   @media (width >= 64rem) {
     .hero-ambient {
-      block-size: clamp(4.5rem, 14svh, 9rem);
+      --ambient-height: clamp(4.5rem, 14svh, 9rem);
     }
   }
 
   @media (width >= 48rem) and (height < 44rem) {
     .hero-ambient {
-      block-size: 4.5rem;
+      --ambient-height: 4.5rem;
     }
   }
 

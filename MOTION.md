@@ -6,7 +6,7 @@ Closing reverses it at a modestly faster rate. The timeline, listeners, inert
 states, scroll lock, and inline styles are cleaned up by the owning React hook.
 Reduced motion settles immediately, including live preference changes.
 
-## Hero entrance (V3 timing retained in V4)
+## Hero entrance (V3 timing retained in V5)
 
 The approved editorial composition has one scoped GSAP entrance timeline.
 `src/hooks/useHeroEntrance.js` registers the bundled SplitText plugin; no other
@@ -134,76 +134,83 @@ mobile text clearance. Artwork dimensions ranged from 270x102px on tablet to
 hook, Navbar, branding, tokens, and dependency files were unchanged.
 Actual remote-font rendering and physical-device performance remain review limits.
 
-## Hero V4 fluid typography
+## Hero V5 Anybody fluid typography
 
-The approved Archivo comparison is now integrated into AMAL JITH. only. Anton
-remains the general display face, including mobile navigation. The temporary
-comparison route, comparison components, duplicate Anton subset, and the prior
-magnetic-transform hook are removed. Font provenance and the preserved OFL are
-in `src/assets/fonts/README.md` and `public/licenses/Archivo-OFL.txt`. The license
-is copied into production output alongside the bundled font distribution.
+The visually approved Anybody shrink/grow study is now integrated into **AMAL
+JITH.** only. Anton remains the general display face; role, description, CTA,
+Navbar, and both SVG artworks retain their existing styling and motion. The
+comparison route, components, private hooks, optional Roboto Flex assets, and
+obsolete Archivo font/license have been removed. Provenance and the preserved
+OFL are in `src/assets/fonts/README.md` and `public/licenses/Anybody-OFL.txt`.
+The license ships alongside the production font.
 
-The actual bundled WOFF2 has `wght` 100–900 (default 600), and `wdth` 62–125
-(default 100), verified from its OpenType `fvar` records. Production keeps the
-approved resting `900 / 62` and interactive `100 / 76` values unchanged.
-`useFluidTypography.js` uses the approved flat thin core and smoothstep proximity
-falloff. Horizontal reach is 1.05 times the font size, bounded to 90–280px; the
-core covers 60% of each cell's width and 84% of its height. A short vertical
-falloff keeps the other stacked word bold during a centered interaction.
+The actual bundled WOFF2 has `wght` 100?900 (default 100), and `wdth` 50?150
+(default 100), verified from its OpenType `fvar` records. Production preserves
+the final approved study values: **900 / 55 / 1 ? 300 / 68 / 0.95**
+(weight / width / scale). This is a moderate thin state, with no hairlines.
 
-One GSAP ticker callback interpolates only `font-variation-settings`. Damping
-constants remain 65ms on approach and 120ms on return: approximately 195ms and
-360ms to reach 95%, followed by a small settling tail. Axes do not overshoot.
-The callback removes itself at rest; pointer events retain the latest point
-without React state. There are no idle loops, typography transforms, or rotations.
+`useFluidTypography.js` retains the approved flat proximity core and smoothstep
+falloff. Horizontal reach is 0.9 times font size, bounded to 85?280px. The core
+covers 60% of each cell's width and 84% of its height; a short vertical falloff
+keeps the other stacked word bold during a centered interaction.
 
-Each React character has one fixed advance/mask, one entrance layer, and one
-inner glyph. The entrance exclusively owns transforms on `.hero__char`; fluid
-typography owns axes on `.hero__glyph`. Permanent masks replace name SplitText
-rebuilding, preserving the same reveal duration, stagger, and timeline labels.
-Paragraph line splitting remains unchanged. The heading is one semantic h1 with
-the complete accessible name and no duplicated or hidden meaningful name text.
+One GSAP ticker interpolates axes and scale with frame-rate-independent damping:
+85ms approach and 150ms return constants, about **255ms / 450ms to 95%**, plus a
+settling tail. There is no overshoot or per-input React state. The ticker stops
+both at rest and when held targets settle. Cleanup restores original inline
+styles. Inner `.hero__glyph` elements own axes and scale (origin 50% / 78%);
+outer `.hero__char` elements exclusively own entrance transforms. Nine fixed
+cells reserve maximum unscaled advances along the approved coupled axis path,
+plus 0.025em. There is one semantic heading and no duplicated meaningful text.
 
-The interaction attaches only after both the actual local font and the entrance
-are settled. There are no listeners on a waiting `autoPlay={false}` heading.
-Entrance controls synchronously reset and detach interaction before preparation
-or settling, and a scoped state observer reattaches afterward. This covers
-`play()`, repeated/batched `restart()`, and `finish()` during active interaction,
-without accumulating wrappers or competing transform owners.
+Interaction attaches only after the actual local font and the entrance settle.
+Waiting `autoPlay={false}` headings remain readable without input listeners.
+`play()`, `restart()`, and `finish()` synchronously reset/detach interaction
+before preparing or settling, and a scoped state observer reattaches afterward.
+The existing 2.28-second entrance, masks, SplitText lines, timings, fallback
+deadline, and fail-open behavior remain intact.
 
-Actual mouse input drives hover, including mouse events on hybrid devices with
-a coarse primary pointer. Touch and pen require a press, then follow the active
-pointer. Passive listeners and heading-local `touch-action: pan-y pinch-zoom`
-retain vertical scrolling and zoom without capture or preventDefault. Pointer
-release/cancellation returns smoothly. Mouse dragging or selection suppresses
-interaction. Live reduced motion, resize, blur, and hidden tabs immediately
-restore resting axes; reduced motion removes input listeners. Cleanup removes
-all owned listeners, observers, ticker callbacks, and temporary variation styles.
+Actual mouse input drives proximity, including a mouse on hybrid devices.
+Touch and pen require a press and follow only that pointer. Passive listeners
+and `touch-action: pan-y pinch-zoom` preserve native scrolling/zoom without
+pointer capture or preventDefault. Release/cancel returns smoothly; mouse
+selection suppresses motion. Resize, blur, hidden tabs, and live reduced motion
+restore glyphs immediately. Reduced motion removes input listeners and shows
+the bold resting heading. StrictMode teardown releases listeners, observers,
+ticker callbacks, and temporary styles.
 
-The name-only WOFF2 is one CSS `@font-face` with `font-display: swap`, weight
-100–900, and stretch 62–125%. Vite emits one hashed binary. CSS, readiness checks,
-and entrance preparation share the browser font request. The entrance retains
-its 800ms font deadline and mount-local fallback freeze; fallback text stays
-static. Fixed cells and a 1.08 line height reserve the full approved axis path.
-The desktop type size is adjusted to `clamp(5rem, 17vw, 15rem)` to accommodate
-Archivo's wider cells while retaining the central SVG and the desktop single row.
-Mobile name size and stacked composition remain, with clearance to the original
-ambient drawing. The SVG paths and independent 12-second ambient loop are unchanged.
+Anybody uses one CSS face with accurate weight 100?900 and stretch 50?150%
+descriptors, `font-display: swap`, and one hashed, non-inlined WOFF2 asset.
+Readiness and entrance preparation share the browser font cache. The existing
+800ms preparation deadline freezes an unavailable face to a Hero-local fallback
+for that mount. A 0.55em fallback glyph fits the narrower fixed cells; the loaded
+Anybody glyph uses 1em. Fixed slots prevent font-loading layout shifts. Interaction
+never runs on fallback text.
 
-Headless Edge checks cover all eight requested widths and short viewports,
-actual loaded local font/axes, intermediate rendered metrics, graded neighbors,
-rapid pointer moves, touch press/glide/end/cancel, native vertical scrolling,
-no idle ticker, one accessible heading, initial/repeated entrance controls,
-live reduced motion, resize/focus interruption, CTA rerender, mobile menu/Escape,
-StrictMode teardown, and missing-font fallback. No initial or interaction layout
-shifts, character clipping, or horizontal overflow were observed. QA scripts and
-captures remain temporary artifacts outside the repository. Physical-device
-performance and visual approval remain review items; remote shared fonts were
-blocked in deterministic checks, while the actual local Archivo was rendered.
+The approved Anybody proportions use a 1.12 line height, mobile name size
+`clamp(4rem, 40vw, 18rem)`, and desktop `clamp(5rem, 22vw, 20rem)`.
+Desktop retains its name/SVG/name row; smaller screens retain stacked words.
+The existing responsive ambient system reads the shared heading metrics without
+changes to its artwork, positioning rules, or independent 12-second CSS loop.
+
+Headless Edge validation covered all eight requested widths and short heights,
+graded axes/scale, rapid pointer input, touch press/glide/end/cancel, native
+scrolling/selection, initial/live reduced motion, mobile menu/Escape/focus return,
+all entrance controls, failure recovery, font failure/late loading, and StrictMode
+teardown. The entrance remains 2.28 seconds. No initial or interaction layout
+shifts or horizontal overflow were recorded. Unscaled advances fit reserved
+cells through 101 points on the coupled axis path. Full stroked ambient bounds
+retain at least 24px divider clearance across 26 viewport combinations and all
+loop phases. The built page downloads one local font and ships its unchanged OFL;
+one independent 12-second ambient loop advances during typography interaction.
+Shared Google Fonts were blocked for deterministic checks; actual local Anybody
+rendering was verified. Physical-device performance and final visual approval
+remain review limits. Temporary QA artifacts are under `node_modules/.cache/`;
+no dependencies or package scripts were added.
 
 The remaining motion features below are future plans, requiring explicit requests.
-ScrollTrigger, Lenis, custom cursors, preloaders, and animated content sections
-are not implemented.
+ScrollTrigger, Lenis, custom cursors, preloaders, and additional sections are not
+implemented. Hero V5 awaits final visual approval.
 
 ## Intent
 

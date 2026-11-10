@@ -5,7 +5,7 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(SplitText);
 
 const fontGroups = [
-  { token: "--font-hero-name", family: "AJ Archivo", queries: ['900 16px "AJ Archivo"'] },
+  { token: "--font-hero-name", family: "AJ Anybody", queries: ['900 16px "AJ Anybody"'] },
   { token: "--font-mono", family: "Kode Mono", queries: ['400 16px "Kode Mono"'] },
   { token: "--font-body", family: "Space Grotesk", queries: ['400 16px "Space Grotesk"', '600 16px "Space Grotesk"'] },
   { token: "--font-editorial", family: "Instrument Serif", queries: ['italic 400 16px "Instrument Serif"'] },
@@ -38,7 +38,7 @@ function createEntrance(root, onComplete) {
   const find = (selector) => root.querySelector(selector);
   const all = (selector) => [...root.querySelectorAll(selector)];
   // Persistent React cells retain their advances while the inner font varies.
-  // Only this entrance owns transforms; fluid typography owns .hero__glyph axes.
+  // Entrance owns outer reveal transforms; fluid typography owns inner axes/scale.
   const names = all(".hero__name").map((name) => [...name.querySelectorAll(".hero__char")]);
   const timeline = gsap.timeline({ paused: true, defaults: { ease: "power3.out" }, onComplete });
   timeline.addLabel("amal", 0).addLabel("jith", 0.22).addLabel("geometry", 0.38)
