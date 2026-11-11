@@ -6,9 +6,9 @@ gsap.registerPlugin(SplitText);
 
 const fontGroups = [
   { token: "--font-hero-name", family: "AJ Anybody", queries: ['900 16px "AJ Anybody"'] },
+  { token: "--font-hero-role", family: "AJ Anybody Role", queries: ['900 16px "AJ Anybody Role"', '500 16px "AJ Anybody Role"'] },
   { token: "--font-mono", family: "Kode Mono", queries: ['400 16px "Kode Mono"'] },
-  { token: "--font-body", family: "Space Grotesk", queries: ['400 16px "Space Grotesk"', '600 16px "Space Grotesk"'] },
-  { token: "--font-editorial", family: "Instrument Serif", queries: ['italic 400 16px "Instrument Serif"'] },
+  { token: "--font-body", family: "Space Grotesk", queries: ['400 16px "Space Grotesk"'] },
 ];
 
 // Keep fallback metrics for this Hero's lifetime if a face misses the deadline.
@@ -69,7 +69,7 @@ function createEntrance(root, onComplete) {
   timeline.fromTo(find(".hero__role-text"), { yPercent: 125 }, {
     yPercent: 0, duration: 0.65,
   }, "identity");
-  timeline.fromTo(find(".hero__role-italic"), { y: 10, opacity: 0 }, {
+  timeline.fromTo(find(".hero__role-detail"), { y: 10, opacity: 0 }, {
     y: 0, opacity: 1, duration: 0.65,
   }, "identity+=0.18");
 

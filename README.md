@@ -60,25 +60,23 @@ semantic roles live under `:root`. The `@theme inline` aliases expose
 utilities that respect role overrides on future sections.
 
 Examples: `bg-surface`, `text-ink`, `text-accent`, `border-rule`, `px-gutter`,
-`py-section`, `max-w-content`, `font-display`, `font-mono`, `font-editorial`, and
+`py-section`, `max-w-content`, `font-display`, `font-mono`, and
 `font-body`.
 
-Anton remains the general display face; the Hero name alone uses local Anybody.
-Kode Mono is for navigation and technical labels;
-Instrument Serif is for selective accents; Space Grotesk is for body copy.
-`index.html` declares all four through a single Google Fonts CSS request with
-preconnects and `display=swap`, following the
-[Google Fonts CSS API guidance](https://developers.google.com/fonts/docs/css2).
-Regular 400 styles are requested, plus Space Grotesk 600 for `PYTHON` and Instrument
-Serif Italic 400 for `developer.` in the Hero. Extend the request only when another
-style is used. Browsers fetch font files as needed for rendered text, without
-preloading unused binaries.
+Anton remains the general display face. The Hero name and role use local Anybody
+subsets; Kode Mono is for navigation and technical labels, and Space Grotesk is
+for readable copy. PYTHON is bold/condensed (weight 900, width 75); developer. is
+upright and medium (weight 500, width 90). The description uses Space Grotesk 400
+at 18-21px, line height 1.6, and a 32ch measure, with tighter tracking and
+Kode Mono/cobalt technology accents. Instrument Serif is no longer
+used and has been removed from font loading and tokens.
 
-The four shared fonts require Google's font service. The 2.9KB Anybody name-only
-WOFF2 is bundled locally with its OFL license and uses one CSS face with
-`font-display: swap`; its fixed cells reserve space before loading. A smaller
-Hero-local fallback fits the condensed cells if the face fails or times out. No font
-package was added. Fallback stacks keep the page usable offline.
+`index.html` declares Anton, Kode Mono, and Space Grotesk 400 through one Google
+Fonts request with preconnects and `display=swap`. These shared fonts require
+Google's service. The original 2,872-byte Anybody name subset is preserved, and a
+5,876-byte role-only subset supplies the previously missing role glyphs. Both
+local variable faces share the existing OFL and use `font-display: swap`.
+No font package was added. Fallback stacks keep the page usable offline.
 Hero font preparation waits at most 800ms, then freezes any unavailable
 face to its existing fallback for that mount, preventing a late font swap during
 or after the entrance. The rest of the site keeps its usual font loading.

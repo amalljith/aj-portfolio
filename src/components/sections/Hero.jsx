@@ -61,14 +61,16 @@ export default function Hero({ ref, autoPlay = true }) {
         <div className="hero__details">
           <div className="hero__identity">
             <p className="hero__role">
-              <span className="hero__role-primary font-body"><span className="hero__role-text">PYTHON</span></span>{" "}
-              <span className="hero__role-editorial font-editorial"><span className="hero__role-italic">developer.</span></span>
+              <span className="hero__role-primary"><span className="hero__role-text">PYTHON</span></span>{" "}
+              <span className="hero__role-secondary"><span className="hero__role-detail">developer.</span></span>
             </p>
             <HeroAmbient />
           </div>
           <div className="hero__copy">
             <p className="hero__description font-body">
-              Building modern web experiences with Python, Django, FastAPI, and React.
+              Building modern web experiences with <span className="hero__technology">Python</span>,{" "}
+              <span className="hero__technology">Django</span>, <span className="hero__technology">FastAPI</span>, and{" "}
+              <span className="hero__technology">React</span>.
             </p>
             {/* Use an anchor to #work once the real Work section is available. */}
             <button
@@ -76,7 +78,7 @@ export default function Hero({ ref, autoPlay = true }) {
               className="hero__cta font-mono text-accent"
               onClick={() => setWorkNotice("Selected work is coming soon.")}
             >
-              <span className="hero__cta-label-mask"><span className="hero__cta-label">EXPLORE WORK</span></span>
+              <span className="hero__cta-label-mask"><span className="hero__cta-label"><span className="hero__cta-text">EXPLORE WORK</span></span></span>
               <span className="hero__cta-arrow-entrance" aria-hidden="true"><span className="hero__cta-arrow">↗</span></span>
               <span className="hero__cta-rule" aria-hidden="true" />
             </button>
@@ -86,7 +88,7 @@ export default function Hero({ ref, autoPlay = true }) {
 
         <div className="hero__footer font-mono text-label">
           <span className="hero__divider" aria-hidden="true" />
-          <p>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></p>
+          <p>SCROLL TO EXPLORE <span className="hero__scroll-arrow" aria-hidden="true">↓</span></p>
           <p className="hero__progress"><span className="sr-only">Section </span>01 / 06</p>
         </div>
       </div>

@@ -17,7 +17,7 @@ motion dependency is required. The AJ branding and Navbar are separate owners.
 | `amal` | 0 s | Masked characters, 0.82 s each, 0.04 s stagger, power3.out |
 | `jith` | 0.22 s | Same reveal, overlapping AMAL |
 | `geometry` | 0.38 s | Existing paths draw over 0.6 s, 0.12 s stagger, power2.inOut; terminals follow |
-| `identity` | 0.62 s | PYTHON rises through a mask over 0.65 s; italic developer. follows 0.18 s later with 10px movement and opacity |
+| `identity` | 0.62 s | PYTHON rises through a mask over 0.65 s; upright developer. follows 0.18 s later with 10px movement and opacity |
 | `copy` | 0.96 s | Actual wrapped lines reveal over 0.58 s, with 0.12 s total stagger |
 | `cta` | 1.30 s | Label, arrow wrapper, then underline; 0.45–0.55 s |
 | `footer` | 1.66 s | Divider draws over 0.5 s; scroll label and static counter follow |
@@ -138,7 +138,7 @@ Actual remote-font rendering and physical-device performance remain review limit
 
 The visually approved Anybody shrink/grow study is now integrated into **AMAL
 JITH.** only. Anton remains the general display face; role, description, CTA,
-Navbar, and both SVG artworks retain their existing styling and motion. The
+Navbar, and both SVG artworks retain their existing motion. The
 comparison route, components, private hooks, optional Roboto Flex assets, and
 obsolete Archivo font/license have been removed. Provenance and the preserved
 OFL are in `src/assets/fonts/README.md` and `public/licenses/Anybody-OFL.txt`.
@@ -207,6 +207,38 @@ Shared Google Fonts were blocked for deterministic checks; actual local Anybody
 rendering was verified. Physical-device performance and final visual approval
 remain review limits. Temporary QA artifacts are under `node_modules/.cache/`;
 no dependencies or package scripts were added.
+
+The subsequent role refinement uses an additional local Anybody subset because
+its name-only sibling cannot render PYTHON/developer. The role is upright:
+PYTHON at weight 900 / width 75, developer. at weight 500 / width 90. The inner
+secondary reveal target is now `.hero__role-detail`; its existing 10px movement,
+0.65s duration, and 0.18s offset remain unchanged. Font preparation checks both
+role weights and Space Grotesk 400, with the same bounded deadline and fallback
+restoration. Instrument Serif preparation and loading are removed. Name-fluid
+settings, central/ambient SVG motion, and desktop viewport spacing are unchanged.
+
+### Hero supporting interactions
+
+The description keeps its exact wording in Space Grotesk, with inline Kode Mono
+technology accents. SplitText continues to reveal actual wrapped lines and restores
+the nested semantic spans afterward; no hard-coded line breaks or copied text are
+added. The existing entrance timeline and its 2.28-second duration are unchanged.
+
+EXPLORE WORK is a thin outlined button with a separated arrow cell. A 9% cobalt
+wash wipes across it, its inner text shifts 2px, and its arrow shifts 3px right/up
+on hover and keyboard focus. CSS uses 240ms and cubic-bezier(0.22, 1, 0.36, 1).
+The existing GSAP label/arrow wrappers retain entrance transforms; CSS targets
+an extra inner label span and the existing inner arrow, preventing ownership
+conflicts. The touch target stays at least 48px and the native focus ring remains.
+The temporary coming-soon announcement is unchanged until real Work content exists.
+
+After entrance settlement, only the decorative scroll arrow nudges 6px with a
+subtle opacity dip: 1.8 seconds per cycle, two cycles (3.6 seconds), then rest.
+The label stays stationary and the arrow is aria-hidden. This finite cue avoids
+an additional continuous loop or a new control. Reduced motion removes the cue
+and text/arrow transitions, including live changes; the button retains an instant
+static wash on hover/focus. CSS animations/transitions require no new listeners
+or tickers. The independent ambient signal is unchanged.
 
 The remaining motion features below are future plans, requiring explicit requests.
 ScrollTrigger, Lenis, custom cursors, preloaders, and additional sections are not

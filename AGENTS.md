@@ -29,8 +29,9 @@ records the implemented entrances and the broader future motion plan.
 The approved Anybody comparison has been promoted to production. Its temporary
 route, components, hooks, optional Roboto Flex assets, and obsolete Archivo assets
 are removed. Anybody's local name-only subset lives in `src/assets/fonts/`; its
-OFL ships from `public/licenses/Anybody-OFL.txt`. Anton remains the general display
-font. See the font directory's README for provenance and axes.
+role-only subset shares the OFL in `public/licenses/Anybody-OFL.txt`. The original
+name subset is unchanged. Anton remains the general display font.
+See the font directory's README for provenance and axes.
 
 ## Visual identity
 
@@ -85,20 +86,20 @@ repeated presentation logic as the site grows.
   use utilities such as `bg-surface`, `text-ink`, `text-accent`, `border-rule`,
   `px-gutter`, and `max-w-content` instead of repeating values.
 - Use `font-display` (Anton) for display text, `font-mono` (Kode Mono) for
-  navigation/technical labels, `font-editorial` (Instrument Serif) for selective
-  accents, and `font-body`/`font-sans` (Space Grotesk) for readable copy.
-- Anton is visually bold at its real weight of 400; use `font-normal`. Instrument
-  Serif is also loaded at 400. Avoid synthesizing heavy or italic variants.
+  navigation/technical labels, and `font-body`/`font-sans` (Space Grotesk) for copy.
+- Anton is visually bold at its real weight of 400; use `font-normal`.
+- The Hero role uses local `--font-hero-role` (AJ Anybody Role): PYTHON at weight
+  900 / width 75, developer. at weight 500 / width 90. Both are upright. The role
+  subset covers only those words. Instrument Serif is no longer loaded or used.
 - The Hero name alone uses `--font-hero-name` (local AJ Anybody), resting at
   `wght=900, wdth=55, scale=1`. Its fixed cells cover the approved coupled axis path.
   Entrance transforms belong to `.hero__char`; axes and scale belong to `.hero__glyph`.
 - Shared fonts are declared in one Google Fonts stylesheet in `index.html`, with
-  preconnects, `display=swap`, and fallback stacks. Regular 400 styles are
-  requested, plus Space Grotesk 600 and Instrument Serif Italic 400
-  for the Hero role. Request additional weights/styles only when used.
-- Anybody uses one CSS `@font-face`, `font-display: swap`, and a bundled WOFF2
-  subset. Font readiness reuses the browser cache. A missing/late face stays on
-  the Hero-local fallback after the entrance's bounded preparation deadline;
+  preconnects, `display=swap`, and fallback stacks. Anton, Kode Mono, and Space
+  Grotesk are requested at 400. Request other weights/styles only when used.
+- Anybody uses separate name and role CSS faces with `font-display: swap` and
+  bundled WOFF2 subsets. Font readiness reuses the browser cache. A missing/late
+  face stays on the Hero-local fallback after the entrance's bounded preparation deadline;
   never enable variable interaction on fallback text.
 - Keep fluid type and spacing bounded with `clamp()`. Prefer responsive content
   flow to fixed dimensions. Do not mask layout overflow with global clipping.

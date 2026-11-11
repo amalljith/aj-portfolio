@@ -1,4 +1,4 @@
-# Hero name font
+# Hero font assets
 
 `anybody-name-variable.woff2` is the approved, unmodified Google Fonts-generated
 Anybody subset for **AMAL JITH.** only. Do not use it for general site text.
@@ -38,3 +38,19 @@ comparison route and assets, including obsolete Archivo/Roboto fonts and license
 have been removed. The entrance retains its 800ms preparation deadline and freezes
 a late/missing font to a static Hero-local fallback for that mount. Fallback glyphs
 use 0.55em to fit the condensed cells without overlap; loaded Anybody uses 1em.
+
+## Role subset
+
+`anybody-role-variable.woff2` supplies **PYTHON developer.**. The original name
+subset has only space, period, A, H, I, J, L, M, and T in its cmap; it cannot render
+the role. It remains unchanged and continues to serve the main heading.
+
+- Size: 5,876 bytes.
+- SHA-256: `a58ba0e4813d004e1b9a02e46f84adcce30ef1cb1869f66af07b93d03612e5b2`.
+- [Role stylesheet source](https://fonts.googleapis.com/css2?family=Anybody%3Awdth%2Cwght%4050..100%2C100..900&text=PYTHON%20developer.&display=swap).
+- Same unmodified Anybody font family and existing [OFL](../../../public/licenses/Anybody-OFL.txt).
+
+The actual role binary's fvar records confirm weight 100-900 (default 100) and
+width 50-150 (default 100). The declared face is `AJ Anybody Role`, used via
+`--font-hero-role`. PYTHON uses 900/75 and developer. uses 500/90; there is no role
+axis animation or italic styling. The name interaction remains unchanged.
