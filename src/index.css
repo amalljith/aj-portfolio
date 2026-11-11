@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+/* Name-only subset; keep Anton as the site's general display face. */
+@font-face {
+  font-family: "AJ Anybody";
+  src: url("./assets/fonts/anybody-name-variable.woff2?no-inline") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 150%;
+  font-display: swap;
+}
+
+/* The original name subset lacks PYTHON/developer.; share the existing OFL. */
+@font-face {
+  font-family: "AJ Anybody Role";
+  src: url("./assets/fonts/anybody-role-variable.woff2?no-inline") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 150%;
+  font-display: swap;
+}
+
 /* Keep all foundation tokens available, including colors not used yet. */
 @theme static {
   --color-cream: #fff1d6;
@@ -9,8 +29,9 @@
   --color-lime: #dceb80;
 
   --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --font-hero-name: "AJ Anybody", Impact, "Arial Narrow", sans-serif;
+  --font-hero-role: "AJ Anybody Role", "Arial Narrow", system-ui, sans-serif;
   --font-mono: "Kode Mono", ui-monospace, monospace;
-  --font-editorial: "Instrument Serif", Georgia, serif;
   --font-body: "Space Grotesk", system-ui, sans-serif;
 
   --text-display: clamp(3rem, 9vw, 6rem);
@@ -47,7 +68,6 @@
   --color-rule: var(--rule);
   --color-focus: var(--focus);
   --font-sans: var(--font-body);
-  --font-serif: var(--font-editorial);
   --spacing-gutter: var(--gutter);
   --spacing-section: var(--section-space);
   --container-content: var(--content-width);

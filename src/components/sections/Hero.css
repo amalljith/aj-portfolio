@@ -1,0 +1,376 @@
+@layer components {
+  .hero__inner {
+    --hero-name-size: clamp(4rem, 40vw, 18rem);
+    --hero-name-leading: 1.12;
+    --hero-title-gap: clamp(1.25rem, 3svh, 2rem);
+
+    display: flex;
+    flex-direction: column;
+    min-block-size: calc(100vh - var(--navbar-height));
+    min-block-size: calc(100svh - var(--navbar-height));
+    padding-block-start: clamp(1.5rem, 4svh, 3rem);
+    padding-block-end: 1.5rem;
+  }
+
+  .hero__edition {
+    color: var(--accent);
+  }
+
+  .hero__title {
+    margin-block: clamp(1.5rem, 4.5svh, 3rem) var(--hero-title-gap);
+    font-size: var(--hero-name-size);
+    font-family: var(--font-hero-name);
+    font-weight: 900;
+    font-stretch: 55%;
+    font-variation-settings: "wght" 900, "wdth" 55;
+    font-synthesis: none;
+    line-height: var(--hero-name-leading);
+    letter-spacing: 0;
+    font-kerning: none;
+    font-variant-ligatures: none;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .hero__name {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .hero__char-mask {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    inline-size: var(--advance);
+    block-size: calc(var(--hero-name-leading) * 1em);
+  }
+
+  .hero[data-hero-motion="playing"] .hero__char-mask {
+    overflow: clip;
+    overflow-clip-margin: 0.06em;
+  }
+
+  .hero__char {
+    position: relative;
+    display: block;
+    block-size: 100%;
+  }
+
+  .hero__glyph {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    /* Generic fallback faces must also fit Anybody's condensed character cells. */
+    font-size: 0.55em;
+    transform-origin: 50% 78%;
+  }
+
+  .hero[data-hero-font="ready"] .hero__glyph {
+    font-size: 1em;
+  }
+
+  .hero__line,
+  .hero__line-mask {
+    display: block;
+  }
+
+  .hero__geometry {
+    display: none;
+  }
+
+  .hero__details {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .hero__role {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    font-family: var(--font-hero-role);
+    font-style: normal;
+    font-synthesis: none;
+    line-height: 1.05;
+  }
+
+  .hero__identity {
+    position: relative;
+    align-self: start;
+    min-inline-size: 0;
+    container-type: inline-size;
+  }
+
+  .hero__role-primary {
+    font-size: clamp(2rem, 3.4vw, 3.5rem);
+    font-weight: 900;
+    font-stretch: 75%;
+    font-variation-settings: "wght" 900, "wdth" 75;
+    letter-spacing: -0.025em;
+    overflow: clip;
+    overflow-clip-margin: 0.1em;
+  }
+
+  .hero__role-secondary {
+    font-size: clamp(2.125rem, 4vw, 3.625rem);
+    font-weight: 500;
+    font-stretch: 90%;
+    font-variation-settings: "wght" 500, "wdth" 90;
+    letter-spacing: -0.035em;
+    color: var(--accent);
+  }
+
+  .hero__role-text,
+  .hero__role-detail,
+  .hero__cta-label {
+    display: block;
+  }
+
+  .hero__copy {
+    min-inline-size: 0;
+    max-inline-size: 28rem;
+  }
+
+  .hero__description {
+    max-inline-size: 32ch;
+    font-size: clamp(1.125rem, 1.35vw, 1.3125rem);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
+  }
+
+  .hero__technology {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
+  }
+
+  .hero__cta {
+    --cta-duration: 240ms;
+    --cta-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-block-size: 48px;
+    margin-block-start: 1.25rem;
+    border: var(--border-width-thin) solid var(--accent);
+    padding-inline: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+  }
+
+  .hero__cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
+  }
+
+  .hero__cta:is(:hover, :focus-visible)::before {
+    transform: scaleX(1);
+  }
+
+  .hero__cta-text {
+    display: block;
+  }
+
+  .hero__cta-arrow {
+    display: inline-block;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .hero__cta-label-mask {
+    /* Reserve room for the inner text shift without changing the reveal mask. */
+    padding-inline-end: 0.25rem;
+    overflow: clip;
+    overflow-clip-margin: 0.1em;
+  }
+
+  .hero__cta-arrow-entrance {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .hero__cta-arrow-entrance::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: -1rem;
+    inset-block: 0.2rem;
+    inline-size: var(--border-width-thin);
+    background: color-mix(in srgb, currentColor 30%, transparent);
+    pointer-events: none;
+  }
+
+  .hero__cta-rule,
+  .hero__divider {
+    position: absolute;
+    inset-inline: 0;
+    block-size: var(--border-width-thin);
+    pointer-events: none;
+  }
+
+  .hero__cta-rule {
+    inset-block-end: calc(-1 * var(--border-width-thin));
+    background: currentColor;
+  }
+
+  .hero__notice {
+    min-block-size: 3em;
+    padding-block-start: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .hero__footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-block-start: auto;
+    border-block-start: var(--border-width-thin) solid transparent;
+    padding-block-start: 1rem;
+  }
+
+  .hero__divider {
+    inset-block-start: calc(-1 * var(--border-width-thin));
+    background: color-mix(in srgb, var(--rule) 25%, transparent);
+  }
+
+  /* Applied only by the live controller, with an independent fail-open deadline. */
+  .hero[data-hero-motion="preparing"] :is(
+    .hero__title, .hero__role, .hero__description, .hero__cta-label-mask,
+    .hero__cta-arrow-entrance, .hero__cta-rule, .hero__footer
+  ) {
+    opacity: 0;
+  }
+
+  .hero__progress {
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  .hero__scroll-arrow {
+    display: inline-block;
+    margin-inline-start: 0.375rem;
+    color: var(--accent);
+  }
+
+  @media (width >= 48rem) {
+    .hero__details {
+      --hero-details-padding: clamp(2rem, 6svh, 4rem);
+
+      /* Use the existing space above the footer without moving its divider. */
+      flex-grow: 1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+      padding-block-end: var(--hero-details-padding);
+    }
+
+    .hero__identity {
+      align-self: stretch;
+      min-block-size: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      row-gap: 1.25rem;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .hero__inner {
+      /* The Navbar is 84px via the shared token; content can still grow past it.
+         Recover spacing on shorter desktops before reducing any display type. */
+      --hero-desktop-space: clamp(0.5rem, calc(12.5vh - 6rem), 2rem);
+      --hero-title-gap: var(--hero-desktop-space);
+
+      padding-block-start: clamp(0.75rem, calc(var(--hero-desktop-space) * 1.5), 3rem);
+      padding-block-end: clamp(0.75rem, calc(var(--hero-desktop-space) * 1.5), 1.5rem);
+    }
+
+    @supports (height: 100svh) {
+      .hero__inner {
+        --hero-desktop-space: clamp(0.5rem, calc(12.5svh - 6rem), 2rem);
+      }
+    }
+
+    .hero__title {
+      display: flex;
+      align-items: center;
+      /* Wider fallback faces can wrap rather than overflowing the page. */
+      flex-wrap: wrap;
+      justify-content: space-between;
+      column-gap: 0.05em;
+      /* Preserve the approved Anybody proportions with room for the central SVG. */
+      font-size: clamp(5rem, 22vw, 20rem);
+      margin-block-start: var(--hero-desktop-space);
+    }
+
+    .hero__geometry {
+      display: block;
+      flex: 1 1 4rem;
+      min-inline-size: 4rem;
+      max-inline-size: 13rem;
+      block-size: auto;
+    }
+
+    .hero__details {
+      --hero-details-padding: clamp(1.5rem, calc(var(--hero-desktop-space) * 3), 4rem);
+
+      grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+    }
+
+    .hero__identity {
+      row-gap: clamp(0.75rem, var(--hero-desktop-space), 1.25rem);
+    }
+
+    .hero__footer {
+      padding-block-start: clamp(0.75rem, var(--hero-desktop-space), 1rem);
+    }
+  }
+
+  @media (width < 48rem) {
+    .hero__details {
+      padding-block-end: 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__cta::before,
+    .hero__cta-text,
+    .hero__cta-arrow {
+      transition: transform var(--cta-duration) var(--cta-ease);
+    }
+
+    .hero__cta:is(:hover, :focus-visible) .hero__cta-text {
+      transform: translateX(2px);
+    }
+
+    .hero__cta:is(:hover, :focus-visible) .hero__cta-arrow {
+      transform: translate(3px, -3px);
+    }
+
+    /* Begin after the entrance; two quiet cycles then leave the cue still. */
+    .hero:is([data-hero-motion="settled"], [data-hero-motion="reduced"]) .hero__scroll-arrow {
+      animation: hero-scroll-nudge 1.8s cubic-bezier(0.45, 0, 0.55, 1) 2;
+    }
+  }
+}
+
+@keyframes hero-scroll-nudge {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  55% { transform: translateY(6px); opacity: 0.65; }
+}

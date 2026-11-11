@@ -1,0 +1,107 @@
+@layer components {
+  .hero-ambient {
+    position: absolute;
+    /* Flow beside JITH and the role; leave both text and the copy column clear. */
+    inset-block-start: calc(-1 * (var(--hero-name-size) * var(--hero-name-leading) + var(--hero-title-gap)) + 0.5rem);
+    inset-inline-end: 0;
+    inline-size: clamp(3rem, 20vw - 1rem, 5rem);
+    block-size: calc(100% + var(--hero-name-size) * var(--hero-name-leading) + var(--hero-title-gap) - 1rem);
+    color: var(--accent);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .hero:is([data-hero-motion="settled"], [data-hero-motion="reduced"]) .hero-ambient {
+    visibility: visible;
+  }
+
+  .hero-ambient__art {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .hero-ambient__art--desktop {
+    display: none;
+  }
+
+  .hero-ambient__contour {
+    opacity: 0.28;
+  }
+
+  .hero-ambient__secondary {
+    opacity: 0.18;
+  }
+
+  .hero-ambient__signal {
+    opacity: 0.65;
+    stroke-dasharray: 12 88;
+  }
+
+  .hero-ambient__nodes {
+    opacity: 0.45;
+  }
+
+  @media (width >= 48rem) {
+    .hero-ambient {
+      --ambient-height: clamp(4.5rem, 10svh, 7rem);
+      --ambient-divider-clearance: 2rem;
+
+      /* Fit the complete path above the divider without enlarging the grid row. */
+      position: static;
+      align-self: start;
+      contain: size;
+      min-block-size: 0;
+      inline-size: 82%;
+      block-size: calc(100% + var(--hero-details-padding) - var(--ambient-divider-clearance));
+      max-block-size: var(--ambient-height);
+    }
+
+    .hero-ambient__art--desktop {
+      display: block;
+    }
+
+    .hero-ambient__art--mobile {
+      display: none;
+    }
+  }
+
+  @media (width >= 64rem) {
+    .hero-ambient {
+      --ambient-height: clamp(4.5rem, 14svh, 9rem);
+    }
+  }
+
+  @media (width >= 48rem) and (height < 44rem) {
+    .hero-ambient {
+      --ambient-height: 4.5rem;
+    }
+  }
+
+  /* Extra text zoom can remove the spare space beside the role. */
+  @container (width < 17rem) {
+    .hero-ambient {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-ambient__signal {
+      animation: hero-signal-travel 12s linear infinite paused;
+    }
+
+    .hero:is([data-hero-motion="settled"], [data-hero-motion="reduced"]) .hero-ambient[data-in-view="true"][data-page-visible="true"] .hero-ambient__signal {
+      animation-play-state: running;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-ambient {
+      display: none;
+    }
+  }
+}
+
+@keyframes hero-signal-travel {
+  to { stroke-dashoffset: -100; }
+}
