@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from "react";
 import Navbar from "./components/layout/Navbar.jsx";
 import Hero from "./components/sections/Hero.jsx";
+import AboutSection from "./components/sections/AboutSection.jsx";
 import Preloader from "./components/preloader/Preloader.jsx";
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           className="flex-1"
         >
           <Hero ref={heroRef} autoPlay={false} />
+          <AboutSection motionEnabled={!opening} />
         </main>
       </div>
       {opening && <Preloader pageRef={pageRef} heroRef={heroRef} onComplete={completeOpening} />}

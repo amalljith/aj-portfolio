@@ -2,7 +2,8 @@
 
 Amal Jith's editorial developer portfolio, built with React, Vite, Tailwind CSS v4,
 and GSAP. The visually approved Hero V2 is now the production composition at /
-with the existing Navbar, AJ monogram, and branded preloader.
+with the existing Navbar, AJ monogram, and branded preloader. The new editorial
+About section at #about is implemented and awaiting visual review.
 
 ## Development
 
@@ -47,10 +48,10 @@ natural scrolling and no viewport-fit font compression.
 Explore Work has no fabricated destination. Until a real Work section is added,
 it is explicitly aria-disabled with visible 'Selected work - coming soon' text,
 and has no fake click behavior. Once App renders that section, pass
-workHref="#work" to Hero to render the real anchor instead. The section IDs in
+workHref="#work" to Hero to render the real anchor instead. The About destination is now live. The remaining section IDs in
 src/data/navigation.js remain reserved; mobile navigation safely closes without
 scrolling or changing the hash when a destination is absent. Social links stay
-hidden until real URLs are supplied. No additional sections are implemented.
+hidden until real URLs are supplied. No Expertise, Experience, Work, or Contact sections are implemented.
 
 ## Opening and Hero motion
 
@@ -86,6 +87,105 @@ enabled; its rehearsal cannot start duplicate playback. Mobile navigation pauses
 Hero interaction without replaying its entrance on close. Leaving the viewport
 detaches interaction listeners/tweens; re-entry resumes interaction only.
 
+## About: editorial spread and native scroll
+
+About follows Hero in normal document flow, with a warm ivory surface and graphite
+text. Upright Anton supplies BEYOND THE CODE., with CODE. in orange and a thin
+graphite outline for definition against ivory; Space Grotesk
+supplies the intro and main paragraph. Kode Mono supplies technical labels and
+the single PYTHON DEVELOPER identity. There are no intern labels, invented
+employment details, or statistics in About.
+
+A short native CSS sticky track anchors the headline in the upper third on
+desktops at least 1024px wide and 704px tall. It releases before the architectural
+linework below it. There is no JS pinning, generated pin spacer, added scroll
+runway, or scroll lock. Tablet/short screens remove sticky positioning; mobile
+stacks the headline, introduction, portrait and copy, and omits the larger geometry.
+
+useAboutMotion.js enables only after the preloader releases the page. It lazily
+loads ScrollTrigger and SplitText from the existing GSAP package, keeping those
+chunks out of the opening's critical path. Three desktop / two small-screen
+section-owned scrub timelines choreograph a graphite-cover/ivory-sheet reveal,
+headline line masks, portrait crop/orange corners, and geometric line construction.
+Decorative effects
+reverse with native scrolling. The geometry endpoint is clamped to the available
+scroll range so its drawing completes while About is the last section.
+No Lenis, smooth-scroll interception, or extra
+animation package is added.
+
+02 / ABOUT has a single short cursor-scramble entrance. The introduction has one
+Proofread pass: rapid typing, two restrained corrections, then the exact final
+statement. Fixed glyph slots prevent shifts; carets and incorrect decorative
+glyphs are removed on completion. There is no continuous scrambling or additional
+intro line entrance. These adapt the studied Codrops TextCharacterAnimations
+principles; Telegram is reserved for the future Contact section. The layered
+curtain adapts Interlude's cover/reveal principle without its router or WebGL.
+
+The paragraph now uses a one-shot Swipe-inspired reveal instead of its former
+line-rise animation. Thin orange keyboard-contour trails lead the words, which
+commit in reading order over approximately 1.15s. The unchanged copy then stays
+fully readable and selectable. Indexed FOCUS/TOOLS rows use architectural rules
+and small orange markers, followed by a brief fixed-slot Overtype pass: labels
+lead values by .22s. Neutral draft glyphs are overwritten, not randomly scrambled.
+Both effects clean up their decorative layers and never replay on scrolling back.
+
+Paragraph entry at top 84% waits for the introduction when scrolling slowly;
+fast/deep entry settles the intro to prevent delayed reading. Metadata at top
+88% waits until the paragraph completes and its own block enters the viewport.
+This keeps the mobile metadata from animating unseen below the portrait/copy.
+
+All markup is readable by default. Initial/live reduced motion, keyboard focus,
+or failed enhancement show unmasked content; a focused About section uses normal
+flow. The real About Navbar anchor and mobile destination work without changing
+the existing navigation components. Initial #about loads deferred by the opening
+are honored after unlock; restored browser positions are preserved. Main/page
+inertness and hidden tabs remove the section's motion contexts. Cleanup releases
+only owned triggers, tweens, media/listeners, observers, and pending refresh frame.
+ResizeObserver plus font/image readiness refresh only this section's measurements.
+Width/font changes re-split pending text; already-started text treatments settle
+to their final form and never replay
+on resize or scrolling back. Text selection also restores the original unsplit
+content. Reduced motion disables all these effects, including live changes.
+
+### Replacing the portrait
+
+No portrait is fetched or generated. The current neutral frame explicitly marks
+the photograph as forthcoming. In AboutSection.jsx, replace the existing call:
+
+```jsx
+<AboutPortrait
+  src="/images/amal-jith.webp"
+  alt="Amal Jith"
+  objectPosition="50% 35%"
+/>
+```
+
+Use that URL only after supplying the real file. The 3:4 frame reserves layout
+space; object-fit: cover and objectPosition control the crop without redesign.
+Images load lazily with async decoding. A failed source restores the same neutral
+placeholder and dimensions. The existing font assets/licenses remain untouched.
+
+### About verification
+
+Oxlint and the production build pass. Headless Edge checks cover widths 320,
+360, 390, 768, 1280, and 1440px, including short viewports, native touch scrolling,
+desktop/mobile About navigation, live reduced motion, reversible reveals, and
+the short sticky track. Repeated StrictMode mounts and visibility changes leave
+no extra section-owned triggers, tweens, listeners, observers, or animation frames;
+an unrelated ScrollTrigger remains intact. Interrupted proofreading also removes
+its shared caret, split wrappers and accessible-label overrides. All text effects
+settle to the exact supplied copy and do not restart on scrolling back. Missing
+fonts, a blocked animation
+module, and a failed SVG setup leave readable static content. Portrait replacement
+and failed-image recovery preserve the same frame dimensions.
+
+These are emulated browser checks, not physical iOS/Safari coverage. The actual
+portrait and visual approval remain pending.
+The content upgrade was visually checked through desktop/mobile frame captures:
+the Swipe commitment took 1.11–1.14s, Overtype visibly progressed label-before-value,
+and the paragraph's dimensions remained stable. The upstream live demo could not
+load in the browser; the actual Swipe/Overtype source and demo markup were studied.
+
 ## Fonts and project guidance
 
 The local Anybody WOFF2 and OFL remain intact. The former role-only subset is
@@ -97,6 +197,7 @@ Hero-local fallback. No font package or new font asset was added.
 
 Read [AGENTS.md](AGENTS.md) for source ownership and contributor rules, and
 [MOTION.md](MOTION.md) for sequencing, lifecycle, reduced motion, and future plans.
-The kinetic artwork and matching preloader are implemented. Additional sections, motion,
-ScrollTrigger, Lenis, and favicon integration remain outside the current scope.
+The Hero and preloader remain approved. About awaits visual approval before
+further refinement or expansion. Other sections, Lenis, horizontal Projects
+scrolling, and favicon integration remain outside the current scope.
 Do not automatically commit, push, change branches, create pull requests, or publish.
