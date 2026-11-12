@@ -148,7 +148,122 @@ both contexts, restores styles, and removes listeners. StrictMode cannot start
 duplicate playback because startup uses a cancellable microtask. No font, heading, or
 artwork animation is duplicated in the preloader or Navbar.
 
-The remaining features below are future plans requiring explicit requests.
+## About: immersive editorial scroll
+
+About is a new normal-flow section after the unchanged Hero. App passes
+motionEnabled={!opening}, so About neither registers triggers nor imports
+ScrollTrigger or SplitText while the preloader owns scrolling. Both ship with the
+existing GSAP dependency and are imported lazily only when enhancement is eligible;
+there is no new package. Initial reduced-motion or direct focused #about visits
+use static content without requesting either plugin.
+
+The ivory surface and all text/portrait content are visible in default markup.
+Only a successfully created scoped context applies masks. Import/setup failure
+reverts to readable static content. No preloader, Hero, Navbar, or global motion
+configuration is changed.
+
+### Choreography and ownership
+
+- Section entrance: from top 95% to top 20% on tall desktops / top 40% otherwise,
+  with .25s scrub smoothing. An ivory sheet lifts 96px / 56px under a graphite
+  cover that retracts upward with a thin orange edge. The cover occupies only
+  the opening part of About; no overlay or transform targets Hero. Headline
+  lines rise 110% through masks with .08 stagger and power3.out after the cover
+  starts clearing. BEYOND THE stays graphite; CODE. uses the orange token with
+  a 1px graphite outline. Orange/ivory alone measures 2.66:1; the dark edge adds
+  definition while retaining the requested orange fill and existing palette.
+- Label: top 70% triggers one 480ms cursor/guess pass on 02 / ABOUT. It settles
+  exactly to the original label and removes the decorative caret/guesses.
+- Intro: top 78% triggers one roughly 1.9s Proofread sequence, replacing the old
+  intro line reveal. Characters type in reading order at 17ms intervals; two
+  predictable neighbouring-key slips are corrected through small vertical masks
+  and briefly accented. The correct glyph reserves each slot throughout. There
+  is no reflow, random rewrite of the headline, or idle scramble. Scrolling back
+  does not replay these one-shot text treatments; interrupted playback settles
+  to the final text on a rebuild. Telegram is studied but reserved for Contact.
+- Main paragraph: one Swipe-inspired reveal replaces the previous scrubbed line
+  rise. Top 84% arms a paused ~1.15s timeline. SplitText supplies responsive words
+  and characters; each measured SVG trail follows a restrained keyboard-row contour.
+  Characters become faint as the trail passes, then commit at full strength in
+  reading order. There is no random substitution, paragraph displacement, or
+  continuous loop. The decorative SVG is removed on completion.
+- Metadata: top 88% makes the FOCUS/TOOLS block eligible, but playback waits for
+  paragraph completion. One ~1.26s Overtype pass replaces the former fade-up:
+  each label leads its value by .22s; the two rows start .4s apart. Fixed slots
+  hold dim neutral draft glyphs while correct letters strike down by .08em and
+  the old glyphs fall only 3px. The underscore cursors and drafts are removed at
+  completion. No rotation, repeated blinking, or random character loop is used.
+- Choreography: on slow entry, Swipe waits for the current Proofread to finish.
+  If the reader moves the paragraph above 55% of the viewport or crosses its
+  trigger faster than 1200px/s, the intro settles immediately and Swipe starts.
+  Already-passed paragraphs settle directly. This prevents a queue behind a fast
+  scroll. Metadata only plays once it is eligible, so mobile rows below the fold
+  do not finish unseen. Started text treatments never replay on upward scrolling.
+- Portrait: its own trigger progresses from top 92% to top 52%, with .3s scrub.
+  A rectangular inset crop opens from 100% at the bottom to zero, while the
+  inner image/placeholder settles 6% vertically. Thin orange architectural corners
+  draw during the reveal. The 3:4 frame never changes size.
+- Geometry: on desktop only, a third .35s scrub trigger draws three architectural
+  paths. Its bottom-35% endpoint is clamped to the available page scroll, so the
+  drawing finishes even while About is the final section. It shifts a separate
+  grid layer from -10/+6 to +8/-6, slides the orange mark by 12 units, offsets one
+  segment by 8 units, and gently expands/lifts the small square fragment. The SVG
+  has reserved space and remains decorative.
+
+Scrolling upward reverses the scrubbed visual layers; text transformations settle
+once. Focus, selection and reduced motion always reveal the main paragraph and
+metadata directly. CSS sticky, not ScrollTrigger pin, holds the
+headline on viewports at least 64rem wide and 44rem high. Its 26rem track and
+upper-third offset give a deliberately short hold (about 161px at 1440x900),
+then release before the geometry. It adds no generated spacer, scroll runway,
+scroll trap, or fixed-position content. Short/tablet/mobile viewports, reduced
+motion, and focus within the section use normal flow instead.
+
+### Accessibility, lifecycle and future sections
+
+Initial/live reduced motion reverts every mask/transform and removes owned
+triggers. Keyboard focus settles the section for the mount, so anchor navigation
+never leaves reading content clipped. #about is the existing navigation ID;
+the mobile menu keeps its current close/unlock/focus sequence. An explicit initial
+#about still at the top after the opening is honored once; browser-restored
+positions are not reset. No smooth-scroll interception or arbitrary scroll jump
+is introduced.
+
+Each context owns three desktop or two small-screen scrub ScrollTriggers, plus
+up to four one-shot text triggers which remove themselves after entry. Breakpoints,
+inert main/page state, and tab visibility revert/rebuild only that context.
+No killAll or global plugin configuration is used. Cleanup reverts timelines and
+triggers, restores styles/state, disconnects ResizeObserver/MutationObserver, and
+removes font, load, hash, media, focus, and visibility listeners. Font readiness
+and image loads queue one bounded refresh RAF for this section; layout changes
+also refresh through ResizeObserver. There is no custom permanent ticker/RAF loop.
+Pending imports/font promises check disposal before touching DOM. SplitText restores
+original HTML and accessible labels on cleanup; separately owned decorative
+carets and SVG trails are removed even when playback is interrupted. Width/font
+changes re-measure pending text; already-started text restores its final readable
+form without replaying. Selection, like keyboard
+focus, settles the section to unsplit, selectable text. StrictMode rehearsal cannot
+retain an extra context. Future sections' triggers are preserved.
+
+Reference source inspected: Interlude's [curtain.ts](https://github.com/codrops/interlude/blob/main/src/transitions/curtain.ts)
+and TextCharacterAnimations' [cursorScramble.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/cursorScramble.js),
+[proofread.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/proofread.js),
+and [telegram.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/telegram.js).
+The content upgrade also inspects [swipe.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/swipe.js)
+and [overtype.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/overtype.js).
+Cover/reveal, cursor-led guesses, typo correction, keyboard-path word commitment,
+and overwrite principles are adapted into section-local React logic. Direct
+browser access to the upstream demo failed in this environment; source and demo
+markup were retrieved, and the local adaptations were verified through browser
+frame captures. No routing, ScrollSmoother, Flip, WebGL,
+or demo assets are added.
+
+The neutral portrait placeholder is deliberately not a person. AboutPortrait
+accepts src, meaningful alt text, and objectPosition; a real supplied image fits
+the reserved frame without a layout redesign. Failed image loading falls back
+to the same accessible neutral composition. No photo or face asset is invented.
+
+About awaits visual approval; the following features remain future plans.
 
 ## Intent
 

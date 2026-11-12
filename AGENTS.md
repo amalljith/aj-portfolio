@@ -29,8 +29,8 @@ plane/corner/grid responses. Desktop artwork uses a wider architectural SVG;
 mobile uses a separate simplified SVG. An IntersectionObserver suspends interaction
 work outside the viewport without replaying the entrance on return. Coarse
 pointers preserve static type and native touch scrolling. Reduced motion disables
-these effects, including live changes. No idle Hero loop, ScrollTrigger, or Lenis
-is installed.
+these effects, including live changes. There is no idle Hero loop or Lenis. About uses ScrollTrigger from the existing
+GSAP package; no new package was installed.
 
 Explore Work is explicitly unavailable with a visible coming-soon description
 while no real Work section exists. When adding that section, supply workHref="#work"
@@ -39,6 +39,21 @@ Do not build additional sections or motion features without explicit instruction
 The approved preview is promoted: its query route, comparison controls, and
 src/dev/hero-v2 directory are removed. Do not recreate preview utilities in production.
 Fonts and the Anybody OFL are retained; see the font directory's README.
+
+The About section is implemented at #about and awaits visual approval. It uses
+an ivory editorial surface, Anton line masks, a short native CSS sticky headline
+track on sufficiently tall desktops, Space Grotesk copy, a neutral portrait frame,
+and section-owned reversible ScrollTrigger reveals. CODE. is orange; the About
+role is PYTHON DEVELOPER only. A brief cursor label and one-shot Proofread intro
+use SplitText from the existing GSAP package. The paragraph uses one reading-order
+Swipe reveal; indexed FOCUS/TOOLS rows use one short Overtype sequence, gated on
+viewport entry and paragraph completion. Text settles once; only decorative scrub
+motion reverses. Pending text re-splits on width/font changes; started text settles
+to its final form on rebuild. Selection/focus restores plain content. Plugins load
+only after the opening releases scrolling, and are not requested for initial reduced-motion
+or direct About-focus visits. No JS pinning, spacer, scroll lock, or Lenis is used.
+See MOTION.md and README.md for behavior and portrait replacement. Do not proceed
+to another section or expand this motion without explicit instructions.
 
 ## Visual identity
 
@@ -57,9 +72,20 @@ Fonts and the Anybody OFL are retained; see the font directory's README.
 ## Source map
 
 - `src/main.jsx`: React entry point; retain StrictMode.
-- `src/App.jsx`: Navbar, skip link, and Hero composition.
+- `src/App.jsx`: Navbar, skip link, Hero and About; About motion is enabled only
+  after the preloader completes.
 - `src/components/sections/Hero.jsx` and its CSS: approved Hero V2, stable character
   cells, responsive viewport composition, scoped page palette, and CTA availability.
+- `src/components/sections/AboutSection.jsx` and `About.css`: semantic #about,
+  scoped ivory palette, masked display type, and responsive editorial layout.
+- `src/components/sections/AboutPortrait.jsx`: accessible neutral placeholder and
+  future image/crop/error fallback; never fetch or fabricate a person.
+- `src/components/sections/AboutGeometry.jsx`: secondary architectural SVG lines.
+- `src/hooks/useAboutMotion.js`: lazy ScrollTrigger enhancement, scoped scrub
+  contexts, media/font/resize/inert lifecycle, and readable static fallbacks.
+- `src/hooks/aboutTextMotion.js`: one-shot cursor label, fixed-slot Proofread intro,
+  compact paragraph Swipe trails, and fixed-slot metadata Overtype. No Telegram,
+  continuous scramble, or competing text entrances.
 - `src/components/sections/HeroArtwork.jsx`: original decorative collage SVG.
 - `src/hooks/useHeroMotion.js`: controlled entrance, bounded font preparation,
   glyph response, pointer/scroll layers, reduced motion, and lifecycle cleanup.
