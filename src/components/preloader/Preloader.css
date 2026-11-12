@@ -1,0 +1,54 @@
+@layer components {
+  .preloader {
+    --surface: var(--color-graphite);
+    --ink: var(--color-ivory);
+    --accent: var(--color-orange);
+    --focus: var(--color-ivory);
+    --preloader-logo-width: clamp(10rem, 24vw, 18rem);
+    --preloader-logo-width: min(clamp(10rem, 24vw, 18rem), 40svh);
+    --wipe-step: clamp(1.25rem, 4svh, 2.5rem);
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    overflow: clip;
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  .preloader__scene { position: absolute; inset: 0; display: grid; place-items: center; }
+  .preloader__edition { position: absolute; inset-block-start: max(1.5rem, env(safe-area-inset-top)); inset-inline: var(--gutter); display: flex; justify-content: space-between; gap: 1rem; font-size: 0.625rem; letter-spacing: 0.08em; }
+  .preloader__artwork { position: relative; inline-size: var(--preloader-logo-width); color: var(--accent); }
+  .preloader__logo { position: relative; display: block; inline-size: 100%; block-size: auto; overflow: visible; }
+  .preloader__logo path { stroke: currentColor; stroke-width: 2; stroke-linejoin: miter; }
+  .preloader__construction { position: absolute; inset: -1.75rem; inline-size: calc(100% + 3.5rem); block-size: calc(100% + 3.5rem); overflow: visible; stroke: currentColor; stroke-width: 1; }
+  .preloader__construction path { vector-effect: non-scaling-stroke; opacity: 0.55; }
+  .preloader__construction path:nth-child(n + 3) { stroke: var(--ink); opacity: 0.35; }
+  .preloader__indicator { position: absolute; inset-block-start: calc(50% + var(--preloader-logo-width) * 0.311111 + 3rem); display: grid; justify-items: center; gap: 0.75rem; }
+  .preloader__label, .preloader__caption { font-size: 0.625rem; line-height: 1.6; letter-spacing: 0.12em; }
+  .preloader__track { display: block; inline-size: clamp(6rem, 14vw, 9rem); block-size: 1px; background: color-mix(in srgb, var(--ink) 18%, transparent); }
+  .preloader__progress { display: block; block-size: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+  .preloader__caption { position: absolute; inset-inline-start: var(--gutter); inset-block-end: max(1.25rem, env(safe-area-inset-bottom)); }
+
+  /* One static stepped silhouette, moved exclusively with transforms. At y=0
+     its shallowest top/bottom edges cover the viewport with 1px of bleed. */
+  .preloader__curtain {
+    position: absolute;
+    inset-inline: -1px;
+    inset-block-start: calc(-2 * var(--wipe-step) - 1px);
+    block-size: calc(100% + 4 * var(--wipe-step) + 2px);
+    z-index: 2;
+    background: var(--accent);
+    clip-path: polygon(0 0, 32% 0, 32% var(--wipe-step), 67% var(--wipe-step), 67% calc(2 * var(--wipe-step)), 100% calc(2 * var(--wipe-step)), 100% 100%, 67% 100%, 67% calc(100% - var(--wipe-step)), 32% calc(100% - var(--wipe-step)), 32% calc(100% - 2 * var(--wipe-step)), 0 calc(100% - 2 * var(--wipe-step)));
+    transform: translateY(100%);
+    will-change: transform;
+  }
+  .preloader__actions { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .preloader__skip { position: absolute; inset-inline-end: var(--gutter); inset-block-end: max(0.75rem, env(safe-area-inset-bottom)); min-block-size: 44px; border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent); padding-inline: 0.875rem; background: var(--surface); color: var(--ink); font-size: 0.625rem; letter-spacing: 0.08em; cursor: pointer; pointer-events: auto; }
+  /* An inset focus mark stays on graphite throughout the orange wipe. */
+  .preloader__skip:focus-visible { outline: none; border-color: var(--ink); }
+  .preloader__skip:focus-visible::after { content: ""; position: absolute; inset: 4px; border: 1px solid var(--ink); pointer-events: none; }
+
+  .portfolio-page[data-intro-covered] [data-hero] { visibility: hidden; }
+  @media (height < 24rem) { .preloader__edition, .preloader__label, .preloader__caption { display: none; } .preloader__indicator { inset-block-start: calc(50% + var(--preloader-logo-width) * 0.311111 + 2rem); } }
+  @media (prefers-reduced-motion: reduce) { .preloader { display: none; } }
+}
