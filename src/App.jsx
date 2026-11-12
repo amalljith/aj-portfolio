@@ -2,7 +2,9 @@ import { useCallback, useRef, useState } from "react";
 import Navbar from "./components/layout/Navbar.jsx";
 import Hero from "./components/sections/Hero.jsx";
 import AboutSection from "./components/sections/AboutSection.jsx";
+import ExpertiseSection from "./components/sections/ExpertiseSection.jsx";
 import Preloader from "./components/preloader/Preloader.jsx";
+import SignatureCursor from "./components/cursor/SignatureCursor.jsx";
 
 export default function App() {
   const pageRef = useRef(null);
@@ -27,9 +29,11 @@ export default function App() {
         >
           <Hero ref={heroRef} autoPlay={false} />
           <AboutSection motionEnabled={!opening} />
+          <ExpertiseSection motionEnabled={!opening} />
         </main>
       </div>
       {opening && <Preloader pageRef={pageRef} heroRef={heroRef} onComplete={completeOpening} />}
+      <SignatureCursor enabled={!opening} />
     </>
   );
 }

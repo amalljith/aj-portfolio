@@ -1,0 +1,19 @@
+@layer components {
+  .signal-cursor { --signal-ink: var(--color-orange); position: fixed; inset: 0; z-index: 120; overflow: clip; pointer-events: none; user-select: none; contain: strict; visibility: hidden; }
+  .signal-cursor *, .signal-cursor svg { pointer-events: none !important; }
+  .signal-cursor[data-visible="true"] { visibility: visible; }
+  .signal-cursor__trail { position: absolute; inset: 0; display: block; inline-size: 100%; block-size: 100%; }
+  .signal-cursor__position { position: absolute; inset: 0 auto auto 0; inline-size: 0; block-size: 0; }
+  .signal-cursor__pointer { position: absolute; left: -6px; top: -6px; display: block; inline-size: 12px; block-size: 12px; background: var(--signal-ink); transform-origin: 50% 50%; }
+  .signal-cursor__label { position: absolute; inset: 0 auto auto 0; display: flex; box-sizing: border-box; padding: 4px 6px; color: var(--signal-ink); background: var(--color-graphite); clip-path: polygon(0 0,calc(100% - 4px) 0,100% 4px,100% 100%,4px 100%,0 calc(100% - 4px)); font-family: var(--font-mono); font-size: 11px; font-weight: 400; line-height: 16px; white-space: nowrap; opacity: 0; }
+  [data-signal-char] { display: inline-block; flex: 0 0 8px; inline-size: 8px; text-align: center; }
+  [data-signal-char][hidden] { display: none; }
+}
+
+/* Only successful positioning activates suppression. Every fallback removes it. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html[data-aj-cursor="active"], html[data-aj-cursor="active"] * { cursor: none !important; }
+}
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .signal-cursor { display: none; }
+}

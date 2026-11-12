@@ -3,7 +3,8 @@
 Amal Jith's editorial developer portfolio, built with React, Vite, Tailwind CSS v4,
 and GSAP. The visually approved Hero V2 is now the production composition at /
 with the existing Navbar, AJ monogram, and branded preloader. The new editorial
-About section at #about is implemented and awaiting visual review.
+About section at #about is completed and approved. Phase 05 Expertise at
+#expertise is implemented and awaiting visual review.
 
 ## Development
 
@@ -48,10 +49,11 @@ natural scrolling and no viewport-fit font compression.
 Explore Work has no fabricated destination. Until a real Work section is added,
 it is explicitly aria-disabled with visible 'Selected work - coming soon' text,
 and has no fake click behavior. Once App renders that section, pass
-workHref="#work" to Hero to render the real anchor instead. The About destination is now live. The remaining section IDs in
+workHref="#work" to Hero to render the real anchor instead. About and Expertise
+destinations are live. The remaining section IDs in
 src/data/navigation.js remain reserved; mobile navigation safely closes without
 scrolling or changing the hash when a destination is absent. Social links stay
-hidden until real URLs are supplied. No Expertise, Experience, Work, or Contact sections are implemented.
+hidden until real URLs are supplied. Experience, Work and Contact are not implemented.
 
 ## Opening and Hero motion
 
@@ -180,11 +182,110 @@ module, and a failed SVG setup leave readable static content. Portrait replaceme
 and failed-image recovery preserve the same frame dimensions.
 
 These are emulated browser checks, not physical iOS/Safari coverage. The actual
-portrait and visual approval remain pending.
+portrait remains pending; the About implementation is approved.
 The content upgrade was visually checked through desktop/mobile frame captures:
 the Swipe commitment took 1.11–1.14s, Overtype visibly progressed label-before-value,
 and the paragraph's dimensions remained stable. The upstream live demo could not
 load in the browser; the actual Swipe/Overtype source and demo markup were studied.
+
+## Expertise: five featured tools, seventeen supporting tools
+
+The graphite #expertise section follows About. An oversized Anton heading and
+five-tool showcase contrast with About's ivory spread. On measured desktops at
+least 1024px wide/560px tall when content fits, native CSS sticky anchors a stage 24px from
+the top. Its finite scroll track adds 896–1408px; one scoped ScrollTrigger chooses
+Python → Django → FastAPI → React → PostgreSQL in either scroll direction.
+The stage releases into a compact categorized documentation index.
+
+All 22 approved tools are present across six groups, including Featured:
+
+- Featured: Python, Django, FastAPI, React, PostgreSQL.
+- Backend: Django REST Framework.
+- Deployment Platforms: Vercel, Render.
+- Frontend: JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, Motion (Framer Motion).
+- Development tools: Docker, Git, GitHub, Visual Studio Code, Vite, Postman.
+- AI Development Tools: OpenAI Codex, Claude Code.
+
+Each featured icon has its own finite accent/mask treatment; its brand paths
+remain unchanged. Name transitions use matching-character emphasis inspired by
+Codrops Find All, distinct from About's text effects. Supporting rows are real
+documentation links with restrained glyph, icon and divider interactions on
+hover and keyboard focus. Motion is a displayed skill; no Motion dependency
+was installed.
+
+Mobile/tablet, unsafe or very short screens, reduced motion and failed
+enhancement show the complete normal-flow list. Native scrolling and anchor/menu
+focus behavior remain intact. Live preference changes preserve the article being
+read. The preloader gates section enhancement; no opening or Hero logic changes.
+Expertise owns and cleans up its contexts/triggers/listeners/observers/RAF without
+altering About's controllers. No JS pin spacer, Lenis, scroll lock or idle loop is
+added.
+
+The original 18 SVGs use a pinned Devicon revision; Vercel and Render use official
+white brand assets. Backend and Deployment Platforms share the compact left
+column with AI Development Tools below, and Frontend and Development Tools
+alongside on desktop. Tablet uses two columns, with the AI pair on a final row;
+mobile follows the category reading order in one column. The Codex and Claude
+Code marks use pinned Lobe Icons / Simple Icons sources and separate notices.
+See the [icon notes](public/icons/technologies/README.md),
+[source manifest](public/icons/technologies/sources.json) and bundled
+[MIT notice](public/icons/technologies/LICENSE-Devicon.txt). Monochrome marks use
+ivory fills for contrast; the core brand geometry is preserved. Python's
+decorative ground shadow is removed. Native gradients inside source brand artwork
+are retained; the section adds no gradients, shadows or filters.
+
+Expertise awaits visual approval. Experience, Work and Contact remain outside
+this phase.
+
+Expertise verification used headless Edge at 320, 360, 390, 768, 1024, 1280 and
+1440px widths, including 600px-high desktop and 640px-high mobile viewports.
+Checks covered forward/reverse activation, all 22 icons, keyboard and touch input,
+live reduced-motion changes, rapid transitions, breakpoint rebuilding, StrictMode
+cleanup and failed enhancement. The production bundle passed refresh/preloader
+handoff and direct-anchor checks without duplicate Hero entrances or horizontal
+overflow. Oxlint and the production build pass. Physical iOS/Safari and other
+browser engines remain unverified.
+
+The featured stage has one visibility owner. It switches all panel opacities,
+pointer states and the numeric counter together; only the selected panel's
+characters and decorative icon layers animate. This removes the former panel
+crossfade that exposed two technologies during scroll reversals. Refresh
+reconciles selection without replaying an unchanged entrance, and teardown
+disables activation before reverting scoped animations. No arbitrary panel hiding or additional scroll controller is used. Short desktop
+windows now retain the measured stage from 560px height when content fits; below
+704px, only secondary artwork and excess spacing are compacted. Direct anchors
+and late plugin loading no longer permanently disable a suitable desktop stage.
+Tablet/mobile, reduced motion, failed enhancement and unsafe fits remain readable
+in normal flow; mode changes preserve the current article.
+
+## AJ Signal Cursor
+
+The cursor uses a 12px filled Electric Orange square with an exact centered
+hotspot. Real interactions show the earlier compact OPEN/VISIT/VIEW/EXPLORE labels:
+11px Kode Mono, flat graphite backing, small cut corners and finite character
+reveals. The targeting reticle, brackets, connector and TARGET ACTIVE line are
+removed. All visible cursor marks remain orange on dark and ivory surfaces.
+
+The Canvas trail adapts to speed: slow motion creates sparse tiny pixels with
+quick decay; faster movement adds slightly larger squares and a fuller short
+trail. Sizes span 2.5-6.5px and travel decay 240-560ms, with restrained drift,
+rotation and shrink. A slower fade and 620px distance cap preserve a longer visible
+tail. Distance-based emission uses smoothed velocity and a 36-particle pool, capped
+at ten over About and twelve in slow-frame mode.
+Labels suppress emissions; clicks give a small throttled burst and centered
+215ms contraction/return. DPR caps at two, with one RAF and no idle loop or
+React updates per frame.
+
+Future real controls can use `data-cursor="view" data-cursor-label="VIEW PROJECT"`.
+`minimal` removes the readout; `native` opts out. `explore`, `open`, `visit` and
+`drag` are also supported, with drag limited to actual draggable/slider controls.
+Unavailable destinations never gain a false action label.
+
+Touch, reduced motion, text editing, selection, keyboard use, pointer capture,
+blur and viewport exit retain native behavior. Setup/runtime failure also restores
+the native cursor. StrictMode cleanup owns listeners, timelines, frames and Canvas
+resources. No section animation or ScrollTrigger is controlled by the cursor.
+Existing GSAP is reused; no dependency was added.
 
 ## Fonts and project guidance
 
@@ -197,7 +298,7 @@ Hero-local fallback. No font package or new font asset was added.
 
 Read [AGENTS.md](AGENTS.md) for source ownership and contributor rules, and
 [MOTION.md](MOTION.md) for sequencing, lifecycle, reduced motion, and future plans.
-The Hero and preloader remain approved. About awaits visual approval before
-further refinement or expansion. Other sections, Lenis, horizontal Projects
+The Hero, About and preloader remain approved. Expertise awaits visual approval
+before further refinement or expansion. Later sections, Lenis, horizontal Projects
 scrolling, and favicon integration remain outside the current scope.
 Do not automatically commit, push, change branches, create pull requests, or publish.

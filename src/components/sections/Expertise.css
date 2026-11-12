@@ -1,0 +1,118 @@
+@layer components {
+  .expertise {
+    --surface: var(--color-graphite);
+    --ink: var(--color-ivory);
+    --accent: var(--color-orange);
+    --focus: var(--color-orange);
+    --expertise-travel: clamp(56rem, 140svh, 88rem);
+    color: var(--ink);
+    background: var(--surface);
+    padding-inline: var(--gutter);
+  }
+  .expertise:focus-visible { outline-offset: -8px; }
+  .expertise ::selection { color: var(--surface); background: var(--ink); }
+  .expertise__inner { max-inline-size: var(--content-width); margin-inline: auto; padding-block: clamp(3.5rem, 6vw, 6rem); }
+  .expertise__stage { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr); align-items: start; gap: clamp(3rem, 6vw, 6rem); border-block-start: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); }
+  .expertise__introduction { min-inline-size: 0; padding-block-start: 1.5rem; }
+  .expertise__edition, .expertise__panel-meta, .expertise__progress, .expertise__index-header, .expertise__index-group h4, .expertise__index-number, .expertise__end { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 400; line-height: 1.6; letter-spacing: 0.03em; }
+  .expertise__edition { display: flex; align-items: center; gap: 0.75rem; }
+  .expertise__edition > span { inline-size: 7px; block-size: 7px; background: var(--accent); }
+  .expertise__headline { margin-block-start: clamp(2rem, 4vw, 3.5rem); font-family: var(--font-display); font-size: clamp(4.25rem, 7.6vw, 7rem); font-weight: 400; line-height: 1.04; letter-spacing: -0.025em; }
+  .expertise__headline > span { color: var(--accent); }
+  .expertise__intro-copy { max-inline-size: 31ch; margin-block-start: 1.75rem; font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.65; letter-spacing: -0.015em; }
+  .expertise__progress { display: none; margin-block-start: clamp(2rem, 5vh, 3.5rem); }
+  .expertise__progress-label { display: flex; justify-content: space-between; gap: 1rem; }
+  .expertise__progress-track { block-size: 1px; margin-block: 1rem 0.75rem; background: color-mix(in srgb, var(--ink) 30%, transparent); }
+  .expertise__progress-track > span { display: block; block-size: 100%; background: var(--accent); transform-origin: 0% 50%; }
+  .expertise__progress > p { font-size: 0.5625rem; }
+  .expertise__construction { inline-size: min(90%, 24rem); block-size: auto; margin-block-start: 2rem; color: var(--accent); stroke: currentColor; stroke-width: 1px; }
+  .expertise__construction > path:first-child { stroke: var(--ink); opacity: 0.25; }
+  .expertise__construction > path:nth-child(2) { opacity: 0.5; }
+  .expertise__panels { min-inline-size: 0; }
+  .expertise__panel { min-inline-size: 0; padding-block: 1.5rem 2.5rem; border-block-end: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); }
+  .expertise__panel-meta { display: flex; justify-content: space-between; gap: 1rem; }
+  .expertise__panel-meta > span:last-child { color: var(--accent); white-space: nowrap; }
+  .expertise__icon-scene { position: relative; inline-size: clamp(11rem, 20vw, 17.5rem); aspect-ratio: 7 / 6; margin: 1rem auto 0.5rem; }
+  .expertise__brand-mask { inline-size: 100%; block-size: 100%; }
+  .expertise__brand-mask img { display: block; inline-size: 100%; block-size: 100%; object-fit: contain; }
+  .expertise__icon-scene > .expertise__brand-mask { position: absolute; inset: 20%; inline-size: 60%; block-size: 60%; }
+  .expertise__icon-accents { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; stroke: currentColor; color: var(--accent); stroke-width: 1px; }
+  .expertise__name { font-family: var(--font-display); font-size: clamp(3rem, 6.8vw, 6.5rem); font-weight: 400; line-height: 1.2; letter-spacing: -0.025em; overflow: clip; overflow-clip-margin: 0.08em; }
+  .expertise__word, [data-expertise-char], [data-index-char] { display: inline-block; }
+  .expertise__description { max-inline-size: 42ch; min-block-size: 4.95em; margin-block-start: 0.75rem; font-family: var(--font-body); font-size: 1rem; line-height: 1.65; }
+  .expertise__supporting { margin-block-start: clamp(3rem, 7vw, 7rem); }
+  .expertise__index-header { display: flex; justify-content: space-between; gap: 1rem; border-block-start: 1px solid var(--ink); padding-block-start: 1.25rem; }
+  .expertise__index-header h3 { font-weight: 400; }
+  .expertise__index-header p { color: var(--accent); text-align: end; }
+  .expertise__index-groups { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "backend frontend development" "deployment frontend development" "ai frontend development"; grid-template-rows: min-content min-content 1fr; align-items: start; column-gap: clamp(1.5rem, 4vw, 4rem); row-gap: 2rem; margin-block-start: 3rem; }
+  .expertise__index-group { min-inline-size: 0; }
+  .expertise__index-group[data-toolkit-category="backend"] { grid-area: backend; }
+  .expertise__index-group[data-toolkit-category="deployment"] { grid-area: deployment; }
+  .expertise__index-group[data-toolkit-category="frontend"] { grid-area: frontend; }
+  .expertise__index-group[data-toolkit-category="development"] { grid-area: development; }
+  .expertise__index-group[data-toolkit-category="ai"] { grid-area: ai; }
+  .expertise__index-group h4 { margin-block-end: 1rem; }
+  .expertise__index-group h4 > span { color: var(--accent); margin-inline-end: 0.5rem; }
+  .expertise__index-link { position: relative; display: grid; grid-template-columns: 1.25rem 1.75rem minmax(0, 1fr) 0.75rem; gap: 0.75rem; align-items: center; min-block-size: 4.75rem; padding-block: 0.875rem; border-block-start: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); }
+  .expertise__index-link::after { content: ""; position: absolute; inset: 0 auto auto 0; inline-size: 100%; block-size: 1px; background: var(--accent); transform: scaleX(0); transform-origin: 0% 50%; transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .expertise__index-link:hover::after, .expertise__index-link:focus-visible::after { transform: scaleX(1); }
+  .expertise__index-link:focus-visible { outline-offset: 3px; }
+  .expertise__index-number { font-size: 0.5625rem; }
+  .expertise__index-icon { inline-size: 1.75rem; block-size: 1.75rem; transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .expertise__index-link[data-index-technology="djangorest"] { grid-template-columns: 1.25rem 2.5rem minmax(0, 1fr) 0.75rem; }
+  .expertise__index-link[data-index-technology="djangorest"] .expertise__index-icon { inline-size: 2.5rem; block-size: 2.5rem; }
+  .expertise__index-link:hover .expertise__index-icon, .expertise__index-link:focus-visible .expertise__index-icon { transform: translateY(-3px) rotate(-4deg); }
+  .expertise__index-name { min-inline-size: 0; font-family: var(--font-body); font-size: 1rem; line-height: 1.5; letter-spacing: -0.025em; }
+  .expertise__index-arrow { color: var(--accent); }
+  .expertise__end { display: flex; justify-content: space-between; gap: 1rem; padding-block-start: 1.25rem; margin-block-start: 3.5rem; border-block-start: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); font-size: 0.5625rem; }
+
+  /* Only a successfully initialized, measured desktop enhancement adds travel.
+     Normal markup, short viewports, keyboard anchors and reduced motion use flow. */
+  .expertise[data-expertise-mode="stage"] .expertise__track { min-block-size: calc(100svh - 3rem + var(--expertise-travel)); }
+  .expertise[data-expertise-mode="stage"] .expertise__stage { position: sticky; inset-block-start: 1.5rem; min-block-size: calc(100svh - 3rem); align-items: center; }
+  .expertise[data-expertise-mode="stage"] .expertise__panels { display: grid; }
+  .expertise[data-expertise-mode="stage"] .expertise__panel { grid-area: 1 / 1; pointer-events: none; }
+  .expertise[data-expertise-mode="stage"] .expertise__progress { display: block; }
+  .expertise[data-expertise-mode="stage"] .expertise__construction { inline-size: min(76%, 20rem); margin-block-start: 1.25rem; }
+
+  /* Short desktop CSS viewports (including browser scaling) keep a single
+     measured stage. Trim secondary space before opting into the flow fallback. */
+  @media (width >= 64rem) and (height < 44rem) {
+    .expertise[data-expertise-mode="stage"] .expertise__construction { display: none; }
+    .expertise[data-expertise-mode="stage"] .expertise__headline { margin-block-start: 1.25rem; }
+    .expertise[data-expertise-mode="stage"] .expertise__progress { margin-block-start: 1.5rem; }
+    .expertise[data-expertise-mode="stage"] .expertise__panel { padding-block-end: 2rem; }
+    .expertise[data-expertise-mode="stage"] .expertise__icon-scene { inline-size: min(20vw, 14rem); }
+  }
+
+  @media (width < 64rem) {
+    .expertise__stage { grid-template-columns: 1fr; gap: 2.5rem; }
+    .expertise__headline { font-size: clamp(4.5rem, 10vw, 7rem); }
+    .expertise__construction { display: none; }
+    .expertise__panels { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 2rem; }
+    .expertise__panel article { display: flex; flex-direction: column; block-size: 100%; }
+    .expertise__panel-meta { font-size: 0.5625rem; }
+    .expertise__name { font-size: clamp(2.75rem, 6.1vw, 4.5rem); }
+    .expertise__icon-scene { inline-size: 12rem; }
+    .expertise__index-groups { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "backend deployment" "frontend development" "ai ai"; grid-template-rows: auto auto auto; }
+    .expertise__index-group[data-toolkit-category="ai"] ul { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(1.5rem, 4vw, 4rem); }
+  }
+  @media (width < 40rem) {
+    .expertise__headline { font-size: clamp(3.375rem, 14.5vw, 5.5rem); }
+    .expertise__intro-copy { font-size: 1rem; }
+    .expertise__panels, .expertise__index-groups { grid-template-columns: 1fr; }
+    .expertise__index-groups { grid-template-areas: "backend" "deployment" "frontend" "development" "ai"; grid-template-rows: auto; }
+    .expertise__index-group[data-toolkit-category="ai"] ul { grid-template-columns: minmax(0, 1fr); }
+    .expertise__panel { padding-block: 1.5rem 2rem; }
+    .expertise__name { font-size: clamp(2.75rem, 12vw, 4.5rem); }
+    .expertise__description { min-block-size: 0; }
+    .expertise__panel-meta { font-size: 0.625rem; }
+    .expertise__index-header { font-size: 0.625rem; }
+    .expertise__index-header > p { max-inline-size: 17ch; }
+    .expertise__index-groups { gap: 2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .expertise__index-link::after, .expertise__index-icon { transition: none; }
+    .expertise__index-link:hover .expertise__index-icon, .expertise__index-link:focus-visible .expertise__index-icon { transform: none; }
+  }
+}

@@ -263,7 +263,139 @@ accepts src, meaningful alt text, and objectPosition; a real supplied image fits
 the reserved frame without a layout redesign. Failed image loading falls back
 to the same accessible neutral composition. No photo or face asset is invented.
 
-About awaits visual approval; the following features remain future plans.
+About is completed and approved. Its implementation is preserved during Phase 05.
+
+## Expertise: short native sticky stage
+
+Expertise follows About in normal flow. App supplies motionEnabled={!opening};
+the opening, Hero, About and Navbar controllers are unchanged. A lazy import uses
+the already installed ScrollTrigger. No SplitText import or additional package
+is required: React supplies stable character spans with one accessible name.
+
+### Desktop and active-state ownership
+
+At least 1024px wide and 560px tall, the stage opts into native CSS sticky only
+if its measured content fits in viewport height minus 48px. Sticky top is 24px.
+Below 704px height, secondary construction artwork is omitted, headline/progress
+gaps become 20px/24px, panel bottom padding is 32px, and icon width caps at 224px.
+These compact rules preserve the showcase on short laptop windows; unsafe fits
+still use the complete normal-flow list. Heading sizes and brand paths are unchanged.
+Its track adds clamp(56rem, 140svh, 88rem) of travel: 1260px at 1440x900 and
+1008px at 1280x720. One ScrollTrigger runs from track top 24px for that travel.
+Progress partitions into five equal intervals: Python, Django, FastAPI, React,
+PostgreSQL. Upward scrolling chooses the preceding state. No pin spacer or wheel
+handler is created. The stage releases before the supporting index.
+
+The meter and small construction fragments scrub with .2s smoothing. The stage
+owns all five panel opacities/pointer states: one selection updates them and the
+counter synchronously, with no outgoing/incoming panel crossfade. Panel-level
+fades previously allowed two technologies to be visible during direction changes.
+Refresh reconciles the selection from current trigger progress even at the same
+index, without replaying an unchanged technology's entrance.
+
+Only descendants animate in the replaceable entrance context: grouped matching
+glyphs settle from orange/12% vertical displacement over .38s with 20ms group
+offsets. This adapts Find All's matching-character emphasis, not About's cursor,
+proofreading, Swipe or Overtype. Rapid updates revert the previous context before
+creating the next; timelines cannot queue indefinitely. This context is explicitly
+owned/cleaned up separately, so old contexts do not accumulate in the stage's
+context through ScrollTrigger callbacks. Teardown disables activation before
+reverting either context, preventing callbacks from starting a replacement.
+All five semantic articles remain available to assistive technology. Opacity only
+changes painting; there are no hidden controls inside inactive panels.
+
+Each active mark has a finite treatment on a separate layer:
+
+- Python: four corner accents split/rejoin by up to 9px x/6px y over .55s.
+- Django: architectural strokes draw over .65s.
+- FastAPI: a separate lightning contour traces over .3s.
+- React: an outer orbital accent moves through 35 degrees over .8s.
+- PostgreSQL: a two-step wrapper mask opens over .57s.
+
+Brand paths never deform. The initial Python artwork animates when its stage
+enters, rather than finishing below the fold. No icon runs an idle loop.
+
+### Supporting index, fallback and lifecycle
+
+The seventeen supporting entries are real links to documentation. Hover and
+keyboard focus trigger one short matching-character colour/lift pulse; an orange
+rule draws and the icon shifts 3px/4 degrees using CSS. Reduced motion removes
+the movement while preserving a clear focus outline and link affordance.
+
+Tablet/mobile and unsafe or very short desktop views show all five featured tools
+in a natural reading list, with light one-shot name/icon entrances. Initial/live
+reduced motion shows static content. Direct #expertise visits and section focus
+no longer disable an otherwise eligible desktop stage. Initial fragments deferred
+by the preloader are honored once; browser-restored positions are preserved.
+Supporting links stay functional with no animation. A late plugin import enhances
+eligible desktops while preserving the current article, rather than permanently
+leaving a stacked list. Failed enhancement remains readable in normal flow. Live
+preference/breakpoint changes also preserve reading position; ordinary user
+scrolling is not intercepted.
+
+The hook owns its stage/flow contexts, icon context, refresh/rebuild RAF, event
+listeners and ResizeObserver/MutationObserver. Font/image loads and viewport
+changes refresh/rebuild only its own measurements. Inert main/page state and
+hidden tabs revert its animation; restoration resumes eligible enhancement.
+Cleanup restores mode/data/inline styles and leaves About/foreign triggers intact.
+No global killAll, ScrollTrigger configuration, custom ticker, or scroll lock is
+introduced. There is no state update on every scroll frame.
+
+References inspected: Codrops [Find All](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/findAll.js)
+and Museum of Motion's [scroll stages](https://github.com/johnpolacek/museum-of-motion/blob/main/lib/motion/stages/scroll.ts),
+especially its finite Pin/Scrub/Release handoff. Only their principles are adapted;
+the museum's embedded scroller, Lenis and demo controls are not copied.
+
+The local icons and their exact source revision, fill treatments and MIT notice
+are documented in public/icons/technologies/README.md and sources.json.
+Expertise awaits visual approval. Later sections remain outside this phase.
+
+## AJ Signal Cursor
+
+SignatureCursor is one body portal, enabled after the preloader completes. Its
+12px filled square tracks the mouse exactly through one coalesced RAF/quickSetter;
+click contraction stays centered on the actual hotspot. All cursor artwork and
+text use Electric Orange, with no reticle, ring, calibration lines or leader.
+
+Genuine controls use the earlier compact single-line OPEN/VISIT/VIEW/EXPLORE style:
+11px Kode Mono on a flat graphite backing with small cut corners. There are no
+brackets or TARGET ACTIVE status. Labels use fixed 8px character cells, 140ms
+reveals with 12ms stagger, and 120ms opacity settling. They sit 16px beside the
+square and flip at viewport bounds. Click feedback reuses one 65ms contraction
+to .87 scale and 150ms return; repeated clicks restart it and hiding resets it.
+
+ShatterTrail owns a 36-particle Canvas 2D pool and 64-sample history, not a second
+RAF. Smoothed velocity (42ms response) and distance-based emission maintain
+consistent density across polling rates. Speed controls the whole fragment profile:
+slow motion emits fewer, smaller, shorter-lived squares; fast motion allows
+2.5-6.5px squares with greater drift and 240-560ms lifetime. Normal spacing
+grades from 18px toward 7px and the emission budget from 14 toward 36. The tail
+fades over the last 220px of a 620px distance cap, with slower opacity/size decay
+to keep fragments visible farther behind the pointer. About caps at ten and
+slow-frame mode at twelve; labels suppress trail emission. Clicks use seven
+3-6px fragments (three for minimal/limited modes), with 80ms throttling and
+200-260ms lifetimes. Squares decelerate, shrink and fade, with
+restrained speed-dependent rotation. DPR caps at two and only the previous dirty
+region clears each frame. Long sample gaps, blur, viewport exit and re-entry reset
+history. Stationary input emits nothing and the cursor RAF stops after decay.
+No React updates occur per pointer frame; GSAP owns only finite label/click feedback.
+
+Delegated resolution uses real links/enabled controls. Existing live navigation
+gets OPEN; external toolkit links get VISIT; unavailable destinations/disabled
+CTAs get no action label. Future real controls can use
+data-cursor="view|explore|open|visit|drag|native|minimal" and data-cursor-label.
+VIEW and EXPLORE require real controls, and DRAG requires actual draggable/slider
+semantics. No fake interaction or future section is created.
+
+Only hover/fine mouse capability without reduced motion installs pointer
+listeners. Live media changes fully dispose/rebuild the enhancement. The html
+native-cursor suppression attribute is set only after successful visible
+positioning and Canvas initialization. Initialization/runtime failure, text entry,
+selection, capture, keyboard input, blur, visibility change, pagehide and viewport
+exit restore native behavior. The overlay ignores pointer events and is hidden
+from assistive technology. Cleanup removes owned listeners/RAF, reverts the GSAP
+context, clears the renderer and type content. The cursor never creates or changes
+ScrollTriggers or scroll locks.
 
 ## Intent
 
@@ -296,7 +428,7 @@ reuse; do not add speculative providers or empty hooks now.
 | Page preloader | The explicitly requested branded opening above is implemented. It depicts its own sequence, never network progress. Further asset-loading gates require a separate request; preserve skip, timeout, reduced motion, and focus behavior. |
 | Landing transitions | A brief coordinated entrance after required assets are ready. Keep readable content in the initial document; do not leave it hidden if initialization fails. |
 | Selective pixel transitions | Use sparingly at meaningful boundaries. Keep decorative overlays noninteractive and hidden from assistive technology. Avoid flashing, full-page noise, and heavy DOM grids. |
-| Custom smooth cursor | Optional decoration for a fine pointer with hover support. Preserve the native cursor, selection, and focus cues. The overlay must ignore pointer events, disappear on leaving the window, and be disabled for touch and reduced motion. |
+| Signature cursor | AJ Signal Cursor is implemented above. Keep native fallbacks, selection and focus cues; no cursor-dependent functionality. |
 | Fullscreen mobile navigation | Implement only with the Navbar milestone. Use a real toggle with `aria-expanded` and `aria-controls`. When open, contain focus, make background content inert, support Escape, restore focus on close, and restore prior scroll position and behavior on exit. |
 
 ## Timing and composition

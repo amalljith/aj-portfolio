@@ -1,0 +1,195 @@
+{
+  "project": "Devicon, official platform assets, Lobe Icons and Simple Icons",
+  "revision": "32fe1d3b3f36ad11f90ab94f7db59738139c2bf6",
+  "assets": [
+    {
+      "name": "python",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/python/python-original.svg",
+      "variant": "original",
+      "sourceSHA256": "71493b4a732f0532b3a03a7a95da3ee11a65766367c8303b901ffbe7bf91a3a2",
+      "bytes": 1790,
+      "treatment": "Core Python paths and brand fills unchanged; omitted decorative ground-shadow ellipse and its radial gradient."
+    },
+    {
+      "name": "django",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/django/django-plain.svg",
+      "variant": "plain",
+      "sourceSHA256": "c3037ac285dd5f85ee148a151afb85e64b2a03b62c3affc178376d82ebff6a46",
+      "bytes": 645,
+      "treatment": "Ivory monochrome; fill values only, path geometry unchanged."
+    },
+    {
+      "name": "fastapi",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/fastapi/fastapi-original.svg",
+      "variant": "original",
+      "sourceSHA256": "7ef41f6a363b00ff595e6d0b933c025c92cbfae29dc1df24b2f6eb8b476ee486",
+      "bytes": 3066,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "react",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/react/react-original.svg",
+      "variant": "original",
+      "sourceSHA256": "5825b649c8c04dec13ecf01d0182401bd0ec71789d2fa06224866d882cd1515f",
+      "bytes": 2389,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "postgresql",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/postgresql/postgresql-original.svg",
+      "variant": "original",
+      "sourceSHA256": "f220a436258ed014c512ba4f9c0de6b9e5c2c4b55331a0a29f8c7a1a12c36443",
+      "bytes": 9180,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "djangorest",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/djangorest/djangorest-plain.svg",
+      "variant": "plain",
+      "sourceSHA256": "b25eb39e32e67ef89680bdb87c9b7f3709a76a570f8824b48b606289f84a6c21",
+      "bytes": 32860,
+      "treatment": "Ivory monochrome; fill values only, path geometry unchanged."
+    },
+    {
+      "name": "javascript",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/javascript/javascript-original.svg",
+      "variant": "original",
+      "sourceSHA256": "0656ff65fc8eeacda5c78d7f9ffe91ec1eb919db64f56e0b7dcd460af4bbd36c",
+      "bytes": 1146,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "typescript",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/typescript/typescript-original.svg",
+      "variant": "original",
+      "sourceSHA256": "c9191199f4049920c2fc19035b8a6664f37f4689fcd9e8434e786097e78863f0",
+      "bytes": 945,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "html5",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/html5/html5-original.svg",
+      "variant": "original",
+      "sourceSHA256": "34826e5b3315daadf4fa15f723a3c1d5ba4a89277bfd94e22ac4d7d3d54338c5",
+      "bytes": 609,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "css3",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/css3/css3-original.svg",
+      "variant": "original",
+      "sourceSHA256": "36b7d94b657d571d3f94042acbf6a4c86a5301a222f83f4b4583ad2acf6e297d",
+      "bytes": 780,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "tailwindcss",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/tailwindcss/tailwindcss-original.svg",
+      "variant": "original",
+      "sourceSHA256": "f8cec54589553807eb603bcaf4e056aa090196211698b056542e3cc62a2f3448",
+      "bytes": 690,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "motion",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/motion/motion-original.svg",
+      "variant": "original",
+      "sourceSHA256": "7ff0a7ca4054861e3519e794301cb6377e0e375ed113f36818372ea3cb8f2abc",
+      "bytes": 425,
+      "treatment": "Ivory monochrome; fill values only, path geometry unchanged."
+    },
+    {
+      "name": "docker",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/docker/docker-original.svg",
+      "variant": "original",
+      "sourceSHA256": "3fd830ea69431ed7a0b8d068cd5b34ad3f00a1a78195d50f13ff56713f2462e1",
+      "bytes": 4454,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "git",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/git/git-original.svg",
+      "variant": "original",
+      "sourceSHA256": "717a57ea97bf7e86de721dab3e68afac66332a10676d5c9abce4ae6a5a9c9983",
+      "bytes": 780,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "github",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/github/github-original.svg",
+      "variant": "original",
+      "sourceSHA256": "45262793de6292206a895ed63593cdb1eaed82074173f7f4b5bdb3e427ca805a",
+      "bytes": 1883,
+      "treatment": "Ivory monochrome; fill values only, path geometry unchanged."
+    },
+    {
+      "name": "vscode",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/vscode/vscode-original.svg",
+      "variant": "original",
+      "sourceSHA256": "503d580c442a7071aae180d9b4766e312e4600bf0e9d842b30f56d0e614eceb8",
+      "bytes": 3405,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "vitejs",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/vitejs/vitejs-original.svg",
+      "variant": "original",
+      "sourceSHA256": "f84e50febcb3a2a81399c9a1ae76d96dc235428202f91610b6f36bfb5b62051a",
+      "bytes": 1277,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "postman",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/postman/postman-original.svg",
+      "variant": "original",
+      "sourceSHA256": "0b366c7a023328b0d95e8c90d9050519b8c31d206f8b34db17742488f72efccb",
+      "bytes": 3714,
+      "treatment": "Original brand fills and geometry; XML comments/inter-tag whitespace removed."
+    },
+    {
+      "name": "vercel",
+      "source": "https://vercel.com/geist/brands/assets/vercel-symbol-white.svg",
+      "brandGuidelines": "https://vercel.com/geist/brands",
+      "variant": "official white symbol",
+      "sourceSHA256": "b9d0609118db4332f29e69efae32a8992136e3396a556c24467222992d5b6ead",
+      "bytes": 224,
+      "license": "Official brand asset; subject to the brand owner's usage and trademark terms. Not covered by Devicon MIT.",
+      "treatment": "White fill and brand paths unchanged; inter-tag whitespace removed."
+    },
+    {
+      "name": "render",
+      "source": "https://cdn.sanity.io/files/hvk0tap5/production/40134cba8baae95e988e65d2a0675c2521e9c731.zip",
+      "brandGuidelines": "https://render.com/",
+      "variant": "official white symbol",
+      "sourceSHA256": "84aff92790e9e79d949e1aaa3f2ab3f07084945a08628d1011d4be65e6bedf7a",
+      "bytes": 2366,
+      "license": "Official brand asset; subject to the brand owner's usage and trademark terms. Not covered by Devicon MIT.",
+      "treatment": "White fill, paths and clip geometry unchanged; viewBox cropped to the existing 400x400 symbol frame to remove export padding; inter-tag whitespace removed.",
+      "archivePath": "Render Brand Kit/Logos/White/Render logomark - White.svg"
+    },
+    {
+      "name": "codex",
+      "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/a177c1e817204f8ddc0c8993610ca674fc6d9767/packages/static-svg/icons/codex.svg",
+      "collection": "Lobe Icons",
+      "revision": "a177c1e817204f8ddc0c8993610ca674fc6d9767",
+      "variant": "monochrome symbol",
+      "sourceSHA256": "d08b4e824cd6727e89617f59e4737273ff53e44c1da849d016dd64dfd08b33e1",
+      "bytes": 1362,
+      "licenseNotice": "LICENSE-Lobe-Icons.txt",
+      "treatment": "Brand path geometry unchanged; white fill for contrast on graphite.",
+      "brandSource": "https://openai.com/codex/"
+    },
+    {
+      "name": "claudecode",
+      "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/cd796c98565fc466923fc1128b962e133fa3c612/icons/claudecode.svg",
+      "collection": "Simple Icons",
+      "revision": "cd796c98565fc466923fc1128b962e133fa3c612",
+      "variant": "original symbol with brand color",
+      "sourceSHA256": "f7691bedae6d71e39e41436f39e453430c1ee21f6305a596984c70a5786abbda",
+      "bytes": 250,
+      "licenseNotice": "LICENSE-Simple-Icons.txt",
+      "treatment": "Brand path geometry unchanged; upstream brand color D97757.",
+      "brandSource": "https://code.claude.com"
+    }
+  ]
+}
