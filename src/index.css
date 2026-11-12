@@ -27,6 +27,9 @@
   --color-off-white: #f5f4ee;
   --color-near-black: #171916;
   --color-lime: #dceb80;
+  --color-graphite: #151515;
+  --color-ivory: #f5eedc;
+  --color-orange: #ff5c28;
 
   --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
   --font-hero-name: "AJ Anybody", Impact, "Arial Narrow", sans-serif;
@@ -76,7 +79,8 @@
 @layer base {
   html {
     color-scheme: light;
-    background-color: var(--surface);
+    /* Match the graphite opening/page canvas before React mounts. */
+    background-color: var(--color-graphite);
     color: var(--ink);
     font-family: var(--font-body);
     line-height: 1.6;

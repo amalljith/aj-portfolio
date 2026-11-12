@@ -6,250 +6,155 @@ Closing reverses it at a modestly faster rate. The timeline, listeners, inert
 states, scroll lock, and inline styles are cleaned up by the owning React hook.
 Reduced motion settles immediately, including live preference changes.
 
-## Hero entrance (V3 timing retained in V5)
+## Graphite / orange branded opening
 
-The approved editorial composition has one scoped GSAP entrance timeline.
-`src/hooks/useHeroEntrance.js` registers the bundled SplitText plugin; no other
-motion dependency is required. The AJ branding and Navbar are separate owners.
+Every full page load mounts Preloader.jsx once alongside the real page. No storage
+flag, fake network percentage, hash listener, or scroll-triggered replay is used.
+The actual AJLogo paths are unchanged. The opening uses graphite, orange, and
+ivory tokens locally; the old cream/cobalt opening is replaced.
+The document canvas also uses the graphite token before React mounts.
 
-| Phase / label | Start | Treatment |
+One scoped usePreloader.js GSAP timeline lasts **2.64 seconds**:
+
+| Phase | Start | Treatment |
 | --- | --- | --- |
-| `amal` | 0 s | Masked characters, 0.82 s each, 0.04 s stagger, power3.out |
-| `jith` | 0.22 s | Same reveal, overlapping AMAL |
-| `geometry` | 0.38 s | Existing paths draw over 0.6 s, 0.12 s stagger, power2.inOut; terminals follow |
-| `identity` | 0.62 s | PYTHON rises through a mask over 0.65 s; upright developer. follows 0.18 s later with 10px movement and opacity |
-| `copy` | 0.96 s | Actual wrapped lines reveal over 0.58 s, with 0.12 s total stagger |
-| `cta` | 1.30 s | Label, arrow wrapper, then underline; 0.45–0.55 s |
-| `footer` | 1.66 s | Divider draws over 0.5 s; scroll label and static counter follow |
+| draw | 0s | Four architectural construction paths draw over .38s with .045s stagger |
+| monogram | .12s | Existing AJ outlines draw over .78s with .085s stagger |
+| resolve | .80s | Orange fill resolves over .28s; technical rule finishes by 1.05s |
+| hold | 1.08s | Completed logo holds for 200ms; the rule settles over .16s |
+| curtain | 1.28s | Orange stepped field rises over .58s, power3.inOut; scene fades/lifts 12px |
+| exit | 1.86s | Base becomes transparent only after full orange coverage; curtain exits over .78s, sine.inOut |
 
-The complete entrance lasts 2.28 s. This feature's explicitly requested timing
-takes precedence over the shorter starting ranges in the future plan below.
-CTA CSS hover motion owns the inner arrow; entrance motion owns its outer wrapper.
-The entrance does not lock scrolling or loop. There is no ScrollTrigger or
-preloader; the independent ambient decoration below owns its own CSS motion.
+The curtain is one oversized CSS surface with a static three-step polygon and
+1px coverage bleed. Its only animated shape property is yPercent; the clip-path
+does not animate. Additional height above/below the viewport makes both shallow
+edges cover every corner at yPercent=0. The widest right step is the last edge
+to clear. Cached panel height/offset plus 2px rounding clearance determine when
+it has passed [data-hero-heading]. At that point Hero.play() runs once. No Hero
+animation is duplicated inside the preloader. Completion has a guarded handoff
+fallback. The page remains inert/scroll-locked until the orange panel exits.
 
-First-paint preparation happens in a layout effect; autoplay begins in a passive
-effect so StrictMode's effect rehearsal cannot start duplicate entrances. Font
-readiness is bounded to 800ms. Missing faces use the existing fallback stacks,
-frozen through Hero-local tokens until unmount to prevent late font swaps. This
-can keep fallback typography for the current mount even if fonts load later.
-All font overrides are restored on cleanup.
+The logo is centered without scaling its camera or changing its geometry. Its
+160-288px width is capped at 40svh on short screens. The construction frame stays
+around the logo; small ivory technical metadata and a thin rule are separate.
+There are no images, filters, gradients, extra plugins, or continuous loops.
+Short viewports omit secondary labels. The skip button keeps a graphite backing
+and an inset ivory keyboard-focus mark during the orange pass.
 
-Persistent React cells supply name masks; SplitText measures responsive paragraph lines.
-The paragraph uses `autoSplit` and returns its child tween to the parent timeline.
-Paragraph split markup and transient styles revert on completion, leaving native text
-flow. Width changes during playback settle immediately into native wrapping.
-Reduced motion and focus within the Hero settle immediately too; turning reduced
-motion off does not replay the entrance. A 3.6 s independent watchdog restores
-readable content if setup or playback stalls. Default markup is always readable.
+The original lifecycle remains: cancellable StrictMode startup, owned GSAP
+context, scroll/inert/style restoration, Escape/skip, live reduced motion,
+visibility/pagehide/pageshow handling, focus restoration, and a 4.2s independent
+fail-open deadline. Initial/live reduced motion and skip reveal usable static
+content promptly, without awaiting fonts. No focus trap or automatic focus grab
+is introduced. Cleanup removes the overlay and its listeners/styles; fonts and
+SVG measurements cannot leave the app permanently hidden.
 
-`Hero` accepts `autoPlay` (default true) and a React ref exposing `play()`,
-`restart()`, and `finish()`. `play()` is idempotent; `restart()` explicitly rebuilds
-one entrance. A future preloader can render `<Hero autoPlay={false} ref={heroRef} />`
-and call `heroRef.current.play()` after finishing. Waiting for that call does not
-hide the Hero. No preloader is implemented.
+## Approved Hero V2: production motion
 
-### References actually retrieved
+The former development experiment is now the production Hero. There is no preview
+route, comparison toolbar, preview entry, or separate experimental font bundle.
+Hero.jsx/Hero.css and HeroArtwork.jsx render the approved composition;
+useHeroMotion.js owns its motion. The superseded V5 entrance, fluid typography,
+and ambient signal implementation are removed.
 
-- Animaxxing Skills: [split-entrances.md](https://github.com/johnpolacek/animaxxing-skills/blob/main/skills/animaxxing/references/recipes/split-entrances.md)
-  and [SKILL.md](https://github.com/johnpolacek/animaxxing-skills/blob/main/skills/animaxxing/SKILL.md).
-  Adapted scoped restoration, split text ownership, and settled reduced motion.
-  These were research sources, not installed skills or copied components.
-- TextCharacterAnimations: [js/index.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/index.js),
-  [js/variations/telegram.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/telegram.js),
-  and [js/variations/swipe.js](https://github.com/codrops/TextCharacterAnimations/blob/main/js/variations/swipe.js).
-  Studied character grouping, sequencing, reduced-motion final states, and decorative SVG semantics.
-- Atelier North: [src/scripts/global.js](https://github.com/codrops/atelier-north/blob/main/src/scripts/global.js),
-  [src/pages/index.astro](https://github.com/codrops/atelier-north/blob/main/src/pages/index.astro),
-  [src/layouts/Layout.astro](https://github.com/codrops/atelier-north/blob/main/src/layouts/Layout.astro),
-  and [src/styles/top.scss](https://github.com/codrops/atelier-north/blob/main/src/styles/top.scss).
-  Studied clipped wrappers, staggered title motion, and editorial alignment;
-  its random scale effect and scroll integrations were not adopted.
-- Museum of Motion: [README.md](https://github.com/johnpolacek/museum-of-motion/blob/main/README.md)
-  only. Source directory, Hero implementation, and motion brief requests failed;
-  no museum implementation code was available to inspect or adapt.
-- GSAP: current [SplitText documentation](https://gsap.com/docs/v3/Plugins/SplitText/),
-  [context documentation](https://gsap.com/docs/v3/GSAP/gsap.context()/), and the installed
-  `node_modules/gsap/SplitText.js` were checked for supported APIs and cleanup.
+### Controlled handoff and preparation
 
-### Hero V3 validation
+Hero accepts autoPlay (default true), workHref (default null), and a React ref
+exposing play(), restart(), and finish(). App supplies autoPlay=false. play() is
+idempotent; restart() explicitly builds a new entrance; finish() restores readable
+content immediately. The preloader owns its cover, page inertness, scroll
+lock, and 4.2s safety deadline. The current orange stepped panel uses
+[data-hero-heading] for the handoff and [data-hero] for the temporary cover. Each
+full refresh shows the preloader; hashes do not replay it.
 
-Oxlint and production build passed. Headless Microsoft Edge checks covered widths
-320, 375, 390, 430, 768, 1024, 1280, and 1440px, plus short viewports. Checked
-StrictMode single playback, stable masks, actual description lines and re-splitting,
-accessible names during motion, CTA hover/focus, mobile navigation, live reduced
-motion, explicit restart, late and stalled fonts, partial setup failure, the
-watchdog, and cleanup during animation and pending font preparation. No layout
-shifts were recorded during initial playback in this run. Google Fonts could not
-be fetched in the test environment; actual web-font rendering and physical-device
-performance remain visual-review checks. QA scripts and captures are temporary
-artifacts, with no new test dependencies or package scripts.
+Font preparation begins in a cancellable passive-effect microtask while waiting
+under the preloader, without starting the entrance. It loads the existing local
+Anybody face at weights 500 and 800, with a 600ms maximum wait. Failure or a late
+face freezes readable Arial fallback for that mount. play() synchronously enters
+the masked preparation state before the cover is released. Once preparation is
+ready, the scoped GSAP timeline plays. The actual heading top supplies handoff
+geometry. No arbitrary additional landing delay is introduced.
 
-## Hero ambient signal
+### Entrance choreography
 
-`HeroAmbient.jsx` has two distinct responsive drawings: a wide horizontal network
-on desktop/tablet and a simpler, tall vertical path on mobile. The desktop drawing
-has two contours and a connected branch; mobile has one contour and a short branch.
-A short signal follows the primary path in each drawing. Non-scaling strokes are
-1.25px, up from 1px, with slightly clearer contours and small square terminals.
-Both use the existing accent token without altering the approved central SVG.
-The wrapper and SVGs are decorative, with `aria-hidden`, no focus stops, and no
-pointer interception. The inactive responsive drawing uses `display: none`, so
-only one CSS loop exists at a time.
+| Target | Start | Treatment |
+| --- | --- | --- |
+| AMAL | 0.12s | Characters rise from 112%, 0.85s, 0.045s stagger, expo.out |
+| JITH. | 0.38s | Characters descend from -112%, 0.9s, 0.045s stagger, expo.out |
+| Collage plane | 0.05s | Assemble from x=-48, opacity 0, 0.75s |
+| Collage cut | 0.30s | Assemble from x=36/y=-20, opacity 0, 0.7s |
+| Collage bridge | 0.48s | Assemble from x=-24/y=24, opacity 0, 0.75s |
+| Artwork construction lines | 0.18s | Stroke-dash drawing, 0.8s, 0.025s stagger |
+| Supporting UI | 0.72s | x=14/opacity 0, 0.6s, 0.08s stagger |
 
-One CSS animation shifts a normalized `12 88` dash pattern by exactly one period
-over 12 seconds, with linear easing and infinite repetition. The endpoints match
-at the loop boundary. No GSAP timeline or dependency is added. The entrance hook
-is unchanged: CSS reads its existing `settled`/`reduced` states, and only enables
-the ambient loop under `prefers-reduced-motion: no-preference`. It remains hidden
-and paused while the entrance prepares or plays, including explicit restarts.
+Total: 1.64s. Approved typography/supporting timings remain unchanged; new artwork
+line construction fits inside that existing choreography. Completion reverts
+entrance styles before attaching interaction. A separate 3.5s deadline after play()
+fails open if setup/playback stalls. Waiting for external playback never starts
+that deadline or a competing animation. Initial/live reduced motion, focus inside
+the Hero, hidden tabs, or a width change during playback settle immediately.
+Turning reduced motion off does not replay the entrance.
 
-The latest ambient brief explicitly removes visible motion controls. The button,
-control state, focus handlers, preference listener, and button styles are removed;
-the decoration runs automatically. CSS media queries handle live reduced-motion
-changes without a JavaScript preference listener. Reduced motion hides the entire
-decoration and removes its CSS animation. Turning motion back on may resume the
-ambient loop, while the entrance stays settled and focus stays in place.
+### Interaction ownership
 
-IntersectionObserver and document visibility pause work offscreen and in hidden
-tabs. Listeners and the observer are removed on unmount; the browser cancels the
-element's CSS animation. React StrictMode does not create duplicate loops.
+The existing name WOFF2 supports wght 100-900 and wdth 50-150. AMAL rests at 500/125;
+nearby letters become 800/125. JITH. rests at 800/110 and responds toward 500/110.
+There is no scaling or width animation. Stable cells cover measured maximum
+advances across 21 weights, plus .008em. Proximity uses character-specific smooth
+falloff; distant characters remain unchanged. Inner glyphs interpolate weight,
+ivory/orange color, and at most 6px lift. GSAP quickTo response is 320ms, with a
+520ms return. Text selection and keyboard interaction remain native.
 
-The desktop/tablet network occupies 82% of the safe identity-column width below
-the role. Its height is bounded and responds to the viewport, with a shorter 72px
-drawing in short landscape viewports. The mobile drawing has its own portrait
-viewBox and vertical geometry, beside the last stacked name and role. Local
-heading-size/leading/gap variables extend it through this blank area without
-changing Hero metrics or reaching the copy/CTA. A container query hides the
-decoration when text zoom leaves too little inline space.
+The existing collage now has a broader 680x280 desktop canvas: a larger orange
+cut plane and original AJ-like negative space extend into a broken architectural
+line composition. A separate 440x280 mobile SVG omits the extended grid and extra
+registration detail. Both remain decorative and secondary to the name.
 
-Browser validation covered all eight requested widths, 320x480 and 1440x600 short
-viewports, distinct responsive geometry, loop boundary equivalence, live reduced
-motion, stable focus, offscreen suspension, simulated document-visibility changes,
-mobile navigation, and StrictMode cleanup. Only one loop remained active across
-breakpoint changes. No initial layout shifts were recorded. Existing Hero layout
-measurements stayed unchanged; broad fallback fonts retained at least 12px of
-mobile text clearance. Artwork dimensions ranged from 270x102px on tablet to
-656x126px on desktop; mobile ranged from 48x184px to 70x226px. The original entrance
-hook, Navbar, branding, tokens, and dependency files were unchanged.
-Actual remote-font rendering and physical-device performance remain review limits.
+A separate artwork layer receives at most 5px x/3px y pointer movement. Plane,
+corner, and grid parents respond independently by up to 3px with .6s interpolation;
+inner entrance groups retain their own transforms. The whole artwork shifts up
+to 14px with native scroll, while a different grid layer moves 8px x/-4px y.
+The footer rule grows from .35 to 1. Scrolling upward reverses these accents. A
+passive listener schedules one RAF for each update batch. No custom ticker,
+ScrollTrigger, smooth-scroll interception, or continuous idle loop is added.
+Coarse pointers have no typography/parallax pointer listeners. Mobile scroll
+continues to drive the restrained artwork accent without cancelling touch events.
 
-## Hero V5 Anybody fluid typography
+Page inertness during the preloader allows the controlled entrance but prevents
+interactive motion. Main inertness from mobile navigation settles any entrance
+and detaches interactions. Closing the menu restores interaction eligibility,
+without replay. An IntersectionObserver detaches all interaction tweens and
+pointer/scroll listeners while Hero is outside the viewport; re-entry only
+reattaches interaction, never the entrance. Hidden tabs also settle/detach;
+visibility resumes eligible interaction only. Live reduced-motion changes reset
+glyphs and decorative layers.
 
-The visually approved Anybody shrink/grow study is now integrated into **AMAL
-JITH.** only. Anton remains the general display face; role, description, CTA,
-Navbar, and both SVG artworks retain their existing motion. The
-comparison route, components, private hooks, optional Roboto Flex assets, and
-obsolete Archivo font/license have been removed. Provenance and the preserved
-OFL are in `src/assets/fonts/README.md` and `public/licenses/Anybody-OFL.txt`.
-The license ships alongside the production font.
+### Viewport and cleanup
 
-The actual bundled WOFF2 has `wght` 100?900 (default 100), and `wdth` 50?150
-(default 100), verified from its OpenType `fvar` records. Production preserves
-the final approved study values: **900 / 55 / 1 ? 300 / 68 / 0.95**
-(weight / width / scale). This is a moderate thin state, with no hairlines.
+Desktop minimum height is calc(100svh - var(--navbar-height)), with a 100vh fallback;
+Navbar is 84px at the default root size. Height is never fixed. Padding is 16-24px,
+row gaps 14-20px, CTA gap 12px, footer padding 12px, and the old 128px lab-toolbar
+allowance is removed. Width-driven oversized type is capped against the remaining
+viewport budget. Below 672px desktop height, that cap is removed so full-sized
+content scrolls naturally. Mobile also uses natural height and its approved
+separate stacking/relative type sizes. Artwork bounds reserve its caption and
+full pointer/scroll/fragment excursion beneath AMAL. The wider artwork uses the
+existing lower-left whitespace and is capped against the JITH. slot width,
+retaining 32px horizontal clearance before interactive displacement.
 
-`useFluidTypography.js` retains the approved flat proximity core and smoothstep
-falloff. Horizontal reach is 0.9 times font size, bounded to 85?280px. The core
-covers 60% of each cell's width and 84% of its height; a short vertical falloff
-keeps the other stacked word bold during a centered interaction.
+Each mount owns its GSAP contexts, timers, pending font wait, media/event listeners,
+inert/intersection observers, and RAF. Cleanup invalidates pending work, reverts
+both contexts, restores styles, and removes listeners. StrictMode cannot start
+duplicate playback because startup uses a cancellable microtask. No font, heading, or
+artwork animation is duplicated in the preloader or Navbar.
 
-One GSAP ticker interpolates axes and scale with frame-rate-independent damping:
-85ms approach and 150ms return constants, about **255ms / 450ms to 95%**, plus a
-settling tail. There is no overshoot or per-input React state. The ticker stops
-both at rest and when held targets settle. Cleanup restores original inline
-styles. Inner `.hero__glyph` elements own axes and scale (origin 50% / 78%);
-outer `.hero__char` elements exclusively own entrance transforms. Nine fixed
-cells reserve maximum unscaled advances along the approved coupled axis path,
-plus 0.025em. There is one semantic heading and no duplicated meaningful text.
-
-Interaction attaches only after the actual local font and the entrance settle.
-Waiting `autoPlay={false}` headings remain readable without input listeners.
-`play()`, `restart()`, and `finish()` synchronously reset/detach interaction
-before preparing or settling, and a scoped state observer reattaches afterward.
-The existing 2.28-second entrance, masks, SplitText lines, timings, fallback
-deadline, and fail-open behavior remain intact.
-
-Actual mouse input drives proximity, including a mouse on hybrid devices.
-Touch and pen require a press and follow only that pointer. Passive listeners
-and `touch-action: pan-y pinch-zoom` preserve native scrolling/zoom without
-pointer capture or preventDefault. Release/cancel returns smoothly; mouse
-selection suppresses motion. Resize, blur, hidden tabs, and live reduced motion
-restore glyphs immediately. Reduced motion removes input listeners and shows
-the bold resting heading. StrictMode teardown releases listeners, observers,
-ticker callbacks, and temporary styles.
-
-Anybody uses one CSS face with accurate weight 100?900 and stretch 50?150%
-descriptors, `font-display: swap`, and one hashed, non-inlined WOFF2 asset.
-Readiness and entrance preparation share the browser font cache. The existing
-800ms preparation deadline freezes an unavailable face to a Hero-local fallback
-for that mount. A 0.55em fallback glyph fits the narrower fixed cells; the loaded
-Anybody glyph uses 1em. Fixed slots prevent font-loading layout shifts. Interaction
-never runs on fallback text.
-
-The approved Anybody proportions use a 1.12 line height, mobile name size
-`clamp(4rem, 40vw, 18rem)`, and desktop `clamp(5rem, 22vw, 20rem)`.
-Desktop retains its name/SVG/name row; smaller screens retain stacked words.
-The existing responsive ambient system reads the shared heading metrics without
-changes to its artwork, positioning rules, or independent 12-second CSS loop.
-
-Headless Edge validation covered all eight requested widths and short heights,
-graded axes/scale, rapid pointer input, touch press/glide/end/cancel, native
-scrolling/selection, initial/live reduced motion, mobile menu/Escape/focus return,
-all entrance controls, failure recovery, font failure/late loading, and StrictMode
-teardown. The entrance remains 2.28 seconds. No initial or interaction layout
-shifts or horizontal overflow were recorded. Unscaled advances fit reserved
-cells through 101 points on the coupled axis path. Full stroked ambient bounds
-retain at least 24px divider clearance across 26 viewport combinations and all
-loop phases. The built page downloads one local font and ships its unchanged OFL;
-one independent 12-second ambient loop advances during typography interaction.
-Shared Google Fonts were blocked for deterministic checks; actual local Anybody
-rendering was verified. Physical-device performance and final visual approval
-remain review limits. Temporary QA artifacts are under `node_modules/.cache/`;
-no dependencies or package scripts were added.
-
-The subsequent role refinement uses an additional local Anybody subset because
-its name-only sibling cannot render PYTHON/developer. The role is upright:
-PYTHON at weight 900 / width 75, developer. at weight 500 / width 90. The inner
-secondary reveal target is now `.hero__role-detail`; its existing 10px movement,
-0.65s duration, and 0.18s offset remain unchanged. Font preparation checks both
-role weights and Space Grotesk 400, with the same bounded deadline and fallback
-restoration. Instrument Serif preparation and loading are removed. Name-fluid
-settings, central/ambient SVG motion, and desktop viewport spacing are unchanged.
-
-### Hero supporting interactions
-
-The description keeps its exact wording in Space Grotesk, with inline Kode Mono
-technology accents. SplitText continues to reveal actual wrapped lines and restores
-the nested semantic spans afterward; no hard-coded line breaks or copied text are
-added. The existing entrance timeline and its 2.28-second duration are unchanged.
-
-EXPLORE WORK is a thin outlined button with a separated arrow cell. A 9% cobalt
-wash wipes across it, its inner text shifts 2px, and its arrow shifts 3px right/up
-on hover and keyboard focus. CSS uses 240ms and cubic-bezier(0.22, 1, 0.36, 1).
-The existing GSAP label/arrow wrappers retain entrance transforms; CSS targets
-an extra inner label span and the existing inner arrow, preventing ownership
-conflicts. The touch target stays at least 48px and the native focus ring remains.
-The temporary coming-soon announcement is unchanged until real Work content exists.
-
-After entrance settlement, only the decorative scroll arrow nudges 6px with a
-subtle opacity dip: 1.8 seconds per cycle, two cycles (3.6 seconds), then rest.
-The label stays stationary and the arrow is aria-hidden. This finite cue avoids
-an additional continuous loop or a new control. Reduced motion removes the cue
-and text/arrow transitions, including live changes; the button retains an instant
-static wash on hover/focus. CSS animations/transitions require no new listeners
-or tickers. The independent ambient signal is unchanged.
-
-The remaining motion features below are future plans, requiring explicit requests.
-ScrollTrigger, Lenis, custom cursors, preloaders, and additional sections are not
-implemented. Hero V5 awaits final visual approval.
+The remaining features below are future plans requiring explicit requests.
 
 ## Intent
 
 Motion should reinforce the Mixed Editorial identity: deliberate typography,
 clear reading order, generous pauses, and occasional pixel-inspired punctuation.
-Each effect must explain hierarchy, location, or an interaction. The explicitly
-requested Hero signal is the only continuous ambient treatment. Avoid additional
+Each effect must explain hierarchy, location, or an interaction. The Hero has no continuous idle animation. Avoid additional
 ambient motion, scroll spectacle, excessive stagger, glow, and shadow effects.
 Content and native interaction must work before enhancements initialize.
 
@@ -273,7 +178,7 @@ reuse; do not add speculative providers or empty hooks now.
 | --- | --- |
 | Typography reveals | Use short word or line reveals for selected headings. Retain one coherent accessible reading; hide decorative split copies from assistive technology. Keep text selectable. Recalculate splits after fonts and layout settle. |
 | Section progress indicator | Reflect reading position without controlling scrolling. Keep a decorative meter out of the accessibility tree; if it becomes navigation, use labeled links and a clear current state. Avoid live announcements on each scroll update. |
-| Page preloader | Only if loading a real critical asset warrants it. Never simulate progress or add a minimum delay. Time out safely, leave essential content available on failure, and avoid stealing focus. |
+| Page preloader | The explicitly requested branded opening above is implemented. It depicts its own sequence, never network progress. Further asset-loading gates require a separate request; preserve skip, timeout, reduced motion, and focus behavior. |
 | Landing transitions | A brief coordinated entrance after required assets are ready. Keep readable content in the initial document; do not leave it hidden if initialization fails. |
 | Selective pixel transitions | Use sparingly at meaningful boundaries. Keep decorative overlays noninteractive and hidden from assistive technology. Avoid flashing, full-page noise, and heavy DOM grids. |
 | Custom smooth cursor | Optional decoration for a fine pointer with hover support. Preserve the native cursor, selection, and focus cues. The overlay must ignore pointer events, disappear on leaving the window, and be disabled for touch and reduced motion. |

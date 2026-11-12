@@ -1,43 +1,10 @@
 # AJ Portfolio
 
-A minimal editorial developer portfolio for Amal Jith, Python Developer.
-
-The current milestone includes the foundation, desktop Navbar, approved AJ
-monogram, fullscreen mobile navigation, and responsive Hero V5. The Hero has one
-coordinated entrance for its typography, geometric SVG, CTA, and editorial footer.
-After the entrance settles, a quiet SVG signal loops through the available Hero
-whitespace: a wide horizontal network on desktop and a separate, taller vertical
-path on mobile. There are no visible ambient controls. Reduced motion hides the
-decoration, and work pauses offscreen or in hidden tabs. The loop uses CSS
-independently of the existing entrance timeline.
-After the entrance settles, the oversized name uses the approved local Anybody
-variable font: mouse proximity or touch/pen press-and-glide makes nearby letters
-moderately thinner and smaller, with graded neighbors and a smooth return.
-The approved range is 900/55/1 to 300/68/0.95 (weight/width/scale), with about
-255ms response and 450ms return to 95%, followed by a settling tail. Fixed character
-cells keep the layout stable. Reduced motion leaves the name static.
-Other content sections and additional motion await explicit implementation
-instructions and visual approval. Favicon integration is pending.
-
-The approved Anybody comparison is integrated into production. The temporary
-comparison route, components, hooks, Roboto Flex assets, and obsolete Archivo
-assets have been removed. Font provenance, actual axis ranges, and licensing
-are documented in [font documentation](src/assets/fonts/README.md).
+Amal Jith's editorial developer portfolio, built with React, Vite, Tailwind CSS v4,
+and GSAP. The visually approved Hero V2 is now the production composition at /
+with the existing Navbar, AJ monogram, and branded preloader.
 
 ## Development
-
-The existing stack is React, JavaScript/JSX, Vite, Tailwind CSS v4 through its
-Vite plugin, and Oxlint. GSAP owns the mobile menu's reversible curtain timeline
-and the Hero entrance. Persistent character masks keep React ownership of the
-name, while the bundled SplitText plugin measures actual paragraph lines.
-The character roll and geometric toggle remain CSS.
-
-The five section anchors are reserved for future sections. The mobile menu closes
-without changing the hash or scrolling when a target is absent. GitHub and
-LinkedIn are hidden until real profile URLs are supplied in `src/data/navigation.js`.
-The Hero's Explore Work button displays an accessible coming-soon notice until
-the real Work section is implemented. Its scroll label and section counter are
-static design elements, with no simulated destination or progress tracking.
 
 ```sh
 npm install
@@ -47,53 +14,89 @@ npm run build
 npm run preview
 ```
 
-Install only when dependencies are missing or dependency inputs change. The
-preview command serves production output after a build. On Windows, use
-`npm.cmd` if PowerShell blocks `npm.ps1`. There is currently no test script.
+Install only when dependencies are missing or inputs change. On Windows use
+npm.cmd if PowerShell blocks npm.ps1. Lint runs Oxlint; there is no test script.
+The preview command serves the production build. No new dependency was needed.
 
-## Design system
+The former ?preview=hero-v2 entry, development directory, comparison controls,
+and replay toolbar are removed. Query strings now render the same production app.
 
-`src/index.css` is the source of truth for provisional colors, typography, fluid
-spacing, content width, and base accessibility styles. Palette tokens live under
-`@theme static` so unused palette tokens remain available in production;
-semantic roles live under `:root`. The `@theme inline` aliases expose
-utilities that respect role overrides on future sections.
+## Approved composition
 
-Examples: `bg-surface`, `text-ink`, `text-accent`, `border-rule`, `px-gutter`,
-`py-section`, `max-w-content`, `font-display`, `font-mono`, and
-`font-body`.
+The page uses graphite #151515, ivory #F5EEDC, and orange #FF5C28. These palette
+tokens live in src/index.css; semantic overrides are scoped to .portfolio-page.
+The actual Navbar retains its approved components, geometry, character roll,
+CONTACT link, mobile toggle, focus handling, and fullscreen navigation. Its
+palette matches the approved dark design. The redesigned sibling preloader uses the same graphite/orange/ivory identity
+and preserves the actual AJ logo geometry.
 
-Anton remains the general display face. The Hero name and role use local Anybody
-subsets; Kode Mono is for navigation and technical labels, and Space Grotesk is
-for readable copy. PYTHON is bold/condensed (weight 900, width 75); developer. is
-upright and medium (weight 500, width 90). The description uses Space Grotesk 400
-at 18-21px, line height 1.6, and a 32ch measure, with tighter tracking and
-Kode Mono/cobalt technology accents. Instrument Serif is no longer
-used and has been removed from font loading and tokens.
+The oversized asymmetric AMAL / JITH. heading reuses the existing local Anybody
+name subset. AMAL uses weight 500/width 125; JITH. uses 800/110. Kode Mono supplies
+roles and labels; Space Grotesk supplies copy. The original SVG collage is
+HeroArtwork.jsx: a larger orange cut plane, negative diagonal, ivory corner
+fragment, and a wider broken-line composition. A simplified mobile SVG omits
+the extended grid. It is decorative artwork, not a replacement logo.
 
-`index.html` declares Anton, Kode Mono, and Space Grotesk 400 through one Google
-Fonts request with preconnects and `display=swap`. These shared fonts require
-Google's service. The original 2,872-byte Anybody name subset is preserved, and a
-5,876-byte role-only subset supplies the previously missing role glyphs. Both
-local variable faces share the existing OFL and use `font-display: swap`.
-No font package was added. Fallback stacks keep the page usable offline.
-Hero font preparation waits at most 800ms, then freezes any unavailable
-face to its existing fallback for that mount, preventing a late font swap during
-or after the entrance. The rest of the site keeps its usual font loading.
+Desktop uses a minimum of 100svh minus the 84px Navbar, never a fixed height.
+Padding and gaps are tightened first; a height-aware type cap preserves the
+complete composition on common laptop screens. Short desktop viewports below
+672px allow natural scrolling at the width-driven type size. Mobile uses its
+approved stacked name, artwork beside the role, and full-width copy/CTA, with
+natural scrolling and no viewport-fit font compression.
 
-The Hero plays once by default. For a future preloader, pass `autoPlay={false}`
-and a React ref, then call `ref.current.play()` when ready. `play()` is idempotent;
-`restart()` requests a fresh entrance and `finish()` settles immediately. Waiting
-for an external trigger leaves content readable. Reduced motion, keyboard focus,
-resizing, failed setup, and unmount all restore native text and temporary styles.
-See `MOTION.md` for phase timing and the exact research sources inspected.
+Explore Work has no fabricated destination. Until a real Work section is added,
+it is explicitly aria-disabled with visible 'Selected work - coming soon' text,
+and has no fake click behavior. Once App renders that section, pass
+workHref="#work" to Hero to render the real anchor instead. The section IDs in
+src/data/navigation.js remain reserved; mobile navigation safely closes without
+scrolling or changing the hash when a destination is absent. Social links stay
+hidden until real URLs are supplied. No additional sections are implemented.
 
-## Project guidance
+## Opening and Hero motion
 
-- Read [AGENTS.md](AGENTS.md) for architecture, visual identity, scope, and
-  contributor rules.
-- Read [MOTION.md](MOTION.md) for future motion direction, accessibility,
-  lifecycle cleanup, and acceptance checks. It authorizes no implementation.
+Every full refresh plays a 2.64s graphite/orange opening: architectural rules
+construct around the actual AJ monogram, its orange outlines draw and fill, then
+the completed identity holds for 200ms. A single orange field with static stepped
+edges rises at 1.28s over .58s, covers the viewport, and exits upward from 1.86s
+over .78s. Transform motion moves the curtain; its polygon never morphs.
+There is no fake loading percentage, persistent seen flag, or cream/cobalt layer.
+The last orange edge clearing [data-hero-heading] triggers Hero.play() once.
+The preloader never animates Hero elements itself. Hash navigation does not replay.
 
-Keep work local for this milestone. Do not automatically commit, push, change
-branches, create pull requests, or publish.
+App mounts Hero with autoPlay=false and a ref exposing play(), restart(), finish().
+The new production useHeroMotion.js warms fonts under the preloader with a 600ms
+limit, then runs the approved 1.64s opposing masked character reveals, SVG assembly,
+architectural stroke construction, and supporting-text choreography. Interaction
+attaches after entrance cleanup.
+The previous V5 Hero hooks and ambient-signal files are removed.
+
+On desktop fine pointers, a graded character-specific response redistributes
+weights 500-800, adds up to 6px lift and restrained orange/ivory emphasis, and
+returns smoothly. Width stays fixed. Separate artwork layers own pointer parallax
+and small reversible native-scroll offsets. Individual plane/corner/grid fragments
+respond subtly to the pointer, using transform owners separate from the entrance.
+No continuous idle loop or scroll interception is added; coarse pointers retain
+static type and native touch scrolling.
+
+Initial/live reduced motion, skip, Escape, a hidden/leaving page, and BFCache
+restoration reveal usable content promptly. Both controllers own bounded safety
+deadlines and scoped cleanup. Scroll lock and inertness restore on exit. Focus
+moves to main only when needed after leaving the skip control. StrictMode stays
+enabled; its rehearsal cannot start duplicate playback. Mobile navigation pauses
+Hero interaction without replaying its entrance on close. Leaving the viewport
+detaches interaction listeners/tweens; re-entry resumes interaction only.
+
+## Fonts and project guidance
+
+The local Anybody WOFF2 and OFL remain intact. The former role-only subset is
+retained for provenance but unused by Hero V2. Actual axes, fixed cells, and font
+sources are documented in [font notes](src/assets/fonts/README.md).
+Anton, Kode Mono, and Space Grotesk 400 retain the existing Google Fonts stylesheet
+with preconnects and display=swap. Missing/late name fonts use readable, stable
+Hero-local fallback. No font package or new font asset was added.
+
+Read [AGENTS.md](AGENTS.md) for source ownership and contributor rules, and
+[MOTION.md](MOTION.md) for sequencing, lifecycle, reduced motion, and future plans.
+The kinetic artwork and matching preloader are implemented. Additional sections, motion,
+ScrollTrigger, Lenis, and favicon integration remain outside the current scope.
+Do not automatically commit, push, change branches, create pull requests, or publish.

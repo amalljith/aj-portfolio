@@ -1,96 +1,65 @@
-import { useImperativeHandle, useRef, useState } from "react";
-import useHeroEntrance from "../../hooks/useHeroEntrance.js";
-import useFluidTypography from "../../hooks/useFluidTypography.js";
-import HeroAmbient from "./HeroAmbient.jsx";
+import { useImperativeHandle, useRef } from "react";
+import HeroArtwork from "./HeroArtwork.jsx";
+import useHeroMotion from "../../hooks/useHeroMotion.js";
 import "./Hero.css";
 
-// Fixed advances cover the approved coupled axis path, keeping each glyph clear
-// of its neighbors. Entrance transforms and variable-font styles have separate owners.
-const advances = { A: 0.446, M: 0.67, L: 0.31, J: 0.43, I: 0.229, T: 0.374, H: 0.435, ".": 0.225 };
+// Real browser measurements of the existing WOFF2 at 21 points from wght
+// 500–800, plus .008em. These cells cover both resting and hover advances.
+const words = [
+  { text: "AMAL", weight: 500, width: 125, cells: { A: 0.978, M: 1.178, L: 0.701 } },
+  { text: "JITH.", weight: 800, width: 110, cells: { J: 0.781, I: 0.372, T: 0.754, H: 0.807, ".": 0.287 } },
+];
 
-function NameWord({ children }) {
-  return (
-    <span className="hero__name">
-      {Array.from(children, (character, index) => (
-        <span className="hero__char-mask" style={{ "--advance": `${advances[character]}em` }} key={index}>
-          <span className="hero__char"><span className="hero__glyph">{character}</span></span>
-        </span>
-      ))}
-    </span>
-  );
-}
-
-export default function Hero({ ref, autoPlay = true }) {
-  const [workNotice, setWorkNotice] = useState("");
-  const heroRef = useRef(null);
-  const resetTypography = useFluidTypography(heroRef);
-  const { play, restart, finish } = useHeroEntrance(heroRef, autoPlay, resetTypography);
-  useImperativeHandle(ref, () => ({ play, restart, finish }), [play, restart, finish]);
+export default function Hero({ ref, autoPlay = true, workHref = null }) {
+  const rootRef = useRef(null);
+  const controls = useHeroMotion(rootRef, autoPlay);
+  useImperativeHandle(ref, () => controls, [controls]);
+  // Supply #work from App only when the real Work section is rendered there.
+  const workAvailable = Boolean(workHref);
 
   return (
-    <section ref={heroRef} id="hero" aria-labelledby="hero-title" className="hero bg-surface px-gutter">
-      <div className="hero__inner mx-auto max-w-content">
-        <p className="hero__edition font-mono text-label">[PORTFOLIO / 2026]</p>
+    <section ref={rootRef} className="hero-v2" id="hero" data-hero aria-labelledby="hero-v2-title">
+      <div className="hero-v2__inner">
+        <div className="hero-v2__meta" data-v2-ui>
+          <p><span className="hero-v2__square" aria-hidden="true" /> PORTFOLIO — 2026</p>
+          <p>CODE / FORM / FUNCTION</p>
+        </div>
 
-        <h1 id="hero-title" aria-label="AMAL JITH." className="hero__title text-accent">
-          <NameWord>AMAL</NameWord>{" "}
-          <svg
-            className="hero__geometry"
-            viewBox="0 0 200 184"
-            width="200"
-            height="184"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.25"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path d="M8 132H48L112 36H192" vectorEffect="non-scaling-stroke" />
-            <path d="M8 156H64L128 60H192" vectorEffect="non-scaling-stroke" />
-            <path d="M8 84H88L136 132H192" vectorEffect="non-scaling-stroke" />
-            <g fill="currentColor" stroke="none">
-              <rect x="6" y="82" width="4" height="4" />
-              <rect x="6" y="154" width="4" height="4" />
-              <rect x="190" y="34" width="4" height="4" />
-              <rect x="190" y="130" width="4" height="4" />
-            </g>
-          </svg>
-          <NameWord>JITH.</NameWord>
+        <h1 className="hero-v2__headline" data-hero-heading id="hero-v2-title" aria-label="AMAL JITH.">
+          {words.map(({ text, weight, width, cells }, index) => (
+            <span className={`hero-v2__word hero-v2__word--${index + 1}`} key={text} aria-hidden="true" style={{ "--type-weight": weight, "--type-width": width }}>
+              {[...text].map((char, characterIndex) => (
+                <span className={`hero-v2__cell${char === "." ? " hero-v2__cell--period" : ""}`} key={characterIndex} style={{ "--cell-width": `${cells[char]}em` }}>
+                  <span className="hero-v2__reveal"><span className="hero-v2__glyph" data-weight={weight} data-width={width}>{char}</span></span>
+                </span>
+              ))}
+              {index === 0 ? " " : null}
+            </span>
+          ))}
         </h1>
 
-        <div className="hero__details">
-          <div className="hero__identity">
-            <p className="hero__role">
-              <span className="hero__role-primary"><span className="hero__role-text">PYTHON</span></span>{" "}
-              <span className="hero__role-secondary"><span className="hero__role-detail">developer.</span></span>
-            </p>
-            <HeroAmbient />
-          </div>
-          <div className="hero__copy">
-            <p className="hero__description font-body">
-              Building modern web experiences with <span className="hero__technology">Python</span>,{" "}
-              <span className="hero__technology">Django</span>, <span className="hero__technology">FastAPI</span>, and{" "}
-              <span className="hero__technology">React</span>.
-            </p>
-            {/* Use an anchor to #work once the real Work section is available. */}
-            <button
-              type="button"
-              className="hero__cta font-mono text-accent"
-              onClick={() => setWorkNotice("Selected work is coming soon.")}
-            >
-              <span className="hero__cta-label-mask"><span className="hero__cta-label"><span className="hero__cta-text">EXPLORE WORK</span></span></span>
-              <span className="hero__cta-arrow-entrance" aria-hidden="true"><span className="hero__cta-arrow">↗</span></span>
-              <span className="hero__cta-rule" aria-hidden="true" />
+        <HeroArtwork />
+        <p className="hero-v2__annotation" aria-hidden="true" data-v2-ui>AJ — SYSTEM STUDY<br />BUILD / BREAK / REBUILD <span>↙</span></p>
+
+        <p className="hero-v2__role" data-v2-ui>Python Developer <span>/</span><span className="hero-v2__role-second">Full-Stack Developer</span></p>
+        <div className="hero-v2__intro" data-v2-ui>
+          <p className="hero-v2__description">Building modern, functional web experiences. From Python systems to thoughtful interfaces.</p>
+          {workAvailable ? (
+            <a className="hero-v2__cta" href={workHref}><span>Explore Work</span><span aria-hidden="true">↗</span></a>
+          ) : (
+            <button className="hero-v2__cta" type="button" aria-disabled="true" aria-describedby="work-availability">
+              <span>Explore Work</span><span aria-hidden="true">↗</span>
             </button>
-            <p className="hero__notice font-body" role="status">{workNotice}</p>
-          </div>
+          )}
+          <p className="hero-v2__notice" id="work-availability">{workAvailable ? "" : "Selected work — coming soon."}</p>
         </div>
 
-        <div className="hero__footer font-mono text-label">
-          <span className="hero__divider" aria-hidden="true" />
-          <p>SCROLL TO EXPLORE <span className="hero__scroll-arrow" aria-hidden="true">↓</span></p>
-          <p className="hero__progress"><span className="sr-only">Section </span>01 / 06</p>
-        </div>
+        <footer className="hero-v2__footer" data-v2-ui>
+          <ul className="hero-v2__stack" aria-label="Technology stack">
+            {["Python", "Django", "FastAPI", "React", "PostgreSQL"].map((technology) => <li key={technology}>{technology}</li>)}
+          </ul>
+          <p className="hero-v2__scroll"><span className="hero-v2__scroll-track" aria-hidden="true"><span className="hero-v2__scroll-rule" /></span>SCROLL FOR ANOTHER ANGLE <span aria-hidden="true">↓</span></p>
+        </footer>
       </div>
     </section>
   );

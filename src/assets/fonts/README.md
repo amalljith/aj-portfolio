@@ -18,8 +18,8 @@ though the original stylesheet request advertised 50–100:
 
 | Axis | Minimum | Default | Maximum | Approved interaction |
 | --- | --- | --- | --- | --- |
-| `wght` | 100 | 100 | 900 | 900 → 300 |
-| `wdth` | 50 | 100 | 150 | 55 → 68 |
+| `wght` | 100 | 100 | 900 | AMAL 500 to 800; JITH. 800 to 500 |
+| `wdth` | 50 | 100 | 150 | AMAL 125; JITH. 110 (fixed) |
 
 `src/index.css` declares one production face named `AJ Anybody`, with matching
 axis descriptors and `font-display: swap`. Vite emits one hashed font asset;
@@ -27,21 +27,22 @@ axis descriptors and `font-display: swap`. Vite emits one hashed font asset;
 reuse the browser request. No runtime FontFace registration or font package is
 needed. The preserved preview binary and license are promoted without modification.
 
-The final approved interaction combines those axes with scale 1 → 0.95. GSAP
-uses 85ms approach / 150ms return damping, about 255ms / 450ms to 95%, plus a
-settling tail. Fixed character cells cover the maximum unscaled advances across
-101 points on this coupled axis path, plus 0.025em clearance. Inner glyphs own
-axes and scale; their parents retain the existing entrance transforms.
+The approved Hero V2 uses the same unmodified name binary. It was promoted from
+the experimental Hero comparison; that preview and its controls are removed.
+AMAL rests at 500/125 and responds toward 800/125; JITH. rests at 800/110 and
+responds toward 500/110. Width and scale do not animate. The inner glyph layer
+owns weight/color and up to 6px lift, with 320ms response and 520ms return.
+Fixed cells cover measured maximum advances at 21 weights from 500 to 800,
+plus .008em. Outer wrappers own the separate masked entrance transforms.
 
-Anybody was approved after comparison with Archivo and Roboto Flex. The temporary
-comparison route and assets, including obsolete Archivo/Roboto fonts and licenses,
-have been removed. The entrance retains its 800ms preparation deadline and freezes
-a late/missing font to a static Hero-local fallback for that mount. Fallback glyphs
-use 0.55em to fit the condensed cells without overlap; loaded Anybody uses 1em.
+Preparation begins under the preloader and waits at most 600ms. Failed/late
+name loading keeps static Arial glyphs at .82em inside the reserved cells for
+that mount. No FontFace registration, font package, or preview asset is needed.
 
 ## Role subset
 
-`anybody-role-variable.woff2` supplies **PYTHON developer.**. The original name
+`anybody-role-variable.woff2` was created for the former Hero V5 **PYTHON developer.** heading. It is retained
+for provenance but is not used by the current Hero V2, whose role uses Kode Mono. The original name
 subset has only space, period, A, H, I, J, L, M, and T in its cmap; it cannot render
 the role. It remains unchanged and continues to serve the main heading.
 
@@ -51,6 +52,6 @@ the role. It remains unchanged and continues to serve the main heading.
 - Same unmodified Anybody font family and existing [OFL](../../../public/licenses/Anybody-OFL.txt).
 
 The actual role binary's fvar records confirm weight 100-900 (default 100) and
-width 50-150 (default 100). The declared face is `AJ Anybody Role`, used via
-`--font-hero-role`. PYTHON uses 900/75 and developer. uses 500/90; there is no role
-axis animation or italic styling. The name interaction remains unchanged.
+width 50-150 (default 100). The retained face is `AJ Anybody Role`. V5 used it via
+`--font-hero-role`: PYTHON at 900/75 and developer. at 500/90, without axis animation
+or italic styling. These are historical settings; Hero V2 does not render this face.
