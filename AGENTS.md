@@ -40,7 +40,7 @@ The approved preview is promoted: its query route, comparison controls, and
 src/dev/hero-v2 directory are removed. Do not recreate preview utilities in production.
 Fonts and the Anybody OFL are retained; see the font directory's README.
 
-The About section is implemented at #about and awaits visual approval. It uses
+The About section at #about is completed and approved. It uses
 an ivory editorial surface, Anton line masks, a short native CSS sticky headline
 track on sufficiently tall desktops, Space Grotesk copy, a neutral portrait frame,
 and section-owned reversible ScrollTrigger reveals. CODE. is orange; the About
@@ -54,6 +54,34 @@ only after the opening releases scrolling, and are not requested for initial red
 or direct About-focus visits. No JS pinning, spacer, scroll lock, or Lenis is used.
 See MOTION.md and README.md for behavior and portrait replacement. Do not proceed
 to another section or expand this motion without explicit instructions.
+
+Phase 05 Expertise is implemented at #expertise and awaits visual approval. It
+contains five featured and seventeen supporting technologies, including the approved
+Deployment Platforms and AI Development Tools categories below Backend on desktop.
+All 22 tools use six groups including the unchanged featured showcase. At suitable desktop
+sizes, a measured native CSS sticky stage
+uses 896–1408px of added scroll travel, with one scoped ScrollTrigger controlling
+five reversible active states. Desktop eligibility starts at 560px height and
+requires measured content to fit; a compact treatment below 704px removes secondary
+construction art and trims gaps. Tablet/mobile, very short/unsafe viewports, reduced
+motion and failed enhancement retain the normal-flow list. Late enhancement and
+breakpoint changes preserve the current article instead of permanently stacking
+an eligible desktop; section anchors remain compatible with the sticky stage.
+Grouped-character emphasis is distinct from About's text treatments. Brand marks
+remain intact; five separate decorative icon entrances are finite. Supporting
+items are real documentation links with hover/focus emphasis, not fake controls.
+Public SVGs, provenance and the Devicon MIT notice live in public/icons/technologies.
+No new dependency, Lenis, scroll lock, JS pin spacer, or idle loop is added.
+Do not build Experience, Work or Contact without explicit instructions.
+
+The AJ Signal Cursor mounts once through a body portal after the preloader.
+It uses a 12px filled Electric Orange square with exact center tracking and
+compact single-line action labels over real controls. A bounded Canvas 2D fragment
+pool adapts size, density, spread and decay to movement speed, with quieter About
+and slow-frame budgets. Ivory/white cursor marks are not used. Fine mouse input is required; reduced motion and touch use the native
+cursor. Text entry, selection, pointer capture, keyboard use and viewport exit
+restore native behavior. Its data-cursor API and scoped lifecycle are independent
+of section timelines; see MOTION.md. No cursor-dependent actions may be added.
 
 ## Visual identity
 
@@ -72,8 +100,14 @@ to another section or expand this motion without explicit instructions.
 ## Source map
 
 - `src/main.jsx`: React entry point; retain StrictMode.
-- `src/App.jsx`: Navbar, skip link, Hero and About; About motion is enabled only
-  after the preloader completes.
+- `src/components/cursor/SignatureCursor.jsx`, `cursorModes.js` and `cursor.css`:
+  one decorative portal, declarative action resolution and orange geometry.
+- `src/hooks/useSignalCursor.js`: exact center tracking, finite type/click timelines,
+  capability/reduced-motion fallback and owned cleanup.
+- `src/components/cursor/ShatterTrail.js`: fixed-capacity Canvas 2D fragments,
+  distance-based emission, smoothed velocity and finite decay; no independent loop.
+- `src/App.jsx`: Navbar, skip link, Hero, About and Expertise; section motion is
+  enabled only after the preloader completes.
 - `src/components/sections/Hero.jsx` and its CSS: approved Hero V2, stable character
   cells, responsive viewport composition, scoped page palette, and CTA availability.
 - `src/components/sections/AboutSection.jsx` and `About.css`: semantic #about,
@@ -86,6 +120,14 @@ to another section or expand this motion without explicit instructions.
 - `src/hooks/aboutTextMotion.js`: one-shot cursor label, fixed-slot Proofread intro,
   compact paragraph Swipe trails, and fixed-slot metadata Overtype. No Telegram,
   continuous scramble, or competing text entrances.
+- `src/components/sections/ExpertiseSection.jsx` and `Expertise.css`: semantic
+  #expertise, native sticky showcase, natural-flow fallback and documentation index.
+- `src/components/sections/ExpertiseIcon.jsx`: local brand images and separate
+  geometric accents; never distort the downloaded brand paths.
+- `src/hooks/useExpertiseMotion.js`: scoped activation, finite icon/glyph motion,
+  media/font/inert lifecycle and reading-position preservation on mode changes.
+- `src/data/expertise.js`: the approved 22-tool stack, factual descriptions and real
+  documentation URLs. Motion is displayed as a skill, not installed as a package.
 - `src/components/sections/HeroArtwork.jsx`: original decorative collage SVG.
 - `src/hooks/useHeroMotion.js`: controlled entrance, bounded font preparation,
   glyph response, pointer/scroll layers, reduced motion, and lifecycle cleanup.
