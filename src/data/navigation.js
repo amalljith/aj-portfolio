@@ -2,7 +2,7 @@ export const navigationLinks = [
   { label: "About", href: "#about" },
   { label: "Expertise", href: "#expertise" },
   { label: "Experience", href: "#experience" },
-  { label: "Work", href: "#work" },
+  { label: "Work", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
 

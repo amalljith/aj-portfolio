@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" fill="none">
+  <path fill="#FF5C28" d="M0 0h1000v700H0z"/>
+  <g stroke="#151515" stroke-opacity=".2"><path d="M100 0v700M900 0v700M0 100h1000M0 600h1000M0 700 1000 0"/></g>
+  <path fill="#F5EEDC" d="M260 130h360l-80 135H380v115h215l-80 135H380v95H180V265z"/>
+  <path fill="#151515" d="M620 130h200L595 515H395z"/>
+  <path fill="#F5EEDC" d="M680 380h145L690 610H545z"/>
+  <path d="M260 130H150v-30M540 265h320M180 610H95M380 380h-70M620 130l-80 135M595 380 460 610" stroke="#151515" stroke-width="1.5"/>
+  <path d="M325 108v44M303 130h44M803 610h44M825 588v44" stroke="#F5EEDC" stroke-width="2"/>
+  <path d="M855 260h10v10h-10zM90 605h10v10H90z" fill="#151515"/>
+  <g fill="#151515" font-family="monospace" font-size="11" letter-spacing="2"><text x="54" y="62">FORMA / MODULAR MATTER</text><text x="54" y="646">F—03</text><text x="770" y="646">CONCEPT ARTWORK</text></g>
+</svg>

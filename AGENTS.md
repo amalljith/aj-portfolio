@@ -32,9 +32,10 @@ pointers preserve static type and native touch scrolling. Reduced motion disable
 these effects, including live changes. There is no idle Hero loop or Lenis. About uses ScrollTrigger from the existing
 GSAP package; no new package was installed.
 
-Explore Work is explicitly unavailable with a visible coming-soon description
-while no real Work section exists. When adding that section, supply workHref="#work"
-to Hero in App; do not offer a broken destination or simulate navigation.
+Explore Work and the shared WORK navigation now point to #projects. App supplies
+workHref="#projects" through the existing Hero API; Hero motion/layout is unchanged.
+The gallery currently contains four explicitly fictional concept placeholders,
+not completed personal work. Unknown project URLs stay null and non-clickable.
 Do not build additional sections or motion features without explicit instructions.
 The approved preview is promoted: its query route, comparison controls, and
 src/dev/hero-v2 directory are removed. Do not recreate preview utilities in production.
@@ -72,7 +73,18 @@ remain intact; five separate decorative icon entrances are finite. Supporting
 items are real documentation links with hover/focus emphasis, not fake controls.
 Public SVGs, provenance and the Devicon MIT notice live in public/icons/technologies.
 No new dependency, Lenis, scroll lock, JS pin spacer, or idle loop is added.
-Do not build Experience, Work or Contact without explicit instructions.
+Do not build Experience or Contact without explicit instructions.
+
+Phase 06 Projects is implemented at #projects, directly after Expertise, and awaits
+visual approval. An ivory editorial introduction leads into four varied-width
+concept panels: NEXUS, ORBIT, FORMA and PULSE. The data and null destinations live
+in src/data/projects.js; original local SVGs live in public/artwork/projects.
+Suitable desktops use one scoped GSAP pinned horizontal master timeline with
+measured travel, artwork masks/parallax, title reveals and synchronized progress.
+Tablet/mobile, short or unsafe fits, reduced motion and failed enhancement use
+normal vertical flow. The hook observes preceding section heights to refresh its
+own pin without changing the existing controllers. No wheel interception, Lenis,
+new package, idle loop, fake project link or cursor redesign is introduced.
 
 The AJ Signal Cursor mounts once through a body portal after the preloader.
 It uses a 12px filled Electric Orange square with exact center tracking and
@@ -106,7 +118,7 @@ of section timelines; see MOTION.md. No cursor-dependent actions may be added.
   capability/reduced-motion fallback and owned cleanup.
 - `src/components/cursor/ShatterTrail.js`: fixed-capacity Canvas 2D fragments,
   distance-based emission, smoothed velocity and finite decay; no independent loop.
-- `src/App.jsx`: Navbar, skip link, Hero, About and Expertise; section motion is
+- `src/App.jsx`: Navbar, skip link, Hero, About, Expertise and Projects; section motion is
   enabled only after the preloader completes.
 - `src/components/sections/Hero.jsx` and its CSS: approved Hero V2, stable character
   cells, responsive viewport composition, scoped page palette, and CTA availability.
@@ -126,6 +138,12 @@ of section timelines; see MOTION.md. No cursor-dependent actions may be added.
   geometric accents; never distort the downloaded brand paths.
 - `src/hooks/useExpertiseMotion.js`: scoped activation, finite icon/glyph motion,
   media/font/inert lifecycle and reading-position preservation on mode changes.
+- `src/components/sections/ProjectsSection.jsx` and `Projects.css`: semantic #projects,
+  asymmetric concept gallery, real-link-only previews, scoped ivory surface.
+- `src/hooks/useProjectsMotion.js`: lazy ScrollTrigger, one measured horizontal
+  master timeline, responsive flow fallback, progress, focus and owned cleanup.
+- `src/data/projects.js`: four fictional records and null project destinations.
+- `public/artwork/projects/`: original SVG placeholders and replacement notes.
 - `src/data/expertise.js`: the approved 22-tool stack, factual descriptions and real
   documentation URLs. Motion is displayed as a skill, not installed as a package.
 - `src/components/sections/HeroArtwork.jsx`: original decorative collage SVG.

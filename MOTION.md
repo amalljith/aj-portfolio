@@ -350,6 +350,54 @@ The local icons and their exact source revision, fill treatments and MIT notice
 are documented in public/icons/technologies/README.md and sources.json.
 Expertise awaits visual approval. Later sections remain outside this phase.
 
+## Projects: editorial horizontal gallery
+
+Projects follows Expertise at #projects. App enables its hook only after the
+opening. Existing Hero, About, Expertise, Navbar and cursor timelines are retained.
+The WORK destination and Hero's workHref are #projects. There are four fictional
+concept records, not claims of completed work. Artwork links use only liveUrl; a separate GitHub icon link uses githubUrl,
+independent of demo availability. Each renders only when its URL is supplied and
+opens a new tab with noopener/noreferrer. VIEW PROJECT uses the existing cursor
+annotation only on a real live-preview anchor. Null URLs never imply clickability.
+
+A horizontal text wipe and architectural rule introduce SELECTED PROJECTS.
+The 800ms / 100ms-offset intro plays once; a rebuild settles started text rather
+than hiding or replaying it. Suitable desktops (at least 1024px wide and 704px tall,
+with a measured safe content fit) get a gallery sized to 100svh minus 32px.
+A ScrollTrigger pins only the gallery, with normal pin spacing. Travel is exactly
+track.scrollWidth minus viewport.clientWidth. The intro and gallery footer remain
+in ordinary flow. Expertise uses its existing native sticky track, well upstream.
+
+One scoped master timeline moves the track linearly, with .35s scrub smoothing.
+Panel widths differ (86%, 74%, 90%, 84%) and reveals are timed from their measured
+positions. Artwork masks, masked title rises, 4% image parallax and 8px index drift
+share that timeline; there is no stack of container-animation trigger callbacks.
+The first artwork reveals as its gallery approaches. The active index is the
+panel occupying the largest visible horizontal area. The counter and orange rail
+read the rendered track translation, so scrub easing and rapid reversals cannot
+advance the index ahead of the picture. No React state updates occur per frame.
+
+The four original SVGs are small local assets, loaded eagerly at low priority so
+an offscreen mask cannot defer their fetch. Images reserve dimensions; real
+screenshots can replace their paths/alt text without rewriting the motion.
+Fonts, image events, viewport changes and preceding section height changes queue
+one owned rebuild frame. Measurements are rebuilt, and an in-view project is
+preserved across a breakpoint/preference change. A focused project link
+moves the vertical scroll to its actual gallery position; it is not left clipped
+outside the viewport. No wheel/touch cancellation, scroll snapping or custom
+scrollbar is used.
+
+Tablet/mobile, short or unsafe desktop fits use vertical articles and light
+one-shot artwork reveals. Initial/live reduced motion, inertness, hidden tabs or
+failed enhancement restore readable flow. Initial reduced motion never requests
+the plugin from this hook. Context reversion removes only its own triggers,
+tweens, pin spacer and inline styles; unmount also removes media/font/load/focus/
+visibility/resize listeners, observers and pending RAF. StrictMode and pending
+imports check disposal. There is no perpetual loop or global kill/config change.
+
+The implementation follows the official [ScrollTrigger pin/refresh guidance](https://gsap.com/docs/v3/Plugins/ScrollTrigger/).
+Design awaits visual approval. No Experience or Contact section is included.
+
 ## AJ Signal Cursor
 
 SignatureCursor is one body portal, enabled after the preloader completes. Its
