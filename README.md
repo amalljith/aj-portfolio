@@ -5,7 +5,8 @@ and GSAP. The visually approved Hero V2 is now the production composition at /
 with the existing Navbar, AJ monogram, and branded preloader. The new editorial
 About section at #about is completed and approved. Phase 05 Expertise at
 #expertise is implemented. Projects at #projects and Career Signal Experience V2
-at #experience are ready for visual review.
+at #experience are ready for visual review. Contact and the ivory Footer are
+implemented; their approved layout is retained through autofill/type refinements.
 
 ## Development
 
@@ -50,9 +51,8 @@ natural scrolling and no viewport-fit font compression.
 Explore Work and the shared WORK navigation link to #projects through the existing
 Hero prop and navigation data. Project entries are clearly marked fictional
 concept placeholders; they are not personal credentials. About and Expertise
-remain live. Experience follows Projects; Contact is not implemented. Mobile navigation keeps
-its existing close/unlock/focus behavior. Social links stay hidden until real URLs
-are supplied.
+remain live. Experience follows Projects, then Contact and Footer. Mobile navigation keeps
+its existing close/unlock/focus behavior. The existing mobile social links now use the confirmed GitHub and LinkedIn URLs.
 
 ## Opening and Hero motion
 
@@ -234,7 +234,7 @@ decorative ground shadow is removed. Native gradients inside source brand artwor
 are retained; the section adds no gradients, shadows or filters.
 
 Expertise awaits visual approval. Projects and Experience are implemented below it;
-Contact remains pending.
+Contact and Footer now complete the page.
 
 Expertise verification used headless Edge at 320, 360, 390, 768, 1024, 1280 and
 1440px widths, including 600px-high desktop and 640px-high mobile viewports.
@@ -343,6 +343,52 @@ content. The 1440x900 and 1280x720 compositions fit without fixed heights.
 Experience V2 awaits visual approval; physical mobile/Safari coverage remains a
 separate manual check.
 
+## Contact and Footer
+
+Contact follows Experience at #contact, with 06 / CONTACT, availability, an editorial
+invitation, direct email and a required Name/Email/Message form. All confirmed
+contact/profile details live in `src/data/contact.js`. The graphite/ivory/orange
+composition reuses Anton, Kode Mono and Space Grotesk. Mobile stacks the invitation
+and form; all inputs remain at least 16px with native editing and scrolling.
+
+The form has no delivery backend. It validates first and opens a correctly encoded
+`mailto:amal4jith@gmail.com` draft containing the visitor's name, email and message.
+The visitor reviews/sends in their email application. Status says only that a draft
+was prepared; it never claims a message was sent. No message content is stored or
+posted to a third party. Missing or restricted email applications and platform URI
+length limits remain mailto limitations. Direct email is always available.
+
+`ContactForm.jsx` separates view/error focus from pure validation/encoding in
+`src/lib/contactDraft.js`. Its openDraft adapter permits isolated transport testing
+and future delivery integration without inventing an endpoint today. Error slots
+reserve height; focus follows committed labels/messages, with aria-invalid,
+aria-describedby and a polite status region. Chrome autofill uses background
+clipping plus ivory text/caret tokens instead of shadow masks or delayed transitions.
+The orange underline and keyboard outline remain visible, including focused autofill.
+
+The ivory Footer has the oversized AMAL JITH. signature, all three confirmed social
+profiles, mailto, Kerala/India, current-year copyright and Back to Top. External
+profiles open safely in new tabs. Three clipped text bands and six decorative pixels
+assemble on entry, then settle to a crisp name. A real replay button supports hover,
+keyboard and native mobile tap without taking over touch scrolling. The signature
+is about 6% smaller after polish (clamp(3.5rem, 15.5vw, 14rem)). All copies share its
+metrics, so the existing glitch choreography is retained. Reduced motion shows
+static text and disables decorative replay. Back to Top uses native smooth scrolling
+or instant reduced-motion navigation and restores focus to the home link.
+
+Both closing scenes use existing GSAP with scoped cleanup in `useClosingMotion.js`.
+There are no new dependencies, pinning, continuous loops, or cursor changes.
+Run `node --test tests/contactDraft.test.js` for the built-in Node validation/encoding
+tests, alongside `npm run lint` and `npm run build`. Browser QA uses isolated profiles
+and sample form data; no real message is sent. Native Chrome autofill was verified
+for Name/Email at 1440, 390 and 320px, including graphite pixel samples, ivory text
+and caret, and the focus underline. Final layout checks cover 320, 360, 390, 768,
+1280 and 1440px, including short viewports. Browser checks cover repeated hover,
+keyboard/mobile replay, reduced motion, validation geometry, safe social links,
+mobile Contact navigation, both Back to Top modes and StrictMode cleanup. The
+isolated form fixture verifies the encoded draft without launching a mail app.
+Physical iOS/Safari and actual mail application delivery remain manual checks.
+
 ## AJ Signal Cursor
 
 The cursor uses a 12px filled Electric Orange square with an exact centered
@@ -385,5 +431,5 @@ Read [AGENTS.md](AGENTS.md) for source ownership and contributor rules, and
 [MOTION.md](MOTION.md) for sequencing, lifecycle, reduced motion, and future plans.
 The Hero, About and preloader remain approved. Expertise awaits visual approval
 before further expansion. Projects is implemented and awaits visual approval.
-Contact, Lenis and favicon integration remain outside this phase.
+Lenis and favicon integration remain outside this phase.
 Do not automatically commit, push, change branches, create pull requests, or publish.

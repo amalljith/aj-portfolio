@@ -396,7 +396,7 @@ visibility/resize listeners, observers and pending RAF. StrictMode and pending
 imports check disposal. There is no perpetual loop or global kill/config change.
 
 The implementation follows the official [ScrollTrigger pin/refresh guidance](https://gsap.com/docs/v3/Plugins/ScrollTrigger/).
-Projects awaits visual approval. No Contact section is included.
+Projects awaits visual approval. Contact and Footer follow Experience below.
 
 ## Experience V2: Career Signal
 
@@ -432,6 +432,42 @@ ScrollTrigger from this hook. Font/image and upstream geometry changes queue one
 owned rebuild frame. Context cleanup removes only owned triggers, tweens, styles,
 listeners, observers and pending RAF, including StrictMode rehearsal and interrupted
 taps. There is no idle loop, global kill/config change or scroll lock.
+
+## Contact / Footer: Open Connection and Digital Afterimage
+
+Contact and Footer enable after the existing opening releases the page. Each call
+to useClosingMotion owns a separate GSAP context, controller and lifecycle. No
+Hero, Experience, Projects, Expertise or cursor timeline is reconfigured.
+Contact has one roughly .92s reversible entrance: architectural rule, horizontal
+phrase wipes and a light field/UI stagger at top 80%. Focus/selection settles
+reading immediately. An inner submit-label layer responds up to 3px horizontally /
+2px vertically using 280ms quickTo tweens and cached entry bounds; the hit target
+and actual fields stay still. CSS supplies the 260ms orange focus underline and
+280ms email/arrow response. All simplify for reduced motion.
+
+Footer assembles three clipped text bands over approximately .68s on entry at
+top 85%, once. Six bounded orange/graphite pixels appear briefly, then all decorative
+layers disappear and the semantic name is fully opaque. One reusable 500ms timeline
+handles fine-mouse hover and a real signature button's native touch/keyboard click.
+Active replays are ignored rather than stacked. The central slice uses orange,
+with no RGB split, repeated flicker, idle loop, filter or canvas system. The
+responsive signature uses clamp(3.5rem, 15.5vw, 14rem); all copies inherit the same
+metrics. Reduced motion and setup failure show the plain name and disable replay.
+
+Initial/live reduced motion, hidden/inert state, focused reading and selection
+remove transient masks. Anchors are honored after the opening and upstream pin/font
+preparation, only until navigation input or a changed hash. Started entrances settle
+on rebuild; resize does not replay them. ResizeObserver watches owned and preceding
+section geometry and queues one frame. Teardown removes owned listeners, observers,
+RAF, contexts, tweens and triggers, including mid-glitch unmount. Unrelated triggers
+survive. Back to Top uses the native window scroll API and the existing home link
+for focus; reduced motion uses instant navigation.
+
+Form validation and draft generation never depend on animation. No request is sent
+to an unconfigured endpoint, and the status never claims delivery. Chrome's native
+autofill paint is clipped to ivory-filled text so the graphite surface remains
+visible; caret and keyboard focus stay explicit. There is no shadow masking or
+artificially long background transition. Forced colors retain system text colors.
 
 ## AJ Signal Cursor
 

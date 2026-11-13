@@ -1,3 +1,5 @@
+import { contactSocialLinks } from "./contact.js";
+
 export const navigationLinks = [
   { label: "About", href: "#about" },
   { label: "Expertise", href: "#expertise" },
@@ -6,8 +8,6 @@ export const navigationLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-// Add only supplied, real profile URLs. Unconfigured entries stay out of the UI.
-export const socialLinks = [
-  { label: "GitHub", href: null },
-  { label: "LinkedIn", href: null },
-];
+// Preserve the approved two-link mobile footer; URLs are now confirmed.
+export const socialLinks = contactSocialLinks.filter(({ label }) => label !== "Instagram");
+

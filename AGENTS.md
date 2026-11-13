@@ -73,7 +73,7 @@ remain intact; five separate decorative icon entrances are finite. Supporting
 items are real documentation links with hover/focus emphasis, not fake controls.
 Public SVGs, provenance and the Devicon MIT notice live in public/icons/technologies.
 No new dependency, Lenis, scroll lock, JS pin spacer, or idle loop is added.
-Do not build Contact without explicit instructions.
+Contact and Footer are implemented below; do not add new sections without explicit instructions.
 
 Phase 06 Projects is implemented at #projects, directly after Expertise, and awaits
 visual approval. An ivory editorial introduction leads into four varied-width
@@ -98,7 +98,26 @@ One scoped reversible ScrollTrigger follows normal section flow without pinning.
 Pointer/tap decoration owns layers separate from the scroll frame and image mask.
 Reduced motion, selection, keyboard focus and failed enhancement keep text readable;
 initial anchors remain usable after the opening. No new dependency, section scroll
-lock, continuous ticker, additional job, Contact or Footer is introduced.
+lock, continuous ticker or additional job is introduced in Experience.
+
+Phase 08 Contact at #contact and the ivory SiteFooter follow Experience. Contact
+uses the confirmed email/profile details in src/data/contact.js, phrase wipes,
+an understated mailto link and an underlined required-field form. Validation and
+encoded draft generation are separate from the view in src/lib/contactDraft.js.
+Submission opens an email draft only; no backend, delivery success, credential,
+third-party message request or browser storage is configured. Errors reserve space
+and first-error focus occurs after accessible messages commit. Native autofill
+retains graphite/ivory via clipped background paint and text-fill/caret tokens,
+without inset shadows or long transition hacks. Existing focus indicators remain.
+The footer has a semantic AMAL JITH. signature, three decorative text slices and
+six finite pixels. Hover, keyboard activation and native mobile click replay one
+500ms reassembly. Reduced motion disables replay and shows static readable text.
+useClosingMotion.js scopes each section's entrance/interaction lifecycle separately,
+including inert/visibility, font/upstream layout changes, anchors and StrictMode.
+The existing two mobile social entries now use confirmed URLs with safe new-tab
+attributes; footer adds all three supplied profiles and email. Back to Top uses
+native smooth scroll, instant for reduced motion, and restores home-link focus.
+No new dependency, pinning, idle loop or cursor redesign is introduced.
 
 The AJ Signal Cursor mounts once through a body portal after the preloader.
 It uses a 12px filled Electric Orange square with exact center tracking and
@@ -132,7 +151,7 @@ of section timelines; see MOTION.md. No cursor-dependent actions may be added.
   capability/reduced-motion fallback and owned cleanup.
 - `src/components/cursor/ShatterTrail.js`: fixed-capacity Canvas 2D fragments,
   distance-based emission, smoothed velocity and finite decay; no independent loop.
-- `src/App.jsx`: Navbar, skip link, Hero, About, Expertise, Projects and Experience; section motion is
+- `src/App.jsx`: Navbar, skip link, Hero, About, Expertise, Projects, Experience, Contact and Footer; section motion is
   enabled only after the preloader completes.
 - `src/components/sections/Hero.jsx` and its CSS: approved Hero V2, stable character
   cells, responsive viewport composition, scoped page palette, and CTA availability.
@@ -161,6 +180,13 @@ of section timelines; see MOTION.md. No cursor-dependent actions may be added.
 - `src/hooks/useExperienceMotion.js`: one reversible scene, independent pointer/tap
   framing, static reading fallbacks and owned lifecycle cleanup.
 - `src/data/experience.js`: confirmed Cyber Square internship and supplied description.
+- `src/components/sections/ContactSection.jsx`, `ContactForm.jsx` and `Contact.css`:
+  #contact, accessible underlined fields, honest mailto fallback and autofill styling.
+- `src/components/layout/SiteFooter.jsx` and its CSS: ivory signature, finite pixel
+  slices, confirmed profile links and native Back to Top.
+- `src/hooks/useClosingMotion.js`: separate scoped closing scenes with shared lifecycle.
+- `src/data/contact.js`, `src/lib/contactDraft.js`: confirmed contacts and pure validation/
+  encoded-draft helpers; `tests/contactDraft.test.js` uses Node's built-in test runner.
 - `src/data/projects.js`: four fictional records and null project destinations.
 - `public/artwork/projects/`: original SVG placeholders and replacement notes.
 - `src/data/expertise.js`: the approved 22-tool stack, factual descriptions and real

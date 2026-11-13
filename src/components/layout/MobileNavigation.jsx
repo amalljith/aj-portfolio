@@ -44,7 +44,7 @@ export default function MobileNavigation({ id, panelRef, active, open, links, on
           data-menu-footer
         >
           {availableSocialLinks.map((link) => (
-            <a key={link.label} href={link.href} className="mobile-navigation__social">
+            <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} (opens in a new tab)`} className="mobile-navigation__social">
               {link.label}
               <span aria-hidden="true">↗</span>
             </a>

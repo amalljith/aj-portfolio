@@ -5,6 +5,8 @@ import AboutSection from "./components/sections/AboutSection.jsx";
 import ExpertiseSection from "./components/sections/ExpertiseSection.jsx";
 import ProjectsSection from "./components/sections/ProjectsSection.jsx";
 import ExperienceSection from "./components/sections/ExperienceSection.jsx";
+import ContactSection from "./components/sections/ContactSection.jsx";
+import SiteFooter from "./components/layout/SiteFooter.jsx";
 import Preloader from "./components/preloader/Preloader.jsx";
 import SignatureCursor from "./components/cursor/SignatureCursor.jsx";
 
@@ -34,7 +36,9 @@ export default function App() {
           <ExpertiseSection motionEnabled={!opening} />
           <ProjectsSection motionEnabled={!opening} />
           <ExperienceSection motionEnabled={!opening} />
+          <ContactSection motionEnabled={!opening} />
         </main>
+        <SiteFooter motionEnabled={!opening} />
       </div>
       {opening && <Preloader pageRef={pageRef} heroRef={heroRef} onComplete={completeOpening} />}
       <SignatureCursor enabled={!opening} />
