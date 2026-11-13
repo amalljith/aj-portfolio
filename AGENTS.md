@@ -73,7 +73,7 @@ remain intact; five separate decorative icon entrances are finite. Supporting
 items are real documentation links with hover/focus emphasis, not fake controls.
 Public SVGs, provenance and the Devicon MIT notice live in public/icons/technologies.
 No new dependency, Lenis, scroll lock, JS pin spacer, or idle loop is added.
-Do not build Experience or Contact without explicit instructions.
+Do not build Contact without explicit instructions.
 
 Phase 06 Projects is implemented at #projects, directly after Expertise, and awaits
 visual approval. An ivory editorial introduction leads into four varied-width
@@ -85,6 +85,20 @@ Tablet/mobile, short or unsafe fits, reduced motion and failed enhancement use
 normal vertical flow. The hook observes preceding section heights to refresh its
 own pin without changing the existing controllers. No wheel interception, Lenis,
 new package, idle loop, fake project link or cursor redesign is introduced.
+
+Phase 07 Experience V2 is implemented at #experience after Projects and awaits
+visual approval. The Career Signal dossier replaces the former giant company/
+duration composition: phrase-masked PYTHON DEVELOPER INTERN leads, a connected
+identity unit combines the original Cyber Square logo, company and location, and
+compact duration/copy plus a four-tool rail complete the spread. Only the supplied
+six-month internship and exact approved description are used. Content remains in
+src/data/experience.js. The unchanged public/branding/cybersquare.png preserves
+its colors, registered mark and tagline; the display window crops only empty rows.
+One scoped reversible ScrollTrigger follows normal section flow without pinning.
+Pointer/tap decoration owns layers separate from the scroll frame and image mask.
+Reduced motion, selection, keyboard focus and failed enhancement keep text readable;
+initial anchors remain usable after the opening. No new dependency, section scroll
+lock, continuous ticker, additional job, Contact or Footer is introduced.
 
 The AJ Signal Cursor mounts once through a body portal after the preloader.
 It uses a 12px filled Electric Orange square with exact center tracking and
@@ -118,7 +132,7 @@ of section timelines; see MOTION.md. No cursor-dependent actions may be added.
   capability/reduced-motion fallback and owned cleanup.
 - `src/components/cursor/ShatterTrail.js`: fixed-capacity Canvas 2D fragments,
   distance-based emission, smoothed velocity and finite decay; no independent loop.
-- `src/App.jsx`: Navbar, skip link, Hero, About, Expertise and Projects; section motion is
+- `src/App.jsx`: Navbar, skip link, Hero, About, Expertise, Projects and Experience; section motion is
   enabled only after the preloader completes.
 - `src/components/sections/Hero.jsx` and its CSS: approved Hero V2, stable character
   cells, responsive viewport composition, scoped page palette, and CTA availability.
@@ -142,6 +156,11 @@ of section timelines; see MOTION.md. No cursor-dependent actions may be added.
   asymmetric concept gallery, real-link-only previews, scoped ivory surface.
 - `src/hooks/useProjectsMotion.js`: lazy ScrollTrigger, one measured horizontal
   master timeline, responsive flow fallback, progress, focus and owned cleanup.
+- `src/components/sections/ExperienceSection.jsx` and `Experience.css`: Career Signal
+  role-led dossier, connected brand identity, compact details and technology rail.
+- `src/hooks/useExperienceMotion.js`: one reversible scene, independent pointer/tap
+  framing, static reading fallbacks and owned lifecycle cleanup.
+- `src/data/experience.js`: confirmed Cyber Square internship and supplied description.
 - `src/data/projects.js`: four fictional records and null project destinations.
 - `public/artwork/projects/`: original SVG placeholders and replacement notes.
 - `src/data/expertise.js`: the approved 22-tool stack, factual descriptions and real
