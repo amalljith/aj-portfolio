@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" fill="none">
+  <path fill="#151515" d="M0 0h1000v700H0z"/>
+  <g stroke="#F5EEDC" stroke-opacity=".16">
+    <path d="M0 140h1000M0 280h1000M0 420h1000M0 560h1000M140 0v700M380 0v700M620 0v700M860 0v700"/>
+    <path d="M0 700 1000 0M0 350 500 0M500 700l500-350"/>
+  </g>
+  <path fill="#FF5C28" d="m145 455 195-305h480L625 455z"/>
+  <path fill="#F5EEDC" d="m280 550 140-220h390L670 550z"/>
+  <path fill="#151515" d="m455 473 97-153h260l-98 153z"/>
+  <path fill="#FF5C28" d="m630 330 70-110h155l-70 110z"/>
+  <g stroke="#F5EEDC" stroke-width="1.5">
+    <path d="M95 455h90l72-112h194l81-126h229M320 550H95V140h345M670 550h235V330H810"/>
+    <path d="M95 118v44M73 140h44M883 550h44M905 528v44"/>
+  </g>
+  <g fill="#FF5C28"><path d="M88 448h14v14H88zM898 543h14v14h-14zM525 210h14v14h-14z"/></g>
+  <g fill="#F5EEDC" font-family="monospace" font-size="11" letter-spacing="2">
+    <text x="54" y="62">NEXUS / CONNECTED FORMS</text><text x="54" y="646">N—01</text><text x="770" y="646">CONCEPT ARTWORK</text>
+  </g>
+</svg>

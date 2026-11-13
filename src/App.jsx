@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar.jsx";
 import Hero from "./components/sections/Hero.jsx";
 import AboutSection from "./components/sections/AboutSection.jsx";
 import ExpertiseSection from "./components/sections/ExpertiseSection.jsx";
+import ProjectsSection from "./components/sections/ProjectsSection.jsx";
 import Preloader from "./components/preloader/Preloader.jsx";
 import SignatureCursor from "./components/cursor/SignatureCursor.jsx";
 
@@ -27,9 +28,10 @@ export default function App() {
           tabIndex={-1}
           className="flex-1"
         >
-          <Hero ref={heroRef} autoPlay={false} />
+          <Hero ref={heroRef} autoPlay={false} workHref="#projects" />
           <AboutSection motionEnabled={!opening} />
           <ExpertiseSection motionEnabled={!opening} />
+          <ProjectsSection motionEnabled={!opening} />
         </main>
       </div>
       {opening && <Preloader pageRef={pageRef} heroRef={heroRef} onComplete={completeOpening} />}

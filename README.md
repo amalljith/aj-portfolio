@@ -4,7 +4,7 @@ Amal Jith's editorial developer portfolio, built with React, Vite, Tailwind CSS 
 and GSAP. The visually approved Hero V2 is now the production composition at /
 with the existing Navbar, AJ monogram, and branded preloader. The new editorial
 About section at #about is completed and approved. Phase 05 Expertise at
-#expertise is implemented and awaiting visual review.
+#expertise is implemented. Phase 06 Projects at #projects is ready for visual review.
 
 ## Development
 
@@ -46,14 +46,12 @@ complete composition on common laptop screens. Short desktop viewports below
 approved stacked name, artwork beside the role, and full-width copy/CTA, with
 natural scrolling and no viewport-fit font compression.
 
-Explore Work has no fabricated destination. Until a real Work section is added,
-it is explicitly aria-disabled with visible 'Selected work - coming soon' text,
-and has no fake click behavior. Once App renders that section, pass
-workHref="#work" to Hero to render the real anchor instead. About and Expertise
-destinations are live. The remaining section IDs in
-src/data/navigation.js remain reserved; mobile navigation safely closes without
-scrolling or changing the hash when a destination is absent. Social links stay
-hidden until real URLs are supplied. Experience, Work and Contact are not implemented.
+Explore Work and the shared WORK navigation link to #projects through the existing
+Hero prop and navigation data. Project entries are clearly marked fictional
+concept placeholders; they are not personal credentials. About and Expertise
+remain live. Experience and Contact are not implemented. Mobile navigation keeps
+its existing close/unlock/focus behavior. Social links stay hidden until real URLs
+are supplied.
 
 ## Opening and Hero motion
 
@@ -258,6 +256,53 @@ and late plugin loading no longer permanently disable a suitable desktop stage.
 Tablet/mobile, reduced motion, failed enhancement and unsafe fits remain readable
 in normal flow; mode changes preserve the current article.
 
+## Projects: concept edition
+
+The ivory #projects section follows Expertise. SELECTED PROJECTS. uses oversized
+Anton, an offset second line and an editorial intro wipe. Four original local SVGs
+show connected planes (NEXUS), orbital geometry (ORBIT), folded forms (FORMA),
+and a signal waveform (PULSE). They are abstract concept art, not screenshots.
+Panel widths, framing and title alignment vary within one editorial system.
+
+On suitable desktops (1024px wide, 704px tall and content safely fitting), one
+scoped ScrollTrigger pins the gallery and converts native vertical scrolling into
+a measured horizontal track. One master timeline owns its motion and reveals.
+The rendered track position drives the active-project counter and progress rail.
+The gallery releases into normal page flow after the final panel. There is no
+wheel hijack, snapping, new dependency or idle loop. Tablet/mobile, short screens,
+reduced motion and failed enhancement show a readable vertical gallery instead.
+The existing Hero, About, Expertise, cursor and opening controllers are unchanged.
+
+### Replacing placeholder projects
+
+Edit `src/data/projects.js`; all four records are explicitly fictional. Keep IDs
+stable and update title, category, short description, technology array, number,
+artwork path/alt, featured flag and placeholder flag. Supply only confirmed content.
+Set `placeholder: false` when a record represents real work. Update the intro's
+concept-edition/fictional-placeholder note in ProjectsSection.jsx at that point.
+
+Put screenshots in `public/artwork/projects/` (or supply another local path) and
+set `artwork` plus meaningful `artworkAlt`. The 1000x700 reserved image dimensions
+and object-fit crop avoid layout shifts; check both desktop and mobile framing.
+The original SVGs are loaded eagerly at low priority and total only a few KB.
+See [artwork notes](public/artwork/projects/README.md).
+
+Leave `liveUrl` and `githubUrl` null until real destinations are known. A supplied
+live URL makes the artwork a live-demo link. A supplied repository always has
+its own separate GitHub icon link, even without a demo; it is never the artwork
+destination. Both open a new tab with noopener/noreferrer. A live preview uses
+VIEW PROJECT through the existing cursor. Missing or blank URLs render no links
+for that destination. The GitHub mark reuses the existing local technology SVG. All four records render in data order; featured
+is retained as editable metadata for future curation.
+
+Projects is ready for visual approval. Oxlint/build pass. Headless Edge checks
+cover 320, 360, 390, 768, 1024, 1280 and 1440px widths, 600px-short desktop
+fallback, forward/reverse/rapid scrolling, pin entry/release, counter sync,
+Expertise crossings, resize, initial #projects after the opening, reduced motion,
+StrictMode cleanup, failed enhancement and configured-link keyboard fixtures.
+All four URL-availability combinations were checked without adding fake URLs to
+production data. Physical iOS/Safari and other browser engines remain unverified.
+
 ## AJ Signal Cursor
 
 The cursor uses a 12px filled Electric Orange square with an exact centered
@@ -299,6 +344,6 @@ Hero-local fallback. No font package or new font asset was added.
 Read [AGENTS.md](AGENTS.md) for source ownership and contributor rules, and
 [MOTION.md](MOTION.md) for sequencing, lifecycle, reduced motion, and future plans.
 The Hero, About and preloader remain approved. Expertise awaits visual approval
-before further refinement or expansion. Later sections, Lenis, horizontal Projects
-scrolling, and favicon integration remain outside the current scope.
+before further expansion. Projects is implemented and awaits visual approval.
+Experience, Contact, Lenis and favicon integration remain outside this phase.
 Do not automatically commit, push, change branches, create pull requests, or publish.

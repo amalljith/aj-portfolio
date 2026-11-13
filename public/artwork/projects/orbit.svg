@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" fill="none">
+  <path fill="#F5EEDC" d="M0 0h1000v700H0z"/>
+  <g stroke="#151515" stroke-opacity=".18"><path d="M0 175h1000M0 350h1000M0 525h1000M250 0v700M500 0v700M750 0v700"/><circle cx="500" cy="350" r="280"/></g>
+  <circle cx="500" cy="350" r="212" fill="#151515"/>
+  <circle cx="500" cy="350" r="138" fill="#F5EEDC"/>
+  <ellipse cx="500" cy="350" rx="344" ry="112" transform="rotate(-32 500 350)" stroke="#151515" stroke-width="2"/>
+  <ellipse cx="500" cy="350" rx="310" ry="112" transform="rotate(32 500 350)" stroke="#151515" stroke-width="1.5"/>
+  <path d="M500 70a280 280 0 0 1 280 280" stroke="#FF5C28" stroke-width="16"/>
+  <circle cx="692" cy="224" r="73" fill="#FF5C28"/>
+  <circle cx="500" cy="350" r="8" fill="#151515"/>
+  <path d="M500 220v260M370 350h260M100 350h80M820 350h80M500 30v35M500 635v35" stroke="#FF5C28" stroke-width="2"/>
+  <path d="m260 545-45 55h-85M745 125l55-50h70" stroke="#151515"/>
+  <g fill="#151515" font-family="monospace" font-size="11" letter-spacing="2"><text x="54" y="62">ORBIT / RELATIVE POSITIONS</text><text x="54" y="646">O—02</text><text x="770" y="646">CONCEPT ARTWORK</text></g>
+</svg>

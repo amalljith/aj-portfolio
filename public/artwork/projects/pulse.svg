@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" fill="none">
+  <path fill="#151515" d="M0 0h1000v700H0z"/>
+  <g stroke="#F5EEDC" stroke-opacity=".14"><path d="M0 140h1000M0 280h1000M0 420h1000M0 560h1000M125 0v700M250 0v700M375 0v700M500 0v700M625 0v700M750 0v700M875 0v700"/></g>
+  <path d="M85 350h165l75-160 100 320 100-320 100 320 75-160h215" stroke="#F5EEDC" stroke-width="22" stroke-linejoin="bevel"/>
+  <path d="M85 402h135l105-212 100 320 100-320 100 320 100-212h190" stroke="#FF5C28" stroke-width="2"/>
+  <path fill="#FF5C28" d="M455 90h90v125h-90zM455 485h90v125h-90z"/>
+  <path d="M90 140h170M740 560h170M500 60v40M500 600v40" stroke="#FF5C28" stroke-width="2"/>
+  <path d="M68 350h34M85 333v34M898 350h34M915 333v34" stroke="#FF5C28" stroke-width="2"/>
+  <circle cx="500" cy="350" r="97" stroke="#FF5C28" stroke-dasharray="2 12"/>
+  <g fill="#F5EEDC" font-family="monospace" font-size="11" letter-spacing="2"><text x="54" y="62">PULSE / INPUT TO RESPONSE</text><text x="54" y="646">P—04</text><text x="770" y="646">CONCEPT ARTWORK</text></g>
+</svg>
