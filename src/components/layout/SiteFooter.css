@@ -1,0 +1,44 @@
+@layer components {
+  .site-footer { --surface: var(--color-ivory); --ink: var(--color-graphite); --accent: var(--color-orange); --focus: var(--color-graphite); background: var(--surface); color: var(--ink); padding-inline: var(--gutter); }
+  .site-footer ::selection { background: var(--ink); color: var(--surface); }
+  .site-footer__inner { max-inline-size: var(--content-width); margin-inline: auto; padding-block: clamp(2rem, 4vw, 4rem) 1.5rem; }
+  .site-footer__edition, .site-footer__connections, .site-footer__colophon { font-family: var(--font-mono); font-size: 0.6875rem; line-height: 1.6; font-weight: 400; letter-spacing: 0.015em; }
+  .site-footer__edition, .site-footer__connections, .site-footer__colophon { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .site-footer__edition > a { display: inline-flex; align-items: center; min-block-size: 44px; gap: 1.5rem; text-decoration: underline; text-underline-offset: 5px; }
+  .site-footer__edition > a > span { transition: transform 260ms cubic-bezier(0.22,1,0.36,1); }
+  .site-footer__edition > a:is(:hover,:focus-visible) > span { transform: translateY(-3px); }
+  .site-footer__rule { block-size: 1px; background: color-mix(in srgb, var(--ink) 30%, transparent); }
+  .site-footer__rule > span { display: block; block-size: 100%; background: var(--ink); transform-origin: 0 50%; }
+  .site-footer__signature { margin-block: clamp(1.5rem, 3vw, 3rem); font-family: var(--font-display); font-size: clamp(3.5rem, 15.5vw, 14rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.025em; }
+  .site-footer__signature-trigger { position: relative; display: block; inline-size: 100%; padding-block: 0.03em; border: 0; color: inherit; background: transparent; text-align: start; font: inherit; letter-spacing: inherit; line-height: inherit; white-space: nowrap; user-select: text; }
+  .site-footer__signature-trigger:focus-visible { outline-offset: 6px; }
+  .site-footer__name { display: block; }
+  .site-footer__slice { position: absolute; inset: 0; padding-block: 0.03em; display: block; opacity: 0; pointer-events: none; }
+  .site-footer__slice--0 { clip-path: inset(0 0 66% 0); }
+  .site-footer__slice--1 { clip-path: inset(34% 0 32% 0); color: var(--accent); }
+  .site-footer__slice--2 { clip-path: inset(68% 0 0 0); }
+  .site-footer__pixels { position: absolute; inset: 0; overflow: clip; pointer-events: none; }
+  .site-footer__pixels > i { position: absolute; inset-inline-start: calc(8% + var(--pixel) * 16%); inset-block-start: 18%; inline-size: clamp(3px, 0.6vw, 8px); block-size: clamp(3px, 0.6vw, 8px); background: var(--accent); opacity: 0; }
+  .site-footer__pixels > i:nth-child(even) { inset-block-start: 70%; background: var(--ink); }
+  .site-footer__connections { align-items: start; border-block-start: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); padding-block: 0.75rem; }
+  .site-footer__connections ul { display: flex; flex-wrap: wrap; gap: 0.25rem clamp(1rem, 3vw, 3rem); }
+  .site-footer__connections a { display: inline-flex; align-items: center; min-block-size: 44px; gap: 0.5rem; text-decoration: underline; text-underline-offset: 5px; }
+  .site-footer__connections a > span:last-child { transition: transform 260ms cubic-bezier(0.22,1,0.36,1); }
+  .site-footer__connections a:is(:hover,:focus-visible) > span:last-child { transform: translate(2px,-2px); }
+  .site-footer__github { inline-size: 14px; block-size: 14px; background: currentColor; mask: url("/icons/technologies/github.svg") center / contain no-repeat; }
+  .site-footer__connections > p { padding-block: 0.75rem; }
+  .site-footer__colophon { border-block-start: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); padding-block-start: 1rem; font-size: 0.5625rem; }
+  @media (width < 48rem) {
+    .site-footer__edition { font-size: 0.5625rem; gap: 1rem; }
+    .site-footer__edition > p { max-inline-size: 14ch; }
+    .site-footer__edition > a { gap: 0.75rem; }
+    .site-footer__connections { flex-direction: column; gap: 0.25rem; }
+    .site-footer__connections ul { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 2rem; }
+    .site-footer__connections > p { padding-block: 0.25rem 0.75rem; }
+    .site-footer__colophon { align-items: start; gap: 1rem; }
+    .site-footer__colophon > p:last-child { max-inline-size: 14ch; text-align: end; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .site-footer__edition > a > span, .site-footer__connections a > span:last-child { transition: none; transform: none !important; }
+  }
+}
