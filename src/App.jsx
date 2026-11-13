@@ -4,6 +4,7 @@ import Hero from "./components/sections/Hero.jsx";
 import AboutSection from "./components/sections/AboutSection.jsx";
 import ExpertiseSection from "./components/sections/ExpertiseSection.jsx";
 import ProjectsSection from "./components/sections/ProjectsSection.jsx";
+import ExperienceSection from "./components/sections/ExperienceSection.jsx";
 import Preloader from "./components/preloader/Preloader.jsx";
 import SignatureCursor from "./components/cursor/SignatureCursor.jsx";
 
@@ -32,6 +33,7 @@ export default function App() {
           <AboutSection motionEnabled={!opening} />
           <ExpertiseSection motionEnabled={!opening} />
           <ProjectsSection motionEnabled={!opening} />
+          <ExperienceSection motionEnabled={!opening} />
         </main>
       </div>
       {opening && <Preloader pageRef={pageRef} heroRef={heroRef} onComplete={completeOpening} />}

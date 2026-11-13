@@ -396,7 +396,42 @@ visibility/resize listeners, observers and pending RAF. StrictMode and pending
 imports check disposal. There is no perpetual loop or global kill/config change.
 
 The implementation follows the official [ScrollTrigger pin/refresh guidance](https://gsap.com/docs/v3/Plugins/ScrollTrigger/).
-Design awaits visual approval. No Experience or Contact section is included.
+Projects awaits visual approval. No Contact section is included.
+
+## Experience V2: Career Signal
+
+Experience follows Projects in natural flow at #experience. Its earlier giant
+EXPERIENCE/company/duration treatment and obsolete masks, sweep and fragment motion
+are removed. The role is now the semantic heading, revealed in three short Anton
+phrases. Company identity is one connected module; the logo itself never transforms.
+The original PNG and existing four technology SVGs are unchanged.
+
+One section-owned master timeline/ScrollTrigger connects four moments: an orange
+signal rule and labels, reading-order role masks, architectural frame/logo/company
+reveal, then compact duration, exact paragraph and a staggered technology rail.
+The 2.4-unit sequence is driven by native scrolling with .2s scrub smoothing, not
+a timed wait or pin. Start is top 85%; desktop completion is clamped at top 10%,
+while smaller/short screens complete at bottom 95% clamped to available scroll.
+All states reverse coherently. Preceding-section measurements account for Projects'
+existing pin spacer; its controller is neither replaced nor reconfigured.
+
+A fine pointer moves only the inner brand frame by up to 3px horizontally/2px
+vertically using cached entry bounds and 320ms quickTo interpolation. A separate
+280ms reversible response extends a corner rule and emphasizes its marker. Short
+coarse-pointer taps play that finite response out and back. Movement/cancelled or
+long touches do not count as taps; all listeners are passive and native scrolling
+is preserved. The logo is not a control. LOCATION is the sole real section link
+and retains the existing VISIT cursor annotation. Technology hover extends a fine
+orange underline without implying navigation.
+
+App retains its existing opening gate. Reduced motion, inertness, hidden tabs,
+selection, keyboard focus and enhancement failure restore unmasked readable text.
+Anchor/focus visits settle text without disabling subsequent decorative pointer
+feedback; reduced motion disables both. Initial reduced motion does not request
+ScrollTrigger from this hook. Font/image and upstream geometry changes queue one
+owned rebuild frame. Context cleanup removes only owned triggers, tweens, styles,
+listeners, observers and pending RAF, including StrictMode rehearsal and interrupted
+taps. There is no idle loop, global kill/config change or scroll lock.
 
 ## AJ Signal Cursor
 

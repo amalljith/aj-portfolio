@@ -4,7 +4,8 @@ Amal Jith's editorial developer portfolio, built with React, Vite, Tailwind CSS 
 and GSAP. The visually approved Hero V2 is now the production composition at /
 with the existing Navbar, AJ monogram, and branded preloader. The new editorial
 About section at #about is completed and approved. Phase 05 Expertise at
-#expertise is implemented. Phase 06 Projects at #projects is ready for visual review.
+#expertise is implemented. Projects at #projects and Career Signal Experience V2
+at #experience are ready for visual review.
 
 ## Development
 
@@ -49,7 +50,7 @@ natural scrolling and no viewport-fit font compression.
 Explore Work and the shared WORK navigation link to #projects through the existing
 Hero prop and navigation data. Project entries are clearly marked fictional
 concept placeholders; they are not personal credentials. About and Expertise
-remain live. Experience and Contact are not implemented. Mobile navigation keeps
+remain live. Experience follows Projects; Contact is not implemented. Mobile navigation keeps
 its existing close/unlock/focus behavior. Social links stay hidden until real URLs
 are supplied.
 
@@ -232,8 +233,8 @@ ivory fills for contrast; the core brand geometry is preserved. Python's
 decorative ground shadow is removed. Native gradients inside source brand artwork
 are retained; the section adds no gradients, shadows or filters.
 
-Expertise awaits visual approval. Experience, Work and Contact remain outside
-this phase.
+Expertise awaits visual approval. Projects and Experience are implemented below it;
+Contact remains pending.
 
 Expertise verification used headless Edge at 320, 360, 390, 768, 1024, 1280 and
 1440px widths, including 600px-high desktop and 640px-high mobile viewports.
@@ -303,6 +304,45 @@ StrictMode cleanup, failed enhancement and configured-link keyboard fixtures.
 All four URL-availability combinations were checked without adding fake URLs to
 production data. Physical iOS/Safari and other browser engines remain unverified.
 
+## Experience V2: Career Signal
+
+The #experience chapter follows Projects as a compact professional dossier. Three
+masked role phrases lead an asymmetric grid; the connected company unit combines
+the authentic logo, Cyber Square name, location/address and real LOCATION link.
+The duration is a compact 06 MONTHS annotation beside the exact approved internship
+paragraph, followed by Python, Django, FastAPI and React. There are no invented
+employment dates, achievements, responsibilities or extra jobs.
+
+All confirmed content stays in `src/data/experience.js`. The official asset is
+`public/branding/cybersquare.png` (1829 x 849), unchanged. A shallow display window
+removes only empty white margins; all lettering, colors, trademark and tagline
+remain intact. Existing local technology SVGs are reused.
+
+Anton supplies upright role phrases, Kode Mono supplies technical labels and Space
+Grotesk supplies the company/copy. Desktop uses a modular grid, compact duration
+and restrained connected frame; height-aware gaps allow typical laptop composition
+without fixed heights. Tablet reflows naturally; mobile is a deliberate single
+column with a two-column technology rail and native vertical scrolling.
+
+One reversible native-scroll timeline draws the signal, reveals the role and
+company identity, then brings in the details and rail. Experience adds no pin,
+spacer or artificial scroll travel. Desktop pointer movement affects only inner
+frame decoration; short taps get finite corner feedback. The artwork remains
+static, reduced motion receives readable content, and LOCATION retains the VISIT
+cursor. Keyboard focus and selection settle the text. All lifecycle resources
+are owned by `useExperienceMotion.js`; existing section controllers are preserved.
+
+The former Experience layout/styles and superseded scene code are removed.
+No dependency or font was added. Oxlint and production build pass. Headless Edge
+checks cover 320, 360, 390, 768, 1280 and 1440px widths, 600px-short desktops,
+reading-order phrase states, forward/reverse/rapid scrolling, Projects crossings,
+initial anchors, pointer/tap responses, native touch scrolling, keyboard focus,
+selection and live reduced motion. StrictMode remount/unmount checks verify owned
+cleanup and preservation of unrelated triggers; failed enhancement restores static
+content. The 1440x900 and 1280x720 compositions fit without fixed heights.
+Experience V2 awaits visual approval; physical mobile/Safari coverage remains a
+separate manual check.
+
 ## AJ Signal Cursor
 
 The cursor uses a 12px filled Electric Orange square with an exact centered
@@ -345,5 +385,5 @@ Read [AGENTS.md](AGENTS.md) for source ownership and contributor rules, and
 [MOTION.md](MOTION.md) for sequencing, lifecycle, reduced motion, and future plans.
 The Hero, About and preloader remain approved. Expertise awaits visual approval
 before further expansion. Projects is implemented and awaits visual approval.
-Experience, Contact, Lenis and favicon integration remain outside this phase.
+Contact, Lenis and favicon integration remain outside this phase.
 Do not automatically commit, push, change branches, create pull requests, or publish.
